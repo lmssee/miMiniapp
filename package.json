@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "tim-upload-plugin": "^1.0.3",
+    "tim-wx-sdk": "^2.12.2"
+  }
+}
