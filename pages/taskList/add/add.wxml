@@ -1,0 +1,7 @@
+<view>
+  <view>
+    <textarea model:value="{{content}}" name="" id="" cols="30" rows="10" auto-height="{{true}}" placeholder="请输入计划"  class="textarea"></textarea>
+  </view>
+  <view><switch bindtap="manySave" checked="{{isMany}}">连续输入</switch> </view>
+  <view><button bindtap="saveTask">保存</button></view>
+</view>

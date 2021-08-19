@@ -1,0 +1,17 @@
+.runlist{
+  width: 96%;
+  margin: 0.25rem auto;
+  background-color: #0001;
+}
+.runlist>text{
+  display: inline-block;
+  margin: 0.5rem 0;
+  font-size: smaller;
+}
+.runlist>text:first-child{
+  width: 60%;
+}
+.runlist>text:last-child{
+  width: auto;
+}
+ 

@@ -1,0 +1,13 @@
+{
+"navigationBarBackgroundColor": "#0ff00f",
+"navigationBarTextStyle": "white",
+"navigationBarTitleText": "首页",
+"navigationStyle":"default",
+"backgroundColor": "#ff0fff",
+"backgroundColorTop":"#0099ff",
+"backgroundColorBottom":"#ffff00",
+"enablePullDownRefresh": true,
+"onReachBottomDistance":30,
+"pageOrientation":"portrait",
+"disableSwipeBack":false
+}

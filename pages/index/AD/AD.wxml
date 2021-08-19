@@ -1,0 +1,14 @@
+<view class="container">
+   <!-- <view>
+     <ad unit-id="" ad-intervals="30"></ad>
+   </view> -->
+</view>
+<!-- <movable-area class="block">
+  /* 使用组件 moveable 失败 */
+    <movable-view  class="move" direction="horizontal" inertia="{{true}}" out-of-bounds="{{false}}" x="5rem" damping="20"
+      friction="12" disabled="{{false}}" scale-min="1" scale-max="1" scale-value="1" animation="{{true}}" 
+     bind:touchstart="start" bind:touchend="end" bind:touchmove="hmove" bindchange="hmove">
+      <text> {{innerText}}</text>
+    </movable-view>
+    <view class="hidden" style="width:{{hiddenWidth}};left:{{hiddenLeft}}" >隐藏</view><view class="del" style="width:{{delWidth}};left:{{delLeft}}">删除</view>
+  </movable-area> -->

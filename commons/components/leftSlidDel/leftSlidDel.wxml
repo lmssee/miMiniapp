@@ -1,0 +1,15 @@
+<view class="Block">
+  <scroll-view class="block" scroll-x='{{true}}' scroll-with-animation='{{true}}' enhanced="{{true}}"
+    scroll-anchoring='{{true}}' bind:touchstart="start" catch:touchend="end" catch:scroll="hmove"
+    catch:scrolltoupper="leftNow" catch:scrolltolower="rightNow" scroll-left="{{scrollLeft}}">
+    <view class="move">
+      <view class="content">
+        <slot name="content"></slot>
+      </view>
+      <view class="left" style="width:{{leftWidth}};left:{{leftLeft}};background:{{leftBC}}" catch:tap="clickLeft"
+        data-a="{{index}}">{{leftText}}</view>
+      <view class="right" style="width:{{rightWidth}};left:{{rightLeft}};background:{{rightBC}}" catch:tap="clickRight"
+        data-a="{{index}}">{{rightText}}</view>
+    </view>
+  </scroll-view>
+</view>

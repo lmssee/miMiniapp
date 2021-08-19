@@ -1,0 +1,5 @@
+<view class="inputFather">
+  <view class="inputTop {{isAlterShow?'show':'hide'}}">{{oldHolder}}</view>
+  <input type="{{type}}" placeholder="{{holder}}" model:value="{{value}}" bindinput="getValue" bindfocus="onFocus"
+    bindblur="onBlur" />
+</view>

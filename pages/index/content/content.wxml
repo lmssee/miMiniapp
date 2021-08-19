@@ -1,0 +1,9 @@
+<view class="container">
+  <view><text>i am a text Element</text></view>
+  <view>
+    <icon></icon>一个无辜的 icon
+  </view>
+  <view><img src="" alt="图片" /></view>
+  <view><progress percent="10" show-info="true" border-radius="20" font-size="15" stroke-width="10" activeColor="#0f0"  backgroundColor="#000" activeColor="{{true}}" active-mode="forwards" bindactiveend=""></progress></view>
+  <view></view>
+</view>

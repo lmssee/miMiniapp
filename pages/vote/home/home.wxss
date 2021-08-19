@@ -1,0 +1,15 @@
+ 
+view.voteHome{
+  width: 94%;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  font-weight: 900;
+   margin: 5% auto;
+   box-shadow: 1px 1px 6px #090,-1px -1px 3px #0909;
+   border-radius: 0.5rem;
+}
+.voteHomeHover{
+  color: #0f0;
+  background-color: #000;
+}

@@ -1,0 +1,34 @@
+<view>
+  <navigator class="goHome" url="/pages/test/home/home" open-type="redirect">回首页</navigator>
+</view>
+<view class="content">
+  <view class="sidebar">
+    <view wx:for="{{list}}" wx:for-index="index" wx:key="{{index}}" bindtap="scrollTo" data-a="{{'a' + item._id}}"  class="sidebarDetail {{whoInView == index ? 'sidebarDetailOnly' : whoInView == index - 1 ? 'sidebarDetailPrevious' : whoInView == index + 1 ? 'sidebarDrtaileNext' : ''}}">{{item.title}}</view>
+  </view>
+  <scroll-view id="ringhtContent" class="ringhtContent" scroll-y scroll-into-view="{{scrollToTheList}}" enhanced
+    enable-back-to-top scroll-anchoring scroll-with-animation show-scrollbar="{{false}}" >
+    <view id="{{'a' + i._id}}" wx:for="{{list}}" wx:for-item="i" class="list" wx:for-index="ii">
+      <view class="listTitle">{{i.title}}</view>
+      <view wx:for="{{i.items}}" wx:for-item="j" class="detail" wx:for-index="jj">
+        <image class="img" bindtap="gotoStoreDetail" data-a="{{j}}" src="{{j.img[0]}}" alt="{{j.title}}" />
+        <view class="detailTitle"  bindtap="gotoStoreDetail" data-a="{{j}}" >
+          {{j.title}}
+        </view>
+        <view class="detailContent">
+          {{j.content}}
+        </view>
+        <view class="detailPrice">
+          ¥ {{j.price}}
+        </view>
+        <view class="detailReduce flexRow" wx:if="{{j.cum > 0}}">
+          <view><button class="circleButton1REM " plain catch:tap="reduceCum" data-a="{{j}}" data-b="{{ii}}"
+              data-c="{{jj}}" hover-class="buttonhover1" hover-stay-time="600">-</button></view>
+          <view> {{j.cum}}</view>
+        </view>
+        <button class="circleButton1REM detailAdd" catch:tap="addCum" data-a="{{j}}" data-b="{{ii}}" data-c="{{jj}}"
+          hover-class="buttonhover1" hover-stay-time="600">+</button>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="store">{{allCum}}<view>¥ {{allPrice}}</view> </view>
+</view>

@@ -1,0 +1,11 @@
+<view class="container">
+  <view>
+    <text>同一个页面只能插入一个 camera 组件</text>
+  </view>
+  <view>
+    <camera id="c" style="width:100%;height:20rem;box-shadow:1px 1px 1px #f00,-1px -1px 1px #000" mode="normal" device-position="back"
+    flash="auto" frame-size="large" bindstop="" binderror="" bindinitdone bindscancode=""  data-mode="normal 相机模式  scanCode 扫码模式" data-davicePosition="front 前置摄像头 back 后置摄像头" data-flash="闪光灯 auto on off" data-frameSize="相机帧数数据尺寸 small medium large"  data-event="bindstop  终止时触发 binderror 用户不允许使用摄像头 bindinitdone 相机初始化完成 bindscancode 扫码结束,只在 mode 为 scanCode 时触发"></camera>
+  </view>
+  <button bindtap="clickPhoto">拍照</button>
+  <button bindtap="clickRecord">拍视频</button>
+</view>

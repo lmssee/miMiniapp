@@ -1,0 +1,82 @@
+.image {
+  width: 96%;
+  margin: 2%;
+  box-shadow: 1px 1px 6px #0f0, -1px 1px 6px #f00;
+  animation: imageBorder 3s 0s linear infinite;
+}
+
+.detailCenter {
+  width: 100%;
+  height: 6rem;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  border: 1px solid #0003;
+  background-color: #6661;
+}
+
+.detailTitle {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+
+}
+
+.detailPrice {
+  position: absolute;
+  top: 3.25rem;
+  left: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 100;
+}
+
+.detailButton {
+  position: absolute;
+  top: 3rem;
+  left: 45%;
+}
+
+.reduceButton,
+.addButton {
+  display: inline-block;
+}
+
+.reduceButton {
+  transform: translate(30rpx, 0);
+}
+
+.cum {
+  display: inline-block;
+  width: 2rem;
+  text-align: center;
+  transform: translate(60rpx, -0.35rem);
+}
+
+.addButton {
+  transform: translate(90rpx, 0);
+}
+
+
+@keyframes imageBorder {
+  0% {
+    border-radius: 4rem 0 0 0;
+  }
+
+  25% {
+    border-radius: 0 4rem 0 0;
+  }
+
+  50% {
+    border-radius: 0 0 4rem 0;
+  }
+
+  75% {
+    border-radius: 0 0 0 4rem;
+  }
+
+  100% {
+    border-radius: 4rem 0 0 0;
+  }
+}

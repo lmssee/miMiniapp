@@ -1,0 +1,13 @@
+<view class="container">
+  <view>
+    <canvas style="width:100%;height:15rem" canvas-id="c" disable-scroll="{{true}}" bindtouchstart="" bindtouchmove=""
+      bindtouchend="" bindtouchcancel="" binderror="" bindlongtap=""></canvas>
+  </view>
+  <view>
+    <canvas style="width:100%;height:15rem" canvas-id="d" disable-scroll="{{true}}" bindtouchstart="" bindtouchmove=""
+      bindtouchend="" bindtouchcancel="" binderror="" bindlongtap=""></canvas>
+  </view>
+  <view>
+    <button bindtap="canvasToTempFilePath">保存画图</button>
+  </view>
+</view>

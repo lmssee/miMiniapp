@@ -1,0 +1,13 @@
+{
+  "navigationBarBackgroundColor": "#00ff00",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "投票首页",
+  "navigationStyle": "default",
+  "backgroundColor": "#ff0fff",
+  "backgroundColorTop": "#aaffaa",
+  "backgroundColorBottom": "#ffff00",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 10,
+  "pageOrientation": "portrait",
+  "disableSwipeBack": true
+}

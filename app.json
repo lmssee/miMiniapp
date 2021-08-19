@@ -1,0 +1,74 @@
+{
+  "pages": [
+    "pages/chat/chat",
+    "pages/test/home/home",
+    "pages/store/home/home/home",
+    "pages/store/user/user/user",
+    "pages/store/home/list/list",
+    "pages/store/user/login/login",
+    "pages/store/user/setting/setting",
+    "pages/store/user/order/order",
+    "pages/taskList/add/add",
+    "pages/taskList/change/change",
+    "pages/vote/myVote/myVote",
+    "pages/vote/voteDetail/voteDetail",
+    "pages/index/index",
+    "pages/index/form/form",
+    "pages/index/router/rputer",
+    "pages/index/recorder/recorder",
+    "pages/index/system/system",
+    "pages/index/event/event",
+    "pages/index/view/view",
+    "pages/index/video/video",
+    "pages/index/content/content",
+    "pages/index/camera/camera",
+    "pages/index/location/location",
+    "pages/index/canvas/canvas",
+    "pages/index/AD/AD",
+    "pages/location/home/home",
+    "pages/location/detail/detail",
+    "pages/location/list/list",
+    "pages/taskList/home/home",
+    "pages/vote/home/home",
+    "pages/vote/addRadioVote/addRadioVote"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0f0",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "三耳魅",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "light",
+    "enablePullDownRefresh": true,
+    "onReachBottomDistance": 30,
+    "pageOrientation": "portrait"
+  },
+  "tabBar": {
+    "color": "#0ff",
+    "selectedColor": "#ff0",
+    "backgroundColor": "#000",
+    "borderStyle": "white",
+    "position": "bottom",
+    "list": [{
+      "pagePath": "pages/store/home/home/home",
+      "text": "首页"
+    }, {
+      "pagePath": "pages/store/user/user/user",
+      "text": "个人"
+    }]
+  },
+  "networkTimeout": {
+    "request": 20000,
+    "connectSocket": 20000,
+    "uploadFile": 20000,
+    "downloadFile": 20000
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "requiredBackgroundModes": ["audio", "location"],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于提供更便捷的服务"
+    }
+  },
+  "resizable": true
+}

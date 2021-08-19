@@ -1,0 +1,4 @@
+  <view class="navLevel">
+    <view><navigator open-type="redirect" url="/pages/taskList/home/home"> 未完成</navigator></view>
+    <view><navigator open-type="redirect" url="/pages/taskList/ready/ready">完成</navigator></view>
+  </view>

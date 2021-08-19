@@ -1,0 +1,104 @@
+.div,
+map {
+  width: 100%;
+  height: 100%;
+}
+
+.num {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 8rem;
+  height: 8rem;
+  line-height: 8rem;
+  background-image: radial-gradient(#00f, #66f 60%, #cff 80%, #0f0);
+  color: #f0f;
+  text-align: center;
+  font-size: 72px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+}
+
+.numChild {
+  width: 8rem;
+  height: 8rem;
+  /* transform: translate(0, 1.5rem); */
+}
+
+.bottom {
+  width: 60%;
+  margin: 0;
+  padding: 0.25rem 0 0 0;
+  position: fixed;
+  bottom: 200rpx;
+  left: 20%;
+  background-image: linear-gradient(to top left, #000c, #0ffc);
+  color: #fff;
+  box-shadow: 1px 1px 20px #0f06;
+  text-align: center;
+  text-shadow: 1px 1px 1px #0ff, -1px -1px 1px #000;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  border-radius: 1rem;
+}
+
+.first {
+  transform: translate(0, -3rem);
+}
+
+cover-view {
+  visibility: visible !important;
+  z-index: 300;
+}
+
+.setting {
+  position: fixed;
+  bottom: 3rem;
+  right: 5rem;
+  color: #000;
+  animation: settingButton 1.1s 0s linear infinite;
+}
+
+.setting button {
+  background-color: transparent;
+  width: 2.2rem !important;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  font-size: 2.2rem;
+  color: #0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.settingContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.settingDetail {
+  margin: 1rem;
+  background-color: #000;
+  color: #000;
+  text-shadow: 1px 1px 1px #fff, -1px -1px 1px #fff,1px -1px 1px #fff,-1px 1px 1px #fff;
+  border-radius: 2rem;
+  max-width: 10rem;
+}
+
+
+@keyframes settingButton {
+  0% {
+    transform: rotate(0) scale(1.2);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(0.8);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}

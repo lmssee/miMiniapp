@@ -1,0 +1,12 @@
+<view class="container">
+  <view>
+    <video id="v" src="https://lmssee.cn/image/v.mp4" controls="{{true}}" enable-danmu="{{true}}" danmu-btn="{{true}}" danmu-list="" autoplay="{{true}}" loop="{{true}}" muted="{{false}}" initial-time="0" direction="90" show-progress="{{true}}" show-fullscreen-btn="{{true}}" show-play-btn="{{true}}" show-center-play-btn="{{true}}" enable-progress-gesture="{{true}}" object-fit="fill" poster="" show-mute-btn="{{true}}" title="起床了" play-btn-position="bottom" enable-progress-gesture="{{true}}" auto-pause-if-navigate="{{true}}" auto-pause-if-open-native="{{true}}" vslide-gesture-in-fullscreen="{{true}}" bindplay="" bindpause="" bindpause="" bindended="" bindtimeupdate="" bindfullscreenchange="" bindwaiting="" binderror="" bindprogress=""></video>
+  </view>
+  <view>
+    <button bindtap="changeNum">{{title}}</button>
+  </view>
+  <view>
+    <button bindtap="saveVideoToPhotosAlbum">保存视频</button>
+    <button bindtap="chooseVideo">选择视频</button>
+  </view>
+</view>

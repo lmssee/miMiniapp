@@ -1,0 +1,144 @@
+<view class="container">
+  <view class="studyNavigator"> 
+    <navigator url="/pages/index/index">首页</navigator>
+   <navigator url="/pages/index/router/rputer">router</navigator>
+   <navigator url="/pages/index/recorder/recorder">recorder</navigator>
+   <navigator url="/pages/index/system/system">system</navigator>
+   <navigator url="/pages/index/event/event">event</navigator>
+   <navigator url="/pages/index/video/video">video</navigator>
+   <navigator url="/pages/index/content/content">content</navigator>
+   <navigator url="/pages/index/form/form">form</navigator>
+   <navigator url="/pages/index/camera/camera">camera</navigator>
+   <navigator url="/pages/index/location/location">location</navigator>
+   <navigator url="/pages/index/canvas/canvas">canvas</navigator>
+   <navigator url="/pages/index/AD/AD">AD</navigator>
+  </view>
+  <view>
+<view><text selectable="false" space="">text : </text></view>
+<view>属性 : <view>selectable   是否可选</view>
+<view> space 是否连续空格  值: ensp (一半) emsp (一个) nbsp (看设置)</view>
+<view> decode 是否解码></view>   </view>
+  </view>
+  <view>
+    <view>view 组件属性</view>
+    <view>hover-class=""</view>
+    <view>hover-start-time=""</view>
+    <view>hover-stay-time=""</view>
+    <view>hover-stop-propagation="true"</view>
+  </view>
+  <view>
+    <scroll-view class="scrollViewFather" scroll-x="{{true}}" scroll-y="{{false}}" upper-threshold="50"
+      lower-threshold="50" scroll-top="50" scroll-left="50" scroll-into-view="" scroll-with-animation="{{true}}"
+      enable-back-to-top="{{true}}" bindscrolltoupper="" bindscrolltolower="" bindscroll="">
+      <view class="scrollView">scroll-x="true"</view>
+      <view class="scrollView">scroll-y="false"</view>
+      <view class="scrollView">upper-threshold="50"</view>
+      <view class="scrollView">lower-threshold="50"</view>
+      <view class="scrollView">scroll-top="50"</view>
+      <view class="scrollView">scroll-left="50"</view>
+      <view class="scrollView">scroll-into-view=""</view>
+      <view class="scrollView">scroll-with-animation="true"</view>
+      <view class="scrollView">enable-back-to-top="true"</view>
+      <view class="scrollView">bindscrolltoupper=""</view>
+      <view class="scrollView"> bindscrolltolower=""</view>
+      <view class="scrollView">bindscroll=""</view>
+    </scroll-view>
+  </view>
+  <view>
+    <swiper indicator-dots="true" indicator-color="#0f0" indicator-active-color="#0ff" current="0" autoplay="true"
+      interval="2500" duration="2500" easing-function="linear" circular="{{true}}" vertical="{{false}}"
+      previous-margin="0rpx" next-margin="2rex" display-multiple-items="3" bindchange="" bindtransition=""
+      bindanimationfinish="">
+      <swiper-item>
+        <view> indicator-dots="true" </view>
+        <view>是否显示面板指示点</view>
+      </swiper-item>
+      <swiper-item>
+        <view>indicator-color="#0f0"</view>
+        <view>指示点颜色</view>
+      </swiper-item>
+      <swiper-item>
+        <view>indicator-active-color="#0ff"</view>
+        <view>选中指示点颜色</view>
+      </swiper-item>
+      <swiper-item>
+        <view> current="0" </view>
+        <view>第一个显示的</view>
+        <view>若是固定值,则为初始值</view>
+        <view>若是动态,则为显示值</view>
+      </swiper-item>
+      <swiper-item>
+        <view>autoplay="true"</view>
+        <view>是否自动替换</view>
+      </swiper-item>
+      <swiper-item>
+        <view> interval="1200"</view>
+        <view>自动更改时间</view>
+      </swiper-item>
+      <swiper-item>
+        <view> duration="600"</view>
+        <view>动画时常</view>
+      </swiper-item>
+      <swiper-item>
+        <view>easing-function="linear"</view>
+        <view>动画效果:</view>
+        <view>default</view>
+        <view>linear</view>
+        <view>easeInCubic</view>
+        <view>easeOutCubic</view>
+        <view>easeInOutCubic</view>
+      </swiper-item>
+      <swiper-item>
+        <view>circular="{{true}}" </view>
+        <view>是否衔接滑动</view>
+      </swiper-item>
+      <swiper-item>
+        <view>vertical="{{false}}"</view>
+        <view>是否垂直</view>
+      </swiper-item>
+      <swiper-item>
+        <view>previous-margin="3rpx"</view>
+        <view>前编剧</view>
+      </swiper-item>
+      <swiper-item>
+        <view>next-margin="2rex"</view>
+        <view>后边距</view>
+      </swiper-item>
+      <swiper-item>
+        <view>display-multiple-items="1"</view>
+        <view>同时显示滑块数量</view>
+      </swiper-item>
+      <swiper-item>
+        <view>bindchange=""
+        </view>
+        <view> bindtransition=""</view>
+        <view>bindanimationfinish=""</view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view>
+    <movable-area style="width:98%;height:10rem;box-shadow: 1px 1px 3px #0f0;border:3px solid #000">
+      <movable-view
+        style="width:5rem;height:5rem;box-shadow: 1px 1px 3px #000；line-height:4.5rem;font-size:3rem;text-align:center"
+        direction="all" inertia="{{true}}" out-of-bounds="{{false}}" x="0" y="0" damping="20" friction="1"
+        disabled="{{false}}" scale="{{false}}" scale-min="1" scale-max="1" animation="{{true}}" bindchange=""
+        bindscale="" htouchmove="" vtouchmove="">
+        动
+      </movable-view>
+    </movable-area>
+  </view>
+  <view>
+    <image></image>
+    <view>src </view>
+    <view>mode 裁剪模式 </view>
+    <view>mode 缩放 scaleToFill 拉伸模式 aspectFit 适应模式 sapectFill 适应模式 widthFIx 宽度不变,高度适应</view>
+    <view><text space="nbsp"> mode 裁剪  top      bottom        center       left         right  top left     top right        bottom left            bottom right</text></view>
+    <view>lazy-load 默认 false </view>
+  </view>
+  <view>
+    <cover-view>
+      <cover-image src="https://lmssee.cn/image/lm.png"></cover-image>
+    </cover-view>
+  </view>
+  
+</view>

@@ -1,0 +1,13 @@
+<view class="container">
+  <button bindtap="makePhonrCall">拨打电话</button>
+  <button bindtap="addPhonContact">添加联系人</button>
+  <button bindtap="getbatteryInfo">{{levelText}}</button>
+  <button bindtap="setCiphoard">剪切板</button>
+  <button bindtap="setScreenBrightness">亮度</button>
+  <button bindtap="startAccelerometer">加速计</button>
+  <button bindtap="startCompass">罗盘</button>
+  <button bindtap="startDeviceMotionListening">设备方向</button>
+  <button bindtap="startGyroscope">陀螺仪</button>
+  <button bindtap="vibrateShort">震动</button>
+  <button bindtap="scanCode">扫码</button>
+</view>

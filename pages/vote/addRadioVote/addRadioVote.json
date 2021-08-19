@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "单选投票创建页",
+  "usingComponents":{
+    "leftSlidDel":"../../../commons/components/leftSlidDel/leftSlidDel"
+  }
+}

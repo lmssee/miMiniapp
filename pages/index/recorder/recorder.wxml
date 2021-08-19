@@ -1,0 +1,8 @@
+<view class="container">
+  <view>
+    <button bindtap="getRecorderManager">录音{{corderManagerText}}</button>
+    <button bindtap="getAvailableAudioSources">获取音频输入元</button>
+    <button bindtap="createInnerAudioContext">获取内部音频{{InnerAudioContextText}}</button>
+    <button  bindtap="backgroundAudioManager">背音</button>
+  </view>
+</view>

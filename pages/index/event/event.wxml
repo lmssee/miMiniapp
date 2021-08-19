@@ -1,0 +1,6 @@
+<view class="container">
+<button bindtap="windowResize">窗口变化</button>
+<button bindtap="keyborderheightchanges">键盘高度变化</button>
+<button bindtap="captureScreen">用户截屏</button>
+<button bindtap="MemoryWarning">内存监听</button>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "leftSlidDel":"../../../commons/components/leftSlidDel/leftSlidDel"
+  },
+  "navigationBarTitleText": "跑步记录"
+}

@@ -1,0 +1,40 @@
+.inputFather {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2rem;
+  overflow: hidden;
+  margin: 0.5rem;
+}
+
+input {
+  width: 100%;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  padding: 0.5rem 0 0;
+}
+
+.inputTop {
+  position: absolute;
+}
+
+.show {
+  display: block;
+  top: 0;
+  left: 0;
+  height: 0.5rem;
+  line-height: 0.5rem;
+  overflow: hidden;
+  color: #0009;
+  font-size: 0.5rem;
+  transition: all 3s 0s linear;
+  transform: scale(0.7);
+}
+
+.hide {
+  transition: all 3s 0s linear;
+  display: none;
+  top: 0.5rem;
+  left: 0;
+}

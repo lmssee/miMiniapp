@@ -1,0 +1,5 @@
+.voteList{
+  margin: 1rem auto;
+  width: 80%;
+  border-radius: 2px;
+}

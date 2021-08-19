@@ -1,0 +1,2 @@
+<map name="" show-compass markers="{{markers}}" polyline="{{polyline}}" include-points="{{includePoints}}"  enable-rotate scale="{{17}}">
+</map>

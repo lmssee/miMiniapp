@@ -1,0 +1,51 @@
+<view class="div">
+  <block wx:if="{{authFailed}}">
+    <view>地理位置信息将用于绘制运动轨迹</view>
+    <view>若无法获得您的授权,将导致功能无法使用</view>
+    <view>如需灭屏使用，建议需选择第三项，使本程序可在后台获取授权</view>
+    <view><button bind:tap="reGetLocation">位置授权</button></view>
+  </block>
+  <block wx:else>
+    <map class="map" setting="{{setting}}" name="" scale="{{17}}" rotate="0" latitude="{{latitude}}"
+      longitude="{{longitude}}" markers="{{markers}}" polyline="{{polyline}}" bindregionchange="onRegionChange"> </map>
+    <view class="settingContent" wx:if="{{isSettingContentShow}}" bindtap="hiddenSettingContent">
+      <view wx:for="{{settingDetail}}" class="settingDetail">
+        <switch disabled="{{item.disabled}}" style="opacity:{{ item.disabled ? 0.3 : 1}}" checked="{{item.S}}"
+          data-a="{{item.a}}" data-b="{{index}}" data-c="{{item}}" catch:tap="changeSetting"></switch> {{item.name}}
+      </view>
+      <view wx:if="{{backgroundLocation}}" class="settingDetail" catch:tap="reGetLocation"><button plain>获取授权</button>
+      </view>
+    </view>
+    <view class="setting" wx:if="{{!isSettingContentShow && status === 'stop'}}"><button type="setting"
+        bind:tap="showSettingContent">⚙</button></view>
+    <view wx:if="{{!isSettingContentShow}}">
+      <view class="num" wx:if="{{status == 'countdown'}}">
+        <view class="numChild">{{countingNum}}</view>
+      </view>
+      <block wx:if="{{status === 'stop'}}">
+        <view class="bottom first" bind:tap="startRun">
+          <view>开始跑步</view>
+        </view>
+        <view class="bottom last" bind:tap="runRecord">
+          <view>跑步记录</view>
+        </view>
+      </block>
+      <block wx:elif="{{status === 'running'}}">
+        <view class="bottom  first" bind:tap="pauseRun">
+          <view>暂停跑步</view>
+        </view>
+        <view class="bottom last" bind:tap="stopRun">
+          <view>停止跑步</view>
+        </view>
+      </block>
+      <block wx:elif="{{status === 'pause'}}">
+        <view class="bottom first" bind:tap="countdown">
+          <view>继续跑步</view>
+        </view>
+        <view class="bottom last" bind:tap="stopRun">
+          <view>停止跑步</view>
+        </view>
+      </block>
+    </view>
+  </block>
+</view>

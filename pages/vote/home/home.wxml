@@ -1,0 +1,5 @@
+<view class="container">
+  <view class="voteHome" hover-class="voteHomeHover" hover-start-time="0" hover-stay-time="500"  ><navigator url="/pages/vote/addRadioVote/addRadioVote?isRadio=1">单选投票</navigator></view>
+  <view class="voteHome" hover-class="voteHomeHover" hover-start-time="0" hover-stay-time="500" ><navigator  url="/pages/vote/addRadioVote/addRadioVote?isRadio=0">多选投票</navigator> </view>
+  <view class="voteHome"><navigator url="/pages/vote/myVote/myVote">我的</navigator></view>
+</view>

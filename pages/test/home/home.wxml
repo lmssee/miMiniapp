@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="title">HELLO</view>
+  <view class="flex content">
+    <view wx:for="{{list}}" wx:key="{{index}}">
+      <navigator url="{{item.u}}" open-type="{{item.open?'switchTab':'navigate'}}">{{item.name}}</navigator>
+    </view>
+  </view>
+</view>

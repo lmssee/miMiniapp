@@ -1,0 +1,75 @@
+<view class="container">
+  <view>
+    <form action="#" bindreset="" bindsubmit=""> </form>
+  </view>
+  <view>
+    <form action="" id="form">
+      <input type="text" model:value="{{modelValue}}" placeholder="占地"/>
+    </form>
+    <view style="box-shadow:1px 1px 1px #f00,-1px -1px 6px #000">
+      <text space="nbsp" decode="{{true}}">-&gt;{{modelValue}}</text>
+    </view>
+  </view>
+  <view>
+    <radio-group>
+      <radio value="" checked="{{true}}" disabled="{{false}}" color="#0ff6" bindchange="">123151513153131316131351
+      </radio>
+      <radio value="">41613515313153135513156</radio>
+    </radio-group>
+  </view>
+  <view>
+    <checkbox-group bincchange="">
+      <checkbox value="123" checked="{{true}}" disabled="{{false}}" color="#f009">
+        123
+      </checkbox>
+      <checkbox value="456">
+        456
+      </checkbox>
+    </checkbox-group>
+  </view>
+  <view>
+    <switch checked="{{fasle}}" disabled="{{false}}" color="#00f" bindchange="switchValueChange">
+      这是{{switchValue}}
+    </switch>
+  </view>
+  <view>
+    <text>选择组件</text>
+    <picker mode="date" data-mode="date 日期  multiSelector  多列 region  省市区 selector 普通 time  时间" disabled="{{false}}"
+      bindchange="onPickerValueChange" bindcancel="" data-modeDate="额外专属属性 value start end bindchange"
+      data-modeSelector="range range-key value bindchange" data-mode-Time="value start end binfchange"
+      data-modeRegion="value custom-item 为每一个顶项添加一个自定义项 binfdchange">{{endTime}}</picker>
+  </view>
+  <view>
+    <button size="default" type="primary" plain="{{true}}" disabled="{{false}}" loading="{{false}}" form-type="reset"
+      hover-class="" hover-start-time="100" hover-stay-time="1000" open-type="getPhoneNumber"
+      data-openType="通过 open-type 属性的  getUserInfo 或是 getPhoneNumber ">button</button>
+  </view>
+  <view>
+    <input type="text" placeholder="nihao" value="{{inputTest}}" password="{{false}}" placeholder-class=""
+      placeholder-style="" bindinput="onInputVlueChange" bindfocus="" focus bindblur="" bindconfirm=""
+      data-f="事件获取时需要使用 e.detail 获取 input 框的 value 和 e.keyCode ,而属性却需要使用 e.target.dataset.f 来获取 "
+      data-g=" 在小程序中双向绑定,需要使用 model:value='{{value}}'" />
+    <textarea name="" id="" cols="30" rows="10" value="456"
+      placeholder="fixed 属性没有特别的用处. 在 textarea 所在的区域中使用了 WXSS 时设置了 position 属性为 fixed ,就必须将 fixed 属性设置为 true "
+      placeholder-class="" placeholder-style="" disabled="{{false}}" maxlength="200rem" focus="{{fasle}}"
+      auto-height="{{false}}" fixed="" bindinput="" bindfocus="" bindblur="" bindconfirm=""
+      bindlinechange=""></textarea>
+  </view>
+
+  <view>
+    <picker-view value="3" indicator-style="color:#000;background:#0f0" indicator-class="" mask-class=""
+      mask-style="color:#00f;background:#f00;" bindchange="" bindpickstart="" bindpickend="" style="height:2rem">
+      <picker-view-column>
+        <view wx:for="{{forList}}">{{item}}</view>
+      </picker-view-column>
+      <!-- <picker-view-column> indicator-style=""</picker-view-column> -->
+      <!-- <picker-view-column> indicator-class=""</picker-view-column> -->
+    </picker-view>
+  </view>
+
+  <view>
+    <slider min="0" max="100" step="10" disabled="{{false}}" value="10" activeColor="#0f0" backgroundColor="#00f"
+      block-size="18" block-color="#000" show-value="{{true}}" bindchange="" bindchanging="">
+    </slider>
+  </view>
+</view>

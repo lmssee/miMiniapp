@@ -1,0 +1,22 @@
+/* pages/index/view/view.wxss */
+.scrollView{
+  width: 414px;
+  height: 2rem;
+  /* display: inline-block; */
+}
+.scrollViewFather{
+  width: 414px;
+  height: 2rem;
+  display: flex;
+  flex-flow: row column;
+}
+swiper{
+  width: 100%;
+  height: 12rem;
+}
+swiper-item{
+  width: 100%;
+  height: 12rem;
+  /* display: block; */
+}
+ 

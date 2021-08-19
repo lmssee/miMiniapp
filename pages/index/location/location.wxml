@@ -1,0 +1,8 @@
+<view class="container">
+  <view>
+    <map name="" longitude="" latitude="" scale="3" include-points="" markers="" circles="" polyline="" polygons="" rotate="0" skew="0" show-location="{{true}}"  enable-3D="{{true}}" show-compass="{{true}}" enable-overlooking="{{true}}"  enable-scroll="{{true}}" enable-zoom="{{true}}" enable-satellite="{{true}}" enable-traffic="{{rue}}" bindtap="" bindmarkertap="" bindcallouttap="" bindupdated="" bindregionchange="" bindpoitap=""></map>
+  </view>
+  <button bindtap="getLocation">获取地理授权</button>
+  <button bindtap="openLocation">查看地理授权</button>
+  <button bindtap="chooseLocation">选择地理</button>
+</view>

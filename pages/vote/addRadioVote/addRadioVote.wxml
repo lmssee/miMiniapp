@@ -1,0 +1,35 @@
+<view class="container">
+  <!-- <view><image src="{{userInfo.avatarUrl}}" alt="{{userInfo.nikeName}}" style="width:150px;height:150px"></image></view> -->
+    <view>
+      <input type="text" class="formTitle" placeholder="投票标题" focus-placehoder-calss="placeholder"
+        model:value="{{title}}"  />
+    </view>
+    <view>
+      <textarea placeholder="补充说明（ 非必填 ）" class="formTitle" name="" id="" cols="30" auto-height
+        model:value="{{formDesc}}"></textarea>
+    </view>
+    <view>
+      <text style="color:#0009">开始日期：{{startDate}}</text>
+      <picker mode="date" value="{{checkDate}}" start="{{startDate}}" end="{{endDate}}" bindchange="setEndDate">截止日期 :
+        {{checkDate}}</picker>
+    </view>
+    <view>
+      <text>是否开启匿名投票 ：</text>
+      <switch checked="{{true}}" color="#f00" bindchange="changeIsNick"></switch>
+    </view>
+    <view>
+      <text>是否开启多选投票 ：</text>
+      <switch checked="{{!isRadio}}" color="#6f69" bindchange="changeIsVideo"></switch>
+    </view>
+    <view wx:for="{{optionsList}}" style="width:100%">
+      <leftSlidDel  class="lefSlidDel" bind:rightClick="delItem" bind:leftClick="copyItem"
+        index="{{index}}" >
+        <input slot="content" bindinput="saveData" value="{{item.name}}" class="formTitle inlineBlock"
+          data-optionIndex="{{index}}" placeholder="选项->{{index}}" style="width:94%;margin: 1%" />
+      </leftSlidDel>
+    </view>
+    <view bindtap="addOption" class="addOption">
+      + 添加选项
+    </view>
+    <view class="Votebutton"><button bindtap="submitVote" disabled="{{!submitIsAble}}">提交</button><button bindtap="resetVote">重置</button> <button wx:if="{{userInfor ==''}}" bindtap="login">登录</button></view>
+</view>

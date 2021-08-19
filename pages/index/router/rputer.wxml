@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="studyNavigator"> 
+    <navigator url="/pages/index/index">首页</navigator>
+   <navigator url="/pages/index/router/rputer">router</navigator>
+   <navigator url="/pages/index/recorder/recorder">recorder</navigator>
+   <navigator url="/pages/index/system/system">system</navigator>
+   <navigator url="/pages/index/event/event">event</navigator>
+   <navigator url="/pages/index/video/video">video</navigator>
+   <navigator url="/pages/index/content/content">content</navigator>
+   <navigator url="/pages/index/form/form">form</navigator>
+   <navigator url="/pages/index/view/view">view</navigator>
+   <navigator url="/pages/index/camera/camera">camera</navigator>
+   <navigator url="/pages/index/location/location">location</navigator>
+   <navigator url="/pages/index/canvas/canvas">canvas</navigator>
+   <navigator url="/pages/index/AD/AD">AD</navigator>
+  </view>
+  <view>
+    <navigator data-target="在哪个目标发生跳转 self miniProgram" data-url="当前小程序内跳转路径" data-openType="跳转方式 navigate redirect switchTab reLaunch navigateBack  exit(target 值为 miniProgram 时才触发) " data-delta="当 open-type ='navigateBack' 时有效,表示回退的层数,默认是 1" data-appId="当 target='miniProgram' 时有效,要打开的其他小程序的 id " data-path="当 target='miniProgram' 时有效,打开页面路径为空则为首页" data-ExtraData="当 target='miniProgram' 时有效,需要传递给小程序的数据" data-version="当 target='miniProgram' 时生效,要打开小程序的版本" data-hoverClass="指定单击时样式类,,默认值 navigation-hover " data-hoverStartTime="按住多久后出现点击状态,默认 50" data-hoverStayTime="手指松开后样式保留状态,默认 600" data-bind="当 target='miniProgram' 时会有三个回调函数,分别是 bindsuccess bindfail bindcomplete"></navigator>
+    
+  </view>
+  <view>
+    <text space="nbsp" decode="{{true}}">
+      &lt;navigator 
+      data-target="在哪个目标发生跳转 
+          self miniProgram"
+       data-url="当前小程序内跳转路径" 
+       data-openType="跳转方式 navigate redirect
+            switchTab reLaunch navigateBack  
+            exit(target 值为 miniProgram 时才触发) "
+       data-delta="当 open-type ='navigateBack' 时有效,表示回退的层数,默认是 1" 
+       data-appId="当 target='miniProgram' 时有效,要打开的其他小程序的 id " 
+       data-path="当 target='miniProgram' 时有效,打开页面路径为空则为首页" 
+       data-ExtraData="当 target='miniProgram' 时有效,需要传递给小程序的数据" 
+       data-version="当 target='miniProgram' 时生效,要打开小程序的版本" 
+       data-hoverClass="指定单击时样式类,,默认值 navigation-hover "
+        data-hoverStartTime="按住多久后出现点击状态,默认 50" 
+        data-hoverStayTime="手指松开后样式保留状态,默认 600" 
+        data-bind="当 target='miniProgram' 时会有三个回调函数,分别是
+             bindsuccess bindfail bindcomplete"/&gt;
+    </text>
+  </view>
+  <view>
+    <text space="nbsp">
+      /**  
+       *   
+       *   wx.navigateTo();     跳转
+       *   
+       *   wx.navigateBack();   回退
+       *    
+       *                        delta    次数 返回几个,若大于栈中总数量,返回首页
+       *   
+       *   wx.redirectTo();   去向哪个页面,不包括 TabBar
+       *  
+       *   wx.reLaunch();   去向任何地址,并清除所有栈
+       *  
+       *   wx.switchTab();  去除非 tabBar 地址,并跳转到 tabBar 页面
+       * 
+       *   wx.navigateToMiniProgram 接口可以打开另一个小程序,需要在
+       *       app.json 的全局配置中设置需要跳转的 appId 
+       *     
+       */
+    </text>
+  </view>
+  <view>
+    <text space="nbsp">
+       通过跳转传递的参数,将在目标的 
+       onLoad(option){
+
+       }
+       值接收
+    </text>
+  </view>
+</view>

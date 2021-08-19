@@ -1,0 +1,54 @@
+.Block {
+  height: 3rem;
+  width: 100%;
+  border: 0.1px dotted #cccc;
+  overflow: hidden;
+}
+
+/* 165-39.39-60.6 */
+.block {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  height: 3rem;
+  width: 100%;
+}
+
+.move {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  height: 3rem;
+  line-height: 3rem;
+  width: 165%;
+  overflow: hidden;
+  color: #000;
+  background: #fff;
+}
+.content{
+  width: 60.606%;
+}
+.left,
+.right {
+  position: absolute;
+  top: 0;
+  left: -500px;
+  width: 0;
+  height: 3rem;
+  line-height: 3rem;
+  padding-left: 1rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.left {
+  z-index: 31;
+  /* background: #0f0; */
+}
+
+.right {
+  z-index: 32;
+  /* background: #f00; */
+}

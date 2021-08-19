@@ -1,0 +1,89 @@
+
+page,.div{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.navLevel>view {
+  width: 96%;
+  height: 100%;
+  margin: 1rem auto;
+  text-align: center;
+  background-color: transparent;
+}
+
+.check {
+  display: inline-block;
+  font-weight: 100;
+  text-shadow: 1px 1px 10px #f00, -1px -1px 10px #0f0;
+  position: relative;
+  top: 0;
+  left: 0;
+  color: #00f;
+  transition: font-size 2s 0s linear;
+}
+
+.check::after {
+  content: '___';
+  position: absolute;
+  height: 0.1rem;
+  width: 1rem;
+  top: 50%;
+  left: 0;
+  z-index: 10000;
+  animation: checkbuttom 2.2s 0s linear infinite;
+}
+.addTask{
+  position: fixed;
+  z-index: 100;
+  left: calc(100% - 6rem);
+  top: calc(100% - 6rem);
+  width: 3rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  background-color: #0f0;
+  color: #fff;
+  font-size: 3.5rem;
+  text-align: center;
+  margin: 0;
+  padding: 0 0 0.5rem 0;
+  border: 0;
+  border-radius: 1.5rem;
+  /* transform: translate(0,-1.5rem); */
+}
+.addMove{
+  animation: addMove 0.8s 0s linear 1;
+}
+@keyframes checkbuttom {
+  1% {
+    left: 0;
+    color: #0f0;
+  }
+
+  50% {
+    left: calc(100% - 1rem);
+    color: #f00;
+  }
+
+  100% {
+    left: 0;
+    color: #00f;
+  }
+}
+@keyframes addMove{
+  0%{
+   transform: translate(0,0) rotate(0);
+  }
+  25%{
+    transform: translate(3rem,0) rotate(180deg);
+  }
+  50%{
+    transform: translate(3rem,3rem) rotate(360deg);
+  }
+  75%{
+    transform: translate(0,3rem) rotate(180deg);
+  }
+  100%{
+    transform: translate(0,0) rotate(0);
+  }
+}

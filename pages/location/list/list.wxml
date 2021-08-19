@@ -1,0 +1,10 @@
+<view style="margin: 2rem auto">
+  <view wx:for="{{list}}" catch:tap="goToDetail" data-a="{{item}}" wx:key="{{index}}">
+    <leftSlidDel leftText="查看" catch:leftClick="goToDetail" catch:rightClick="delThisDeail" data-a="{{item}}" data-b="{{index}}">
+      <view class="runlist" slot="content"><text>{{item.time[0]}}</text>
+        <text>共 {{item.time[2]}}</text>
+      </view>
+    </leftSlidDel>
+  </view>
+  <view class="moreData" wx:if="{{!last}}"><button class="cicre">上滑加载更多</button></view>
+</view>

@@ -1,0 +1,75 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}img {
+  width: 120px;
+  height: 120px;
+  border: 2px #f00 solid;
+}
+
+.home {
+  width: 100%;
+  margin: 2rem auto;
+  border: 3px #0f0 dotted;
+  padding: 0.6rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+}
+.title{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(to top,#fff,#0f0);
+  color: #000;
+  width: 100%;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
+}
+.titleText{
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  animation: title 3s 0s linear infinite;
+}
+input{
+  width: 50%;
+  border: 1px #00f solid;
+  outline: none;
+}
+textarea{
+  border: 1px #00f solid;
+}
+picker{
+  display: inline-block;
+  margin: 2rem;
+  border: 1px #00f solid;
+}
+@keyframes title{
+  0%{
+      transform: translate(-100%,0)  scale(1.2) rotate(15deg) ;
+    }
+    50%{
+      transform: translate(0,0)   scale(0.8) rotate(0deg);
+    }
+    100%{
+      transform: translate(100%,0)  scale(1.2) rotate(-15deg);
+  }
+}

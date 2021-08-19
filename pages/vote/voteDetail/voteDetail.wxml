@@ -1,0 +1,42 @@
+<view class="container">
+  <view>
+    <text>标题：</text><text>{{list.title}}</text>
+  </view>
+  <view wx:if="{{list.desc}}"><text>描述：</text>
+    <text>{{list.desc}}</text>
+  </view>
+  <view><text>状态：</text><text>{{list.endTime ==''?'已截止':'进行中'}}</text></view>
+  <view wx:if="{{list.endTime !=''}}">
+    <text>截止日期：</text>
+    <text>{{list.endTime}}</text>
+  </view>
+  <view>
+    <view wx:for="{{list.list}}" style="border:3px {{list.endTime =='' ?'#f00':'#0f0'}} solid;margin: 1rem auto"
+      wx:key="{{index}}" bindtap="">
+      <view><text>项 {{index}}：</text>
+        <text>{{item.name}}</text>
+      </view>
+      <view><text>票数 ： </text>
+        <text>{{item.S}}</text>
+      </view>
+      <view><text>占比 ：</text>
+        <text>{{isNaN(item.S/num)?(item.S/num):0}}</text>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{isOwn && list.endTime != ''}}">
+    <view>
+      <button bindtap="stopImmediately" data-a="{{list.uid}}">立即停止</button>
+    </view>
+    <view>
+      <button data-a="{{list.uid}}" open-type="share">分享投票</button>
+    </view>
+  </block>
+  <view wx:if="{{!isOwn}}">
+    <button>投票</button>
+  </view>
+  <view> <button wx:if="{{list.endTime == ''}}">已停止</button></view>
+  <view>
+    <navigator url="/pages/vote/home/home"><button>投票首页</button></navigator>
+  </view>
+</view>

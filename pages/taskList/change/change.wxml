@@ -1,0 +1,10 @@
+<view>
+  <view> 任务内容：</view>
+  <textarea class="textarea" name="" id="" cols="30" rows="10" value="{{d.c}}" bind:input="cInput"></textarea>
+  <view>备注：</view>
+  <textarea class="textarea" id="" cols="30" rows="10" placeholder="友情提示：备注只在任务详情页显示"
+    value="{{d.note}}"  bind:input="nodeInput"></textarea>
+  <view>
+    <button catch:tap="saveData">保存</button>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "leftSlid":"../../../commons/components/leftSlidDel/leftSlidDel"
+  },
+  "navigationBarTitleText": "任务清单"
+}
