@@ -1,6 +1,24 @@
 {
   "dependencies": {
+    "cos-wx-sdk-v5": "^1.0.10",
     "tim-upload-plugin": "^1.0.3",
     "tim-wx-sdk": "^2.12.2"
-  }
+  },
+  "name": "lm",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lmssee/lm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lmssee/lm/issues"
+  },
+  "homepage": "https://github.com/lmssee/lm#readme",
+  "description": ""
 }

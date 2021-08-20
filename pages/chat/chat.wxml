@@ -1,3 +1,58 @@
-<view class="container">
-  <view></view>
+<scroll-view  bindscroll="refresh" scroll-into-view="{{toView}}" style="height: {{scroll_height}}px;" upper-threshold="100" scroll-y="true" enable-back-to-top="true" class="message-list">
+  <!-- 每一行 -->
+  <view class="row" wx:for="{{messages}}" wx:key="{{index}}" id="row_{{index}}">
+    <!-- 日期 -->
+    <view class="datetime" wx:if="{{item.msgTime != ''}}">{{item.msgTime}}</view>
+    <!-- 头像与内容文本 -->
+    <view class="body" style="flex-flow: {{item.flow == 'in' ? 'row' : 'row-reverse'}}">
+      <view class="avatar-container">
+        <image wx:if="{{item.flow=='in'}}" class="avatar" src="{{friendAvatarUrl}}" />
+        <image wx:else class="avatar" src="{{userData.avatarUrl}}" />
+      </view>
+      <!-- 画对话框 -->
+      <view class="triangle" style="{{item.flow == 'out' ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}"></view>
+      <view class="content" style="{{item.flow == 'out' ? 'background: #7ECB4B' : ''}}">
+        <view wx:if="{{item.type === 'TIMTextElem'}}">{{item.payload.text}}</view>
+        <image class="image-message" wx:elif="{{item.type === 'TIMImageElem'}}" src="{{item.payload.imageInfoArray[1].url}}" bindtap="previewImage" data-src="{{item.payload.imageInfoArray[1].url}}"></image>
+        <view wx:elif="{{item.type === 'TIMSoundElem'}}" url="{{item.payload.url}}">
+          <view class="box" bindtap="openAudio" data-eventid="{{'13_'+index}}"  data-time="{{item.payload.second}}" data-comkey="{{item.payload.url}}">
+            <image  src="{{'13_'+index==audioIndex?audioGif:audioPng}}" style="height:22px;width:22px" class="_image"></image>
+            <view style="padding-left: 4px;" class="_div data-v-afeb3abc">
+              {{item.payload.second<1?1:item.payload.second}}s
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class="reply" style="bottom:{{reply_height}}px;">
+  <view class="Audio">
+    <image wx:if="{{opration==true}}" bindtap="Audio" src="../image/Audio.png"></image>
+    <image wx:else bindtap="keyboard" src="../image/keyboard.png"></image>
+  </view>
+  <view class="opration-area">
+    <input bindfocus="bindfocus" wx:if="{{opration==true}}" type="text" bindinput="getContent" value="{{content}}" />
+    <view wx:else class="voice-button {{touchBtn?'hoverBtn':''}}" bind:touchstart="startAudio" bind:touchend="onTouchEnd" bind:longpress="onLongpress" bind:touchmove="onTouchMove">
+      {{touchBtn?'松开 结束':'按住说话'}}
+    </view>
+  </view>
+  <view class="{{sendBtn==true?'send':'sendActive'}}" bindtap="sendMsg">发送</view>
+  <view class="add" bind:tap="moreClick">
+    <image class="more" src="../image/more.png"></image>
+  </view>
+  <!-- <view class="send" bindtap="sendImg">相册</view>
+  <view class="send" bindtap="startAudio">开始</view>
+  <view class="send" bindtap="endAudio">结束</view> -->
 </view>
+<view class="more_box" hidden="{{moreShow}}"> 
+  <view class="more_item" bindtap="sendImg">
+    <view class="img_box">
+      <image src="../image/picture.png"></image>
+    </view>
+    <view style="margin-top:10rpx;">
+      <text>相册</text>
+    </view>
+  </view>
+</view>
+ 
