@@ -19,7 +19,7 @@ global.webpackJsonpMpvue([19],{
   const _SECRETKEY = '';
  
   function genTestUserSig(userID) {
-    var SDKAPPID = _SDKAPPID;
+    var SDKAPPID =config.SDKAppID
     /**
      * 签名过期时间，建议不要设置的过短
      * <p>
