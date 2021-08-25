@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/chat/chat",
     "pages/test/home/home",
+    "pages/chat/chat",
     "pages/store/home/home/home",
     "pages/store/user/user/user",
     "pages/store/home/list/list",
