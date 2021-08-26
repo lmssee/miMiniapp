@@ -155,6 +155,10 @@ tim.login({
     console.log(e);
     console.log('');
   });
+  /**
+  *    tim.logout(); 退出登录或切换账号时需要停止监听
+   * 
+   */
 }).catch((e) => {
   console.log('error:', e);
   console.log('');
