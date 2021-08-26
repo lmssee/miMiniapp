@@ -4,6 +4,21 @@ App({
     /** 若本地储存没有 id 信息，则获取 */
     if (!wx.getStorageSync('userid').unionid)
       fn.login();
+    wx.setStorageSync('userSelfID', '10010');
+    // wx.request({
+    //   url: 'https://lmssee.cn:3000/im/im',
+    //   method: 'POST',
+    //   data: {
+    //     userid: wx.getStorageSync('userSelfID'),
+    //     expire: 3600000,
+    //     userBuf: null
+    //   },
+    //   success: (data) => {
+    //     wx.setStorageSync('userSig', data.data.data);
+    //     console.log(data.data.data);
+    //   }
+    // })
+     wx.setStorageSync('userSig', 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwoYGBoYwieKU7MSCgswUJStDEwMDUzMDQ0sTiExJZm4qUNTMyNLSzMDc0BwimlpRkFkEFDc2MwABqCGZ6UBjC5LTDNwTSx0rEvPNiqvMTMyjCn30y-1KPAvdQ40y833yPb3NwwwiylzNkm2VagFu2TAq');
   },
   globalData: {
     userInfo: null

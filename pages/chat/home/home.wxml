@@ -1,0 +1,5 @@
+<view class="container flex">
+  <navigator class="li" url="/pages/chat/text/text">图文聊天</navigator>
+
+  <navigator class="li" url="/pages/chat/video/video">视频聊天</navigator>
+</view>

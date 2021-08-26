@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953156, function(require, module, exports) {
+__DEFINE__(1629944172372, function(require, module, exports) {
 
 var EventEmitter = require('events').EventEmitter;
 var fs = require('fs');
@@ -753,8 +753,8 @@ exports.watch = function(paths, options) {
   return new FSWatcher(options).add(paths);
 };
 
-}, function(modId) {var map = {"./lib/nodefs-handler":1629437953157,"./lib/fsevents-handler":1629437953158}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953157, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/nodefs-handler":1629944172373,"./lib/fsevents-handler":1629944172374}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172373, function(require, module, exports) {
 
 
 var fs = require('fs');
@@ -1263,7 +1263,7 @@ function(path, initialAdd, priorWh, depth, target, callback) {
 module.exports = NodeFsHandler;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953158, function(require, module, exports) {
+__DEFINE__(1629944172374, function(require, module, exports) {
 
 
 var fs = require('fs');
@@ -1678,7 +1678,7 @@ module.exports = FsEventsHandler;
 module.exports.canUse = canUse;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953156);
+return __REQUIRE__(1629944172372);
 })()
 //miniprogram-npm-outsideDeps=["events","fs","path","async-each","anymatch","glob-parent","is-glob","path-is-absolute","inherits","braces","normalize-path","upath","readdirp","is-binary-path","fsevents"]
 //# sourceMappingURL=index.js.map

@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952705, function(require, module, exports) {
+__DEFINE__(1629944171919, function(require, module, exports) {
 
 const childProcess = require('child_process');
 const util = require('util');
@@ -315,8 +315,8 @@ module.exports.shellSync = (cmd, opts) => handleShell(module.exports.sync, cmd, 
 
 module.exports.spawn = util.deprecate(module.exports, 'execa.spawn() is deprecated. Use execa() instead.');
 
-}, function(modId) {var map = {"./lib/errname":1629437952706,"./lib/stdio":1629437952707}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952706, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/errname":1629944171920,"./lib/stdio":1629944171921}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171920, function(require, module, exports) {
 
 // The Node team wants to deprecate `process.bind(...)`.
 //   https://github.com/nodejs/node/pull/2768
@@ -356,7 +356,7 @@ module.exports = code => errname(uv, code);
 module.exports.__test__ = errname;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952707, function(require, module, exports) {
+__DEFINE__(1629944171921, function(require, module, exports) {
 
 const alias = ['stdin', 'stdout', 'stderr'];
 
@@ -400,7 +400,7 @@ module.exports = opts => {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952705);
+return __REQUIRE__(1629944171919);
 })()
 //miniprogram-npm-outsideDeps=["child_process","util","cross-spawn","strip-eof","npm-run-path","is-stream","get-stream","p-finally","signal-exit"]
 //# sourceMappingURL=index.js.map

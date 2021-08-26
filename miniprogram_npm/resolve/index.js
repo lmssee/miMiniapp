@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953007, function(require, module, exports) {
+__DEFINE__(1629944172223, function(require, module, exports) {
 var async = require('./lib/async');
 async.core = require('./lib/core');
 async.isCore = require('./lib/is-core');
@@ -12,8 +12,8 @@ async.sync = require('./lib/sync');
 
 module.exports = async;
 
-}, function(modId) {var map = {"./lib/async":1629437953008,"./lib/core":1629437953012,"./lib/is-core":1629437953014,"./lib/sync":1629437953015}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953008, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/async":1629944172224,"./lib/core":1629944172228,"./lib/is-core":1629944172230,"./lib/sync":1629944172231}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172224, function(require, module, exports) {
 var fs = require('fs');
 var path = require('path');
 var caller = require('./caller');
@@ -335,8 +335,8 @@ module.exports = function resolve(x, options, callback) {
     }
 };
 
-}, function(modId) { var map = {"./caller":1629437953009,"./node-modules-paths":1629437953010,"./normalize-options":1629437953011}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953009, function(require, module, exports) {
+}, function(modId) { var map = {"./caller":1629944172225,"./node-modules-paths":1629944172226,"./normalize-options":1629944172227}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172225, function(require, module, exports) {
 module.exports = function () {
     // see https://code.google.com/p/v8/wiki/JavaScriptStackTraceApi
     var origPrepareStackTrace = Error.prepareStackTrace;
@@ -347,7 +347,7 @@ module.exports = function () {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953010, function(require, module, exports) {
+__DEFINE__(1629944172226, function(require, module, exports) {
 var path = require('path');
 var parse = path.parse || require('path-parse');
 
@@ -392,7 +392,7 @@ module.exports = function nodeModulesPaths(start, opts, request) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953011, function(require, module, exports) {
+__DEFINE__(1629944172227, function(require, module, exports) {
 module.exports = function (x, opts) {
     /**
      * This file is purposefully a passthrough. It's expected that third-party
@@ -405,7 +405,7 @@ module.exports = function (x, opts) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953012, function(require, module, exports) {
+__DEFINE__(1629944172228, function(require, module, exports) {
 var current = (process.versions && process.versions.node && process.versions.node.split('.')) || [];
 
 function specifierIncluded(specifier) {
@@ -460,8 +460,8 @@ for (var mod in data) { // eslint-disable-line no-restricted-syntax
 }
 module.exports = core;
 
-}, function(modId) { var map = {"./core.json":1629437953013}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953013, function(require, module, exports) {
+}, function(modId) { var map = {"./core.json":1629944172229}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172229, function(require, module, exports) {
 module.exports = {
 	"assert": true,
 	"assert/strict": ">= 15",
@@ -547,7 +547,7 @@ module.exports = {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953014, function(require, module, exports) {
+__DEFINE__(1629944172230, function(require, module, exports) {
 var isCoreModule = require('is-core-module');
 
 module.exports = function isCore(x) {
@@ -555,7 +555,7 @@ module.exports = function isCore(x) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953015, function(require, module, exports) {
+__DEFINE__(1629944172231, function(require, module, exports) {
 var isCore = require('is-core-module');
 var fs = require('fs');
 var path = require('path');
@@ -756,8 +756,8 @@ module.exports = function resolveSync(x, options) {
     }
 };
 
-}, function(modId) { var map = {"./caller":1629437953009,"./node-modules-paths":1629437953010,"./normalize-options":1629437953011}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953007);
+}, function(modId) { var map = {"./caller":1629944172225,"./node-modules-paths":1629944172226,"./normalize-options":1629944172227}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172223);
 })()
 //miniprogram-npm-outsideDeps=["fs","path","is-core-module","path-parse"]
 //# sourceMappingURL=index.js.map

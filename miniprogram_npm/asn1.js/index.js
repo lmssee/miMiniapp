@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952123, function(require, module, exports) {
+__DEFINE__(1629944171336, function(require, module, exports) {
 
 
 const asn1 = exports;
@@ -17,8 +17,8 @@ asn1.constants = require('./asn1/constants');
 asn1.decoders = require('./asn1/decoders');
 asn1.encoders = require('./asn1/encoders');
 
-}, function(modId) {var map = {"./asn1/api":1629437952124,"./asn1/base":1629437952135,"./asn1/constants":1629437952136,"./asn1/decoders":1629437952132,"./asn1/encoders":1629437952125}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952124, function(require, module, exports) {
+}, function(modId) {var map = {"./asn1/api":1629944171337,"./asn1/base":1629944171348,"./asn1/constants":1629944171349,"./asn1/decoders":1629944171345,"./asn1/encoders":1629944171338}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171337, function(require, module, exports) {
 
 
 const encoders = require('./encoders');
@@ -77,8 +77,8 @@ Entity.prototype.encode = function encode(data, enc, /* internal */ reporter) {
   return this._getEncoder(enc).encode(data, reporter);
 };
 
-}, function(modId) { var map = {"./encoders":1629437952125,"./decoders":1629437952132}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952125, function(require, module, exports) {
+}, function(modId) { var map = {"./encoders":1629944171338,"./decoders":1629944171345}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171338, function(require, module, exports) {
 
 
 const encoders = exports;
@@ -86,8 +86,8 @@ const encoders = exports;
 encoders.der = require('./der');
 encoders.pem = require('./pem');
 
-}, function(modId) { var map = {"./der":1629437952126,"./pem":1629437952131}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952126, function(require, module, exports) {
+}, function(modId) { var map = {"./der":1629944171339,"./pem":1629944171344}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171339, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -384,8 +384,8 @@ function encodeTag(tag, primitive, cls, reporter) {
   return res;
 }
 
-}, function(modId) { var map = {"../base/node":1629437952127,"../constants/der":1629437952130}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952127, function(require, module, exports) {
+}, function(modId) { var map = {"../base/node":1629944171340,"../constants/der":1629944171343}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171340, function(require, module, exports) {
 
 
 const Reporter = require('../base/reporter').Reporter;
@@ -1025,8 +1025,8 @@ Node.prototype._isPrintstr = function isPrintstr(str) {
   return /^[A-Za-z0-9 '()+,-./:=?]*$/.test(str);
 };
 
-}, function(modId) { var map = {"../base/reporter":1629437952128,"../base/buffer":1629437952129}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952128, function(require, module, exports) {
+}, function(modId) { var map = {"../base/reporter":1629944171341,"../base/buffer":1629944171342}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171341, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -1152,7 +1152,7 @@ ReporterError.prototype.rethrow = function rethrow(msg) {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952129, function(require, module, exports) {
+__DEFINE__(1629944171342, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -1307,8 +1307,8 @@ EncoderBuffer.prototype.join = function join(out, offset) {
   return out;
 };
 
-}, function(modId) { var map = {"../base/reporter":1629437952128}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952130, function(require, module, exports) {
+}, function(modId) { var map = {"../base/reporter":1629944171341}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171343, function(require, module, exports) {
 
 
 // Helper
@@ -1369,7 +1369,7 @@ exports.tag = {
 exports.tagByName = reverse(exports.tag);
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952131, function(require, module, exports) {
+__DEFINE__(1629944171344, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -1394,8 +1394,8 @@ PEMEncoder.prototype.encode = function encode(data, options) {
   return out.join('\n');
 };
 
-}, function(modId) { var map = {"./der":1629437952126}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952132, function(require, module, exports) {
+}, function(modId) { var map = {"./der":1629944171339}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171345, function(require, module, exports) {
 
 
 const decoders = exports;
@@ -1403,8 +1403,8 @@ const decoders = exports;
 decoders.der = require('./der');
 decoders.pem = require('./pem');
 
-}, function(modId) { var map = {"./der":1629437952133,"./pem":1629437952134}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952133, function(require, module, exports) {
+}, function(modId) { var map = {"./der":1629944171346,"./pem":1629944171347}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171346, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -1741,8 +1741,8 @@ function derDecodeLen(buf, primitive, fail) {
   return len;
 }
 
-}, function(modId) { var map = {"../base/buffer":1629437952129,"../base/node":1629437952127,"../constants/der":1629437952130}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952134, function(require, module, exports) {
+}, function(modId) { var map = {"../base/buffer":1629944171342,"../base/node":1629944171340,"../constants/der":1629944171343}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171347, function(require, module, exports) {
 
 
 const inherits = require('inherits');
@@ -1795,8 +1795,8 @@ PEMDecoder.prototype.decode = function decode(data, options) {
   return DERDecoder.prototype.decode.call(this, input, options);
 };
 
-}, function(modId) { var map = {"./der":1629437952133}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952135, function(require, module, exports) {
+}, function(modId) { var map = {"./der":1629944171346}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171348, function(require, module, exports) {
 
 
 const base = exports;
@@ -1806,8 +1806,8 @@ base.DecoderBuffer = require('./buffer').DecoderBuffer;
 base.EncoderBuffer = require('./buffer').EncoderBuffer;
 base.Node = require('./node');
 
-}, function(modId) { var map = {"./reporter":1629437952128,"./buffer":1629437952129,"./node":1629437952127}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952136, function(require, module, exports) {
+}, function(modId) { var map = {"./reporter":1629944171341,"./buffer":1629944171342,"./node":1629944171340}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171349, function(require, module, exports) {
 
 
 const constants = exports;
@@ -1830,8 +1830,8 @@ constants._reverse = function reverse(map) {
 
 constants.der = require('./der');
 
-}, function(modId) { var map = {"./der":1629437952130}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952123);
+}, function(modId) { var map = {"./der":1629944171343}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944171336);
 })()
 //miniprogram-npm-outsideDeps=["bn.js","inherits","safer-buffer","minimalistic-assert"]
 //# sourceMappingURL=index.js.map

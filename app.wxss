@@ -108,3 +108,6 @@ page {
   background-color: #000;
   color: #0f0;
 }
+.li{
+  margin: 2rem;
+}

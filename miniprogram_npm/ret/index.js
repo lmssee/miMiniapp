@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953016, function(require, module, exports) {
+__DEFINE__(1629944172232, function(require, module, exports) {
 var util      = require('./util');
 var types     = require('./types');
 var sets      = require('./sets');
@@ -288,8 +288,8 @@ module.exports = function(regexpStr) {
 
 module.exports.types = types;
 
-}, function(modId) {var map = {"./util":1629437953017,"./types":1629437953018,"./sets":1629437953019,"./positions":1629437953020}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953017, function(require, module, exports) {
+}, function(modId) {var map = {"./util":1629944172233,"./types":1629944172234,"./sets":1629944172235,"./positions":1629944172236}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172233, function(require, module, exports) {
 var types = require('./types');
 var sets  = require('./sets');
 
@@ -402,8 +402,8 @@ exports.error = function(regexp, msg) {
   throw new SyntaxError('Invalid regular expression: /' + regexp + '/: ' + msg);
 };
 
-}, function(modId) { var map = {"./types":1629437953018,"./sets":1629437953019}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953018, function(require, module, exports) {
+}, function(modId) { var map = {"./types":1629944172234,"./sets":1629944172235}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172234, function(require, module, exports) {
 module.exports = {
   ROOT       : 0,
   GROUP      : 1,
@@ -416,7 +416,7 @@ module.exports = {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953019, function(require, module, exports) {
+__DEFINE__(1629944172235, function(require, module, exports) {
 var types = require('./types');
 
 var INTS = function() {
@@ -500,8 +500,8 @@ exports.anyChar = function() {
   return { type: types.SET, set: NOTANYCHAR(), not: true };
 };
 
-}, function(modId) { var map = {"./types":1629437953018}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953020, function(require, module, exports) {
+}, function(modId) { var map = {"./types":1629944172234}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172236, function(require, module, exports) {
 var types = require('./types');
 
 exports.wordBoundary = function() {
@@ -520,8 +520,8 @@ exports.end = function() {
   return { type: types.POSITION, value: '$' };
 };
 
-}, function(modId) { var map = {"./types":1629437953018}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953016);
+}, function(modId) { var map = {"./types":1629944172234}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172232);
 })()
 //miniprogram-npm-outsideDeps=[]
 //# sourceMappingURL=index.js.map

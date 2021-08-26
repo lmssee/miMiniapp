@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952949, function(require, module, exports) {
+__DEFINE__(1629944172165, function(require, module, exports) {
 var native = require('crypto')
 
 var checkParameters = require('./lib/precondition')
@@ -44,8 +44,8 @@ if (!native.pbkdf2Sync || native.pbkdf2Sync.toString().indexOf('keylen, digest')
   exports.pbkdf2 = nativePBKDF2
 }
 
-}, function(modId) {var map = {"./lib/precondition":1629437952950,"./lib/default-encoding":1629437952951,"./lib/to-buffer":1629437952952,"./lib/sync":1629437952953,"./lib/async":1629437952954}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952950, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/precondition":1629944172166,"./lib/default-encoding":1629944172167,"./lib/to-buffer":1629944172168,"./lib/sync":1629944172169,"./lib/async":1629944172170}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172166, function(require, module, exports) {
 var MAX_ALLOC = Math.pow(2, 30) - 1 // default in iojs
 
 module.exports = function (iterations, keylen) {
@@ -67,7 +67,7 @@ module.exports = function (iterations, keylen) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952951, function(require, module, exports) {
+__DEFINE__(1629944172167, function(require, module, exports) {
 var defaultEncoding
 /* istanbul ignore next */
 if (global.process && global.process.browser) {
@@ -82,7 +82,7 @@ if (global.process && global.process.browser) {
 module.exports = defaultEncoding
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952952, function(require, module, exports) {
+__DEFINE__(1629944172168, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer
 
 module.exports = function (thing, encoding, name) {
@@ -98,7 +98,7 @@ module.exports = function (thing, encoding, name) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952953, function(require, module, exports) {
+__DEFINE__(1629944172169, function(require, module, exports) {
 var sizes = {
   md5: 16,
   sha1: 20,
@@ -152,8 +152,8 @@ function pbkdf2 (password, salt, iterations, keylen, digest) {
 
 module.exports = pbkdf2
 
-}, function(modId) { var map = {"./precondition":1629437952950,"./default-encoding":1629437952951,"./to-buffer":1629437952952}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952954, function(require, module, exports) {
+}, function(modId) { var map = {"./precondition":1629944172166,"./default-encoding":1629944172167,"./to-buffer":1629944172168}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172170, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer
 
 var checkParameters = require('./precondition')
@@ -273,8 +273,8 @@ module.exports = function (password, salt, iterations, keylen, digest, callback)
   }), callback)
 }
 
-}, function(modId) { var map = {"./precondition":1629437952950,"./default-encoding":1629437952951,"./sync":1629437952953,"./to-buffer":1629437952952}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952949);
+}, function(modId) { var map = {"./precondition":1629944172166,"./default-encoding":1629944172167,"./sync":1629944172169,"./to-buffer":1629944172168}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172165);
 })()
 //miniprogram-npm-outsideDeps=["crypto","safe-buffer","create-hmac"]
 //# sourceMappingURL=index.js.map

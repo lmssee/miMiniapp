@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952152, function(require, module, exports) {
+__DEFINE__(1629944171366, function(require, module, exports) {
 
 
 const stringify = require('./lib/stringify');
@@ -176,8 +176,8 @@ braces.create = (input, options = {}) => {
 
 module.exports = braces;
 
-}, function(modId) {var map = {"./lib/stringify":1629437952153,"./lib/compile":1629437952155,"./lib/expand":1629437952156,"./lib/parse":1629437952157}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952153, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/stringify":1629944171367,"./lib/compile":1629944171369,"./lib/expand":1629944171370,"./lib/parse":1629944171371}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171367, function(require, module, exports) {
 
 
 const utils = require('./utils');
@@ -211,8 +211,8 @@ module.exports = (ast, options = {}) => {
 };
 
 
-}, function(modId) { var map = {"./utils":1629437952154}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952154, function(require, module, exports) {
+}, function(modId) { var map = {"./utils":1629944171368}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171368, function(require, module, exports) {
 
 
 exports.isInteger = num => {
@@ -327,7 +327,7 @@ exports.flatten = (...args) => {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952155, function(require, module, exports) {
+__DEFINE__(1629944171369, function(require, module, exports) {
 
 
 const fill = require('fill-range');
@@ -386,8 +386,8 @@ const compile = (ast, options = {}) => {
 
 module.exports = compile;
 
-}, function(modId) { var map = {"./utils":1629437952154}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952156, function(require, module, exports) {
+}, function(modId) { var map = {"./utils":1629944171368}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171370, function(require, module, exports) {
 
 
 const fill = require('fill-range');
@@ -502,8 +502,8 @@ const expand = (ast, options = {}) => {
 
 module.exports = expand;
 
-}, function(modId) { var map = {"./stringify":1629437952153,"./utils":1629437952154}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952157, function(require, module, exports) {
+}, function(modId) { var map = {"./stringify":1629944171367,"./utils":1629944171368}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171371, function(require, module, exports) {
 
 
 const stringify = require('./stringify');
@@ -838,8 +838,8 @@ const parse = (input, options = {}) => {
 
 module.exports = parse;
 
-}, function(modId) { var map = {"./stringify":1629437952153,"./constants":1629437952158}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952158, function(require, module, exports) {
+}, function(modId) { var map = {"./stringify":1629944171367,"./constants":1629944171372}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171372, function(require, module, exports) {
 
 
 module.exports = {
@@ -899,7 +899,7 @@ module.exports = {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952152);
+return __REQUIRE__(1629944171366);
 })()
 //miniprogram-npm-outsideDeps=["fill-range"]
 //# sourceMappingURL=index.js.map

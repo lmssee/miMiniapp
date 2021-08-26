@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953119, function(require, module, exports) {
+__DEFINE__(1629944172335, function(require, module, exports) {
 var assert = require('assert'),
   path = require('path'),
   Completion = require('./lib/completion'),
@@ -510,8 +510,8 @@ function sigletonify (inst) {
   })
 }
 
-}, function(modId) {var map = {"./lib/completion":1629437953120,"./lib/parser":1629437953121,"./lib/usage":1629437953122,"./lib/validation":1629437953123}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953120, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/completion":1629944172336,"./lib/parser":1629944172337,"./lib/usage":1629944172338,"./lib/validation":1629944172339}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172336, function(require, module, exports) {
 var fs = require('fs'),
   path = require('path')
 
@@ -585,7 +585,7 @@ module.exports = function (yargs, usage) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953121, function(require, module, exports) {
+__DEFINE__(1629944172337, function(require, module, exports) {
 // fancy-pants parsing of argv, originally forked
 // from minimist: https://www.npmjs.com/package/minimist
 var camelCase = require('camelcase'),
@@ -1036,7 +1036,7 @@ module.exports = function (args, opts) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953122, function(require, module, exports) {
+__DEFINE__(1629944172338, function(require, module, exports) {
 // this file handles outputting usage instructions,
 // failures, etc. keeps logging in one place.
 var cliui = require('cliui'),
@@ -1353,7 +1353,7 @@ module.exports = function (yargs) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953123, function(require, module, exports) {
+__DEFINE__(1629944172339, function(require, module, exports) {
 // validation-type-stuff, missing params,
 // bad implications, custom checks.
 module.exports = function (yargs, usage) {
@@ -1552,7 +1552,7 @@ module.exports = function (yargs, usage) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953119);
+return __REQUIRE__(1629944172335);
 })()
 //miniprogram-npm-outsideDeps=["assert","path","window-size","fs","camelcase","cliui","decamelize"]
 //# sourceMappingURL=index.js.map

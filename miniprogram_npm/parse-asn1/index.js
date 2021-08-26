@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952933, function(require, module, exports) {
+__DEFINE__(1629944172149, function(require, module, exports) {
 var asn1 = require('./asn1')
 var aesid = require('./aesid.json')
 var fixProc = require('./fixProc')
@@ -113,8 +113,8 @@ function decrypt (data, password) {
   return Buffer.concat(out)
 }
 
-}, function(modId) {var map = {"./asn1":1629437952934,"./aesid.json":1629437952936,"./fixProc":1629437952937}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952934, function(require, module, exports) {
+}, function(modId) {var map = {"./asn1":1629944172150,"./aesid.json":1629944172152,"./fixProc":1629944172153}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172150, function(require, module, exports) {
 // from https://github.com/indutny/self-signed/blob/gh-pages/lib/asn1.js
 // Fedor, you are amazing.
 
@@ -238,8 +238,8 @@ exports.signature = asn1.define('signature', function () {
   )
 })
 
-}, function(modId) { var map = {"asn1.js":1629437952934,"./certificate":1629437952935}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952935, function(require, module, exports) {
+}, function(modId) { var map = {"asn1.js":1629944172150,"./certificate":1629944172151}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172151, function(require, module, exports) {
 // from https://github.com/Rantanen/node-dtls/blob/25a7dc861bda38cfeac93a723500eea4f0ac2e86/Certificate.js
 // thanks to @Rantanen
 
@@ -330,8 +330,8 @@ var X509Certificate = asn.define('X509Certificate', function () {
 
 module.exports = X509Certificate
 
-}, function(modId) { var map = {"asn1.js":1629437952934}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952936, function(require, module, exports) {
+}, function(modId) { var map = {"asn1.js":1629944172150}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172152, function(require, module, exports) {
 module.exports = {"2.16.840.1.101.3.4.1.1": "aes-128-ecb",
 "2.16.840.1.101.3.4.1.2": "aes-128-cbc",
 "2.16.840.1.101.3.4.1.3": "aes-128-ofb",
@@ -346,7 +346,7 @@ module.exports = {"2.16.840.1.101.3.4.1.1": "aes-128-ecb",
 "2.16.840.1.101.3.4.1.44": "aes-256-cfb"
 }
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952937, function(require, module, exports) {
+__DEFINE__(1629944172153, function(require, module, exports) {
 // adapted from https://github.com/apatil/pemstrip
 var findProc = /Proc-Type: 4,ENCRYPTED[\n\r]+DEK-Info: AES-((?:128)|(?:192)|(?:256))-CBC,([0-9A-H]+)[\n\r]+([0-9A-z\n\r+/=]+)[\n\r]+/m
 var startRegex = /^-----BEGIN ((?:.*? KEY)|CERTIFICATE)-----/m
@@ -380,7 +380,7 @@ module.exports = function (okey, password) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952933);
+return __REQUIRE__(1629944172149);
 })()
 //miniprogram-npm-outsideDeps=["browserify-aes","pbkdf2","safe-buffer","evp_bytestokey"]
 //# sourceMappingURL=index.js.map

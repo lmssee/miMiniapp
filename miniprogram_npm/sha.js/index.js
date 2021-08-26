@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953032, function(require, module, exports) {
+__DEFINE__(1629944172248, function(require, module, exports) {
 var exports = module.exports = function SHA (algorithm) {
   algorithm = algorithm.toLowerCase()
 
@@ -21,8 +21,8 @@ exports.sha256 = require('./sha256')
 exports.sha384 = require('./sha384')
 exports.sha512 = require('./sha512')
 
-}, function(modId) {var map = {"./sha":1629437953033,"./sha1":1629437953035,"./sha224":1629437953036,"./sha256":1629437953037,"./sha384":1629437953038,"./sha512":1629437953039}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953033, function(require, module, exports) {
+}, function(modId) {var map = {"./sha":1629944172249,"./sha1":1629944172251,"./sha224":1629944172252,"./sha256":1629944172253,"./sha384":1629944172254,"./sha512":1629944172255}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172249, function(require, module, exports) {
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-0, as defined
  * in FIPS PUB 180-1
@@ -118,8 +118,8 @@ Sha.prototype._hash = function () {
 
 module.exports = Sha
 
-}, function(modId) { var map = {"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953034, function(require, module, exports) {
+}, function(modId) { var map = {"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172250, function(require, module, exports) {
 var Buffer = require('safe-buffer').Buffer
 
 // prototype class for hash functions
@@ -203,7 +203,7 @@ Hash.prototype._update = function () {
 module.exports = Hash
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953035, function(require, module, exports) {
+__DEFINE__(1629944172251, function(require, module, exports) {
 /*
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
  * in FIPS PUB 180-1
@@ -304,8 +304,8 @@ Sha1.prototype._hash = function () {
 
 module.exports = Sha1
 
-}, function(modId) { var map = {"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953036, function(require, module, exports) {
+}, function(modId) { var map = {"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172252, function(require, module, exports) {
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -360,8 +360,8 @@ Sha224.prototype._hash = function () {
 
 module.exports = Sha224
 
-}, function(modId) { var map = {"./sha256":1629437953037,"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953037, function(require, module, exports) {
+}, function(modId) { var map = {"./sha256":1629944172253,"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172253, function(require, module, exports) {
 /**
  * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
  * in FIPS 180-2
@@ -498,8 +498,8 @@ Sha256.prototype._hash = function () {
 
 module.exports = Sha256
 
-}, function(modId) { var map = {"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953038, function(require, module, exports) {
+}, function(modId) { var map = {"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172254, function(require, module, exports) {
 var inherits = require('inherits')
 var SHA512 = require('./sha512')
 var Hash = require('./hash')
@@ -558,8 +558,8 @@ Sha384.prototype._hash = function () {
 
 module.exports = Sha384
 
-}, function(modId) { var map = {"./sha512":1629437953039,"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953039, function(require, module, exports) {
+}, function(modId) { var map = {"./sha512":1629944172255,"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172255, function(require, module, exports) {
 var inherits = require('inherits')
 var Hash = require('./hash')
 var Buffer = require('safe-buffer').Buffer
@@ -821,8 +821,8 @@ Sha512.prototype._hash = function () {
 
 module.exports = Sha512
 
-}, function(modId) { var map = {"./hash":1629437953034}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953032);
+}, function(modId) { var map = {"./hash":1629944172250}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172248);
 })()
 //miniprogram-npm-outsideDeps=["inherits","safe-buffer"]
 //# sourceMappingURL=index.js.map

@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953096, function(require, module, exports) {
+__DEFINE__(1629944172312, function(require, module, exports) {
 var ClientRequest = require('./lib/request')
 var response = require('./lib/response')
 var extend = require('xtend')
@@ -90,8 +90,8 @@ http.METHODS = [
 	'UNLOCK',
 	'UNSUBSCRIBE'
 ]
-}, function(modId) {var map = {"./lib/request":1629437953097,"./lib/response":1629437953099}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953097, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/request":1629944172313,"./lib/response":1629944172315}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172313, function(require, module, exports) {
 var capability = require('./capability')
 var inherits = require('inherits')
 var response = require('./response')
@@ -420,8 +420,8 @@ var unsafeHeaders = [
 	'via'
 ]
 
-}, function(modId) { var map = {"./capability":1629437953098,"./response":1629437953099}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953098, function(require, module, exports) {
+}, function(modId) { var map = {"./capability":1629944172314,"./response":1629944172315}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172314, function(require, module, exports) {
 exports.fetch = isFunction(global.fetch) && isFunction(global.ReadableStream)
 
 exports.writableStream = isFunction(global.WritableStream)
@@ -497,7 +497,7 @@ function isFunction (value) {
 xhr = null // Help gc
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953099, function(require, module, exports) {
+__DEFINE__(1629944172315, function(require, module, exports) {
 var capability = require('./capability')
 var inherits = require('inherits')
 var stream = require('readable-stream')
@@ -723,8 +723,8 @@ IncomingMessage.prototype._onXHRProgress = function () {
 	}
 }
 
-}, function(modId) { var map = {"./capability":1629437953098}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953096);
+}, function(modId) { var map = {"./capability":1629944172314}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172312);
 })()
 //miniprogram-npm-outsideDeps=["xtend","builtin-status-codes","url","inherits","readable-stream","to-arraybuffer"]
 //# sourceMappingURL=index.js.map

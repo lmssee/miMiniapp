@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952243, function(require, module, exports) {
+__DEFINE__(1629944171457, function(require, module, exports) {
 
 
 var elliptic = exports;
@@ -19,8 +19,8 @@ elliptic.curves = require('./elliptic/curves');
 elliptic.ec = require('./elliptic/ec');
 elliptic.eddsa = require('./elliptic/eddsa');
 
-}, function(modId) {var map = {"../package.json":1629437952244,"./elliptic/utils":1629437952245,"./elliptic/curve":1629437952246,"./elliptic/curves":1629437952251,"./elliptic/ec":1629437952253,"./elliptic/eddsa":1629437952256}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952244, function(require, module, exports) {
+}, function(modId) {var map = {"../package.json":1629944171458,"./elliptic/utils":1629944171459,"./elliptic/curve":1629944171460,"./elliptic/curves":1629944171465,"./elliptic/ec":1629944171467,"./elliptic/eddsa":1629944171470}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171458, function(require, module, exports) {
 module.exports = {
   "name": "elliptic",
   "version": "6.5.4",
@@ -79,7 +79,7 @@ module.exports = {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952245, function(require, module, exports) {
+__DEFINE__(1629944171459, function(require, module, exports) {
 
 
 var utils = exports;
@@ -201,7 +201,7 @@ utils.intFromLE = intFromLE;
 
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952246, function(require, module, exports) {
+__DEFINE__(1629944171460, function(require, module, exports) {
 
 
 var curve = exports;
@@ -211,8 +211,8 @@ curve.short = require('./short');
 curve.mont = require('./mont');
 curve.edwards = require('./edwards');
 
-}, function(modId) { var map = {"./base":1629437952247,"./short":1629437952248,"./mont":1629437952249,"./edwards":1629437952250}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952247, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1629944171461,"./short":1629944171462,"./mont":1629944171463,"./edwards":1629944171464}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171461, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -595,8 +595,8 @@ BasePoint.prototype.dblp = function dblp(k) {
   return r;
 };
 
-}, function(modId) { var map = {"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952248, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171462, function(require, module, exports) {
 
 
 var utils = require('../utils');
@@ -1536,8 +1536,8 @@ JPoint.prototype.isInfinity = function isInfinity() {
   return this.z.cmpn(0) === 0;
 };
 
-}, function(modId) { var map = {"../utils":1629437952245,"./base":1629437952247}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952249, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459,"./base":1629944171461}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171463, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -1717,8 +1717,8 @@ Point.prototype.getX = function getX() {
   return this.x.fromRed();
 };
 
-}, function(modId) { var map = {"./base":1629437952247,"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952250, function(require, module, exports) {
+}, function(modId) { var map = {"./base":1629944171461,"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171464, function(require, module, exports) {
 
 
 var utils = require('../utils');
@@ -2155,8 +2155,8 @@ Point.prototype.eqXToP = function eqXToP(x) {
 Point.prototype.toP = Point.prototype.normalize;
 Point.prototype.mixedAdd = Point.prototype.add;
 
-}, function(modId) { var map = {"../utils":1629437952245,"./base":1629437952247}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952251, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459,"./base":1629944171461}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171465, function(require, module, exports) {
 
 
 var curves = exports;
@@ -2364,8 +2364,8 @@ defineCurve('secp256k1', {
   ],
 });
 
-}, function(modId) { var map = {"./curve":1629437952246,"./utils":1629437952245,"./precomputed/secp256k1":1629437952252}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952252, function(require, module, exports) {
+}, function(modId) { var map = {"./curve":1629944171460,"./utils":1629944171459,"./precomputed/secp256k1":1629944171466}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171466, function(require, module, exports) {
 module.exports = {
   doubles: {
     step: 4,
@@ -3148,7 +3148,7 @@ module.exports = {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952253, function(require, module, exports) {
+__DEFINE__(1629944171467, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -3393,8 +3393,8 @@ EC.prototype.getKeyRecoveryParam = function(e, signature, Q, enc) {
   throw new Error('Unable to find valid recovery factor');
 };
 
-}, function(modId) { var map = {"../utils":1629437952245,"../curves":1629437952251,"./key":1629437952254,"./signature":1629437952255}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952254, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459,"../curves":1629944171465,"./key":1629944171468,"./signature":1629944171469}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171468, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -3517,8 +3517,8 @@ KeyPair.prototype.inspect = function inspect() {
          ' pub: ' + (this.pub && this.pub.inspect()) + ' >';
 };
 
-}, function(modId) { var map = {"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952255, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171469, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -3686,8 +3686,8 @@ Signature.prototype.toDER = function toDER(enc) {
   return utils.encode(res, enc);
 };
 
-}, function(modId) { var map = {"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952256, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171470, function(require, module, exports) {
 
 
 var hash = require('hash.js');
@@ -3807,8 +3807,8 @@ EDDSA.prototype.isPoint = function isPoint(val) {
   return val instanceof this.pointClass;
 };
 
-}, function(modId) { var map = {"../curves":1629437952251,"../utils":1629437952245,"./key":1629437952257,"./signature":1629437952258}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952257, function(require, module, exports) {
+}, function(modId) { var map = {"../curves":1629944171465,"../utils":1629944171459,"./key":1629944171471,"./signature":1629944171472}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171471, function(require, module, exports) {
 
 
 var utils = require('../utils');
@@ -3905,8 +3905,8 @@ KeyPair.prototype.getPublic = function getPublic(enc) {
 
 module.exports = KeyPair;
 
-}, function(modId) { var map = {"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952258, function(require, module, exports) {
+}, function(modId) { var map = {"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171472, function(require, module, exports) {
 
 
 var BN = require('bn.js');
@@ -3973,8 +3973,8 @@ Signature.prototype.toHex = function toHex() {
 
 module.exports = Signature;
 
-}, function(modId) { var map = {"../utils":1629437952245}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952243);
+}, function(modId) { var map = {"../utils":1629944171459}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944171457);
 })()
 //miniprogram-npm-outsideDeps=["brorand","bn.js","minimalistic-assert","minimalistic-crypto-utils","inherits","hash.js","hmac-drbg"]
 //# sourceMappingURL=index.js.map

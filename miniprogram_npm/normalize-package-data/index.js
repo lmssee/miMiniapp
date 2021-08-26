@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952893, function(require, module, exports) {
+__DEFINE__(1629944172109, function(require, module, exports) {
 module.exports = normalize
 
 var fixer = require("./fixer")
@@ -45,8 +45,8 @@ function ucFirst (string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-}, function(modId) {var map = {"./fixer":1629437952894,"./make_warning":1629437952897}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952894, function(require, module, exports) {
+}, function(modId) {var map = {"./fixer":1629944172110,"./make_warning":1629944172113}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172110, function(require, module, exports) {
 var semver = require("semver")
 var validateLicense = require('validate-npm-package-license');
 var hostedGitInfo = require("hosted-git-info")
@@ -466,8 +466,8 @@ function bugsTypos(bugs, warn) {
   })
 }
 
-}, function(modId) { var map = {"./extract_description":1629437952895,"./typos.json":1629437952896}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952895, function(require, module, exports) {
+}, function(modId) { var map = {"./extract_description":1629944172111,"./typos.json":1629944172112}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172111, function(require, module, exports) {
 module.exports = extractDescription
 
 // Extracts description from contents of a readme file in markdown format
@@ -484,7 +484,7 @@ function extractDescription (d) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952896, function(require, module, exports) {
+__DEFINE__(1629944172112, function(require, module, exports) {
 module.exports = {
   "topLevel": {
     "dependancies": "dependencies"
@@ -512,7 +512,7 @@ module.exports = {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952897, function(require, module, exports) {
+__DEFINE__(1629944172113, function(require, module, exports) {
 var util = require("util")
 var messages = require("./warning_messages.json")
 
@@ -537,8 +537,8 @@ function makeTypoWarning (providedName, probableName, field) {
   return util.format(messages.typo, providedName, probableName)
 }
 
-}, function(modId) { var map = {"./warning_messages.json":1629437952898}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952898, function(require, module, exports) {
+}, function(modId) { var map = {"./warning_messages.json":1629944172114}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172114, function(require, module, exports) {
 module.exports = {
   "repositories": "'repositories' (plural) Not supported. Please pick one as the 'repository' field"
   ,"missingRepository": "No repository field."
@@ -571,7 +571,7 @@ module.exports = {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952893);
+return __REQUIRE__(1629944172109);
 })()
 //miniprogram-npm-outsideDeps=["semver","validate-npm-package-license","hosted-git-info","resolve","url","util"]
 //# sourceMappingURL=index.js.map

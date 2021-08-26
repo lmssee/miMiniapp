@@ -4,13 +4,13 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952671, function(require, module, exports) {
+__DEFINE__(1629944171885, function(require, module, exports) {
 
 
 module.exports = require('./is-implemented')() ? Set : require('./polyfill');
 
-}, function(modId) {var map = {"./is-implemented":1629437952672,"./polyfill":1629437952673}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952672, function(require, module, exports) {
+}, function(modId) {var map = {"./is-implemented":1629944171886,"./polyfill":1629944171887}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171886, function(require, module, exports) {
 
 
 module.exports = function () {
@@ -37,7 +37,7 @@ module.exports = function () {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952673, function(require, module, exports) {
+__DEFINE__(1629944171887, function(require, module, exports) {
 
 
 var clear          = require('es5-ext/array/#/clear')
@@ -119,8 +119,8 @@ ee(Object.defineProperties(SetPoly.prototype, {
 defineProperty(SetPoly.prototype, Symbol.iterator, d(getValues));
 defineProperty(SetPoly.prototype, Symbol.toStringTag, d('c', 'Set'));
 
-}, function(modId) { var map = {"./lib/iterator":1629437952674,"./is-native-implemented":1629437952675}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952674, function(require, module, exports) {
+}, function(modId) { var map = {"./lib/iterator":1629944171888,"./is-native-implemented":1629944171889}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171888, function(require, module, exports) {
 
 
 var setPrototypeOf    = require('es5-ext/object/set-prototype-of')
@@ -153,7 +153,7 @@ SetIterator.prototype = Object.create(Iterator.prototype, {
 defineProperty(SetIterator.prototype, toStringTagSymbol, d('c', 'Set Iterator'));
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952675, function(require, module, exports) {
+__DEFINE__(1629944171889, function(require, module, exports) {
 // Exports true if environment provides native `Set` implementation,
 // whatever that is.
 
@@ -165,7 +165,7 @@ module.exports = (function () {
 }());
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952671);
+return __REQUIRE__(1629944171885);
 })()
 //miniprogram-npm-outsideDeps=["es5-ext/array/#/clear","es5-ext/array/#/e-index-of","es5-ext/object/set-prototype-of","es5-ext/object/valid-callable","d","event-emitter","es6-symbol","es6-iterator/valid-iterable","es6-iterator/for-of","es5-ext/string/#/contains","es6-iterator"]
 //# sourceMappingURL=index.js.map

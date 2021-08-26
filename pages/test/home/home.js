@@ -11,6 +11,9 @@ Page({
     }, {
       u: '/pages/taskList/home/home',
       name: '记点零事'
+    },{
+        u:'/pages/chat/home/home',
+        name:'聊天室'
     } ]
   },
   onLoad: function (options) {

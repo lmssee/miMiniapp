@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952216, function(require, module, exports) {
+__DEFINE__(1629944171430, function(require, module, exports) {
 
 
 var cp = require('child_process');
@@ -65,8 +65,8 @@ module.exports.sync = spawnSync;
 module.exports._parse = parse;
 module.exports._enoent = enoent;
 
-}, function(modId) {var map = {"./lib/parse":1629437952217,"./lib/enoent":1629437952223}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952217, function(require, module, exports) {
+}, function(modId) {var map = {"./lib/parse":1629944171431,"./lib/enoent":1629944171437}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171431, function(require, module, exports) {
 
 
 var resolveCommand = require('./util/resolveCommand');
@@ -181,8 +181,8 @@ function parse(command, args, options) {
 
 module.exports = parse;
 
-}, function(modId) { var map = {"./util/resolveCommand":1629437952218,"./util/hasEmptyArgumentBug":1629437952219,"./util/escapeArgument":1629437952220,"./util/escapeCommand":1629437952221,"./util/readShebang":1629437952222}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952218, function(require, module, exports) {
+}, function(modId) { var map = {"./util/resolveCommand":1629944171432,"./util/hasEmptyArgumentBug":1629944171433,"./util/escapeArgument":1629944171434,"./util/escapeCommand":1629944171435,"./util/readShebang":1629944171436}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171432, function(require, module, exports) {
 
 
 var path = require('path');
@@ -216,7 +216,7 @@ function resolveCommand(command, noExtension) {
 module.exports = resolveCommand;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952219, function(require, module, exports) {
+__DEFINE__(1629944171433, function(require, module, exports) {
 
 
 // See: https://github.com/IndigoUnited/node-cross-spawn/pull/34#issuecomment-221623455
@@ -237,7 +237,7 @@ function hasEmptyArgumentBug() {
 module.exports = hasEmptyArgumentBug();
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952220, function(require, module, exports) {
+__DEFINE__(1629944171434, function(require, module, exports) {
 
 
 function escapeArgument(arg, quote) {
@@ -270,7 +270,7 @@ function escapeArgument(arg, quote) {
 module.exports = escapeArgument;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952221, function(require, module, exports) {
+__DEFINE__(1629944171435, function(require, module, exports) {
 
 
 var escapeArgument = require('./escapeArgument');
@@ -284,8 +284,8 @@ function escapeCommand(command) {
 
 module.exports = escapeCommand;
 
-}, function(modId) { var map = {"./escapeArgument":1629437952220}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952222, function(require, module, exports) {
+}, function(modId) { var map = {"./escapeArgument":1629944171434}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171436, function(require, module, exports) {
 
 
 var fs = require('fs');
@@ -325,7 +325,7 @@ function readShebang(command) {
 module.exports = readShebang;
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952223, function(require, module, exports) {
+__DEFINE__(1629944171437, function(require, module, exports) {
 
 
 var isWin = process.platform === 'win32';
@@ -400,8 +400,8 @@ module.exports.verifyENOENT = verifyENOENT;
 module.exports.verifyENOENTSync = verifyENOENTSync;
 module.exports.notFoundError = notFoundError;
 
-}, function(modId) { var map = {"./util/resolveCommand":1629437952218}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952216);
+}, function(modId) { var map = {"./util/resolveCommand":1629944171432}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944171430);
 })()
 //miniprogram-npm-outsideDeps=["child_process","spawn-sync","path","which","lru-cache","fs","shebang-command"]
 //# sourceMappingURL=index.js.map

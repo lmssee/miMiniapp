@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437953467, function(require, module, exports) {
+__DEFINE__(1629944172684, function(require, module, exports) {
 // classic singleton yargs API, to use yargs
 // without running as a singleton do:
 // require('yargs/yargs')(process.argv.slice(2))
@@ -37,8 +37,8 @@ function singletonify (inst) {
   })
 }
 
-}, function(modId) {var map = {"./yargs":1629437953468}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953468, function(require, module, exports) {
+}, function(modId) {var map = {"./yargs":1629944172685}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172685, function(require, module, exports) {
 const argsert = require('./lib/argsert')
 const assign = require('./lib/assign')
 const Command = require('./lib/command')
@@ -1167,8 +1167,8 @@ function rebase (base, dir) {
   return path.relative(base, dir)
 }
 
-}, function(modId) { var map = {"./lib/argsert":1629437953469,"./lib/assign":1629437953472,"./lib/command":1629437953470,"./lib/completion":1629437953473,"./lib/usage":1629437953474,"./lib/validation":1629437953476,"./lib/obj-filter":1629437953475,"./lib/apply-extends":1629437953478,"./lib/yerror":1629437953471}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953469, function(require, module, exports) {
+}, function(modId) { var map = {"./lib/argsert":1629944172686,"./lib/assign":1629944172689,"./lib/command":1629944172687,"./lib/completion":1629944172690,"./lib/usage":1629944172691,"./lib/validation":1629944172693,"./lib/obj-filter":1629944172692,"./lib/apply-extends":1629944172695,"./lib/yerror":1629944172688}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172686, function(require, module, exports) {
 const command = require('./command')()
 const YError = require('./yerror')
 
@@ -1242,8 +1242,8 @@ function argumentTypeError (observedType, allowedTypes, position, optional) {
     ' Expected ' + allowedTypes.join(' or ') + ' but received ' + observedType + '.')
 }
 
-}, function(modId) { var map = {"./command":1629437953470,"./yerror":1629437953471}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953470, function(require, module, exports) {
+}, function(modId) { var map = {"./command":1629944172687,"./yerror":1629944172688}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172687, function(require, module, exports) {
 const path = require('path')
 const inspect = require('util').inspect
 const camelCase = require('camelcase')
@@ -1582,7 +1582,7 @@ module.exports = function (yargs, usage, validation) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953471, function(require, module, exports) {
+__DEFINE__(1629944172688, function(require, module, exports) {
 function YError (msg) {
   this.name = 'YError'
   this.message = msg || 'yargs error'
@@ -1595,7 +1595,7 @@ YError.prototype.constructor = YError
 module.exports = YError
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953472, function(require, module, exports) {
+__DEFINE__(1629944172689, function(require, module, exports) {
 // lazy Object.assign logic that only works for merging
 // two objects; eventually we should replace this with Object.assign.
 module.exports = function assign (defaults, configuration) {
@@ -1613,7 +1613,7 @@ module.exports = function assign (defaults, configuration) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953473, function(require, module, exports) {
+__DEFINE__(1629944172690, function(require, module, exports) {
 const fs = require('fs')
 const path = require('path')
 
@@ -1720,7 +1720,7 @@ module.exports = function (yargs, usage, command) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953474, function(require, module, exports) {
+__DEFINE__(1629944172691, function(require, module, exports) {
 // this file handles outputting usage instructions,
 // failures, etc. keeps logging in one place.
 const stringWidth = require('string-width')
@@ -2211,8 +2211,8 @@ module.exports = function (yargs, y18n) {
   return self
 }
 
-}, function(modId) { var map = {"./obj-filter":1629437953475,"./yerror":1629437953471}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953475, function(require, module, exports) {
+}, function(modId) { var map = {"./obj-filter":1629944172692,"./yerror":1629944172688}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172692, function(require, module, exports) {
 module.exports = function (original, filter) {
   const obj = {}
   filter = filter || function (k, v) { return true }
@@ -2225,7 +2225,7 @@ module.exports = function (original, filter) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953476, function(require, module, exports) {
+__DEFINE__(1629944172693, function(require, module, exports) {
 const objFilter = require('./obj-filter')
 const specialKeys = ['$0', '--', '_']
 
@@ -2591,8 +2591,8 @@ module.exports = function (yargs, usage, y18n) {
   return self
 }
 
-}, function(modId) { var map = {"./obj-filter":1629437953475,"./levenshtein":1629437953477}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953477, function(require, module, exports) {
+}, function(modId) { var map = {"./obj-filter":1629944172692,"./levenshtein":1629944172694}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172694, function(require, module, exports) {
 /*
 Copyright (c) 2011 Andrei Mackenzie
 
@@ -2642,7 +2642,7 @@ module.exports = function (a, b) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437953478, function(require, module, exports) {
+__DEFINE__(1629944172695, function(require, module, exports) {
 var fs = require('fs')
 var path = require('path')
 var assign = require('./assign')
@@ -2696,8 +2696,8 @@ function applyExtends (config, cwd) {
 
 module.exports = applyExtends
 
-}, function(modId) { var map = {"./assign":1629437953472,"./yerror":1629437953471}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437953467);
+}, function(modId) { var map = {"./assign":1629944172689,"./yerror":1629944172688}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172684);
 })()
 //miniprogram-npm-outsideDeps=["yargs-parser","path","y18n","set-blocking","get-caller-file","read-pkg-up","require-main-filename","os-locale","util","camelcase","require-directory","which-module","fs","string-width","cliui","decamelize"]
 //# sourceMappingURL=index.js.map

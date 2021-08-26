@@ -4,13 +4,13 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952660, function(require, module, exports) {
+__DEFINE__(1629944171874, function(require, module, exports) {
 
 
 module.exports = require('./is-implemented')() ? Map : require('./polyfill');
 
-}, function(modId) {var map = {"./is-implemented":1629437952661,"./polyfill":1629437952662}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952661, function(require, module, exports) {
+}, function(modId) {var map = {"./is-implemented":1629944171875,"./polyfill":1629944171876}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171875, function(require, module, exports) {
 
 
 module.exports = function () {
@@ -45,7 +45,7 @@ module.exports = function () {
 };
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952662, function(require, module, exports) {
+__DEFINE__(1629944171876, function(require, module, exports) {
 
 
 var clear          = require('es5-ext/array/#/clear')
@@ -151,8 +151,8 @@ Object.defineProperty(MapPoly.prototype, Symbol.iterator, d(function () {
 }));
 Object.defineProperty(MapPoly.prototype, Symbol.toStringTag, d('c', 'Map'));
 
-}, function(modId) { var map = {"./lib/iterator":1629437952663,"./is-native-implemented":1629437952665}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952663, function(require, module, exports) {
+}, function(modId) { var map = {"./lib/iterator":1629944171877,"./is-native-implemented":1629944171879}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171877, function(require, module, exports) {
 
 
 var setPrototypeOf    = require('es5-ext/object/set-prototype-of')
@@ -192,15 +192,15 @@ MapIterator.prototype = Object.create(Iterator.prototype, {
 Object.defineProperty(MapIterator.prototype, toStringTagSymbol,
 	d('c', 'Map Iterator'));
 
-}, function(modId) { var map = {"./iterator-kinds":1629437952664}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952664, function(require, module, exports) {
+}, function(modId) { var map = {"./iterator-kinds":1629944171878}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944171878, function(require, module, exports) {
 
 
 module.exports = require('es5-ext/object/primitive-set')('key',
 	'value', 'key+value');
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952665, function(require, module, exports) {
+__DEFINE__(1629944171879, function(require, module, exports) {
 // Exports true if environment provides native `Map` implementation,
 // whatever that is.
 
@@ -212,7 +212,7 @@ module.exports = (function () {
 }());
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952660);
+return __REQUIRE__(1629944171874);
 })()
 //miniprogram-npm-outsideDeps=["es5-ext/array/#/clear","es5-ext/array/#/e-index-of","es5-ext/object/set-prototype-of","es5-ext/object/valid-callable","es5-ext/object/valid-value","d","event-emitter","es6-symbol","es6-iterator/valid-iterable","es6-iterator/for-of","es6-iterator","es5-ext/object/primitive-set"]
 //# sourceMappingURL=index.js.map

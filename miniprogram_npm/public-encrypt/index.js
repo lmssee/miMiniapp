@@ -4,7 +4,7 @@ var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexport
 var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
 var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
 var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1629437952969, function(require, module, exports) {
+__DEFINE__(1629944172185, function(require, module, exports) {
 var crypto = require('crypto')
 if (typeof crypto.publicEncrypt !== 'function') {
   crypto = require('./browser')
@@ -24,8 +24,8 @@ if (typeof crypto.publicDecrypt !== 'function') {
   exports.publicDecrypt = crypto.publicDecrypt
 }
 
-}, function(modId) {var map = {"./browser":1629437952970}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952970, function(require, module, exports) {
+}, function(modId) {var map = {"./browser":1629944172186}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172186, function(require, module, exports) {
 exports.publicEncrypt = require('./publicEncrypt')
 exports.privateDecrypt = require('./privateDecrypt')
 
@@ -37,8 +37,8 @@ exports.publicDecrypt = function publicDecrypt (key, buf) {
   return exports.privateDecrypt(key, buf, true)
 }
 
-}, function(modId) { var map = {"./publicEncrypt":1629437952971,"./privateDecrypt":1629437952975}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952971, function(require, module, exports) {
+}, function(modId) { var map = {"./publicEncrypt":1629944172187,"./privateDecrypt":1629944172191}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172187, function(require, module, exports) {
 var parseKeys = require('parse-asn1')
 var randomBytes = require('randombytes')
 var createHash = require('create-hash')
@@ -128,8 +128,8 @@ function nonZero (len) {
   return out
 }
 
-}, function(modId) { var map = {"./mgf":1629437952972,"./xor":1629437952973,"./withPublic":1629437952974}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952972, function(require, module, exports) {
+}, function(modId) { var map = {"./mgf":1629944172188,"./xor":1629944172189,"./withPublic":1629944172190}; return __REQUIRE__(map[modId], modId); })
+__DEFINE__(1629944172188, function(require, module, exports) {
 var createHash = require('create-hash')
 var Buffer = require('safe-buffer').Buffer
 
@@ -151,7 +151,7 @@ function i2ops (c) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952973, function(require, module, exports) {
+__DEFINE__(1629944172189, function(require, module, exports) {
 module.exports = function xor (a, b) {
   var len = a.length
   var i = -1
@@ -162,7 +162,7 @@ module.exports = function xor (a, b) {
 }
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952974, function(require, module, exports) {
+__DEFINE__(1629944172190, function(require, module, exports) {
 var BN = require('bn.js')
 var Buffer = require('safe-buffer').Buffer
 
@@ -177,7 +177,7 @@ function withPublic (paddedMsg, key) {
 module.exports = withPublic
 
 }, function(modId) { var map = {}; return __REQUIRE__(map[modId], modId); })
-__DEFINE__(1629437952975, function(require, module, exports) {
+__DEFINE__(1629944172191, function(require, module, exports) {
 var parseKeys = require('parse-asn1')
 var mgf = require('./mgf')
 var xor = require('./xor')
@@ -284,8 +284,8 @@ function compare (a, b) {
   return dif
 }
 
-}, function(modId) { var map = {"./mgf":1629437952972,"./xor":1629437952973,"./withPublic":1629437952974}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1629437952969);
+}, function(modId) { var map = {"./mgf":1629944172188,"./xor":1629944172189,"./withPublic":1629944172190}; return __REQUIRE__(map[modId], modId); })
+return __REQUIRE__(1629944172185);
 })()
 //miniprogram-npm-outsideDeps=["crypto","parse-asn1","randombytes","create-hash","bn.js","browserify-rsa","safe-buffer"]
 //# sourceMappingURL=index.js.map
