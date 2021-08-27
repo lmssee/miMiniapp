@@ -1,7 +1,7 @@
-
 let recorderManager = wx.getRecorderManager();
 // 录音部分参数 小程序文档
 const recordOptions = {
+  login: false,
   duration: 60000, // 录音的时长，单位 ms，最大值 600000（10 分钟）
   sampleRate: 44100, // 采样率
   numberOfChannels: 1, // 录音通道数
@@ -41,7 +41,16 @@ Page({
     refreshTime: '',
     ScrollLoading: 0,
     audioIndex: null,
-    sendBtn: true
+    sendBtn: true,
+    userList: ['user001', 'user002', 'user003', 'user004',
+      'user005', 'user006', "user007", 'user008',
+      'user009', 'user010'
+    ],
+    sigList: [
+      'eJwtzMEKgkAUheF3mXXYndFRFFq00kQqSBOjTTmj3CQZRksxevdMXZ7vwP8hcXQy3lITjzADyGraKGTdYoETvxqpAehyNaK6KYWCeNQC4DZQ15of2SvUcnTOOQOAWVt8-s02AZhrOnSpYDmW3dS-9GJXRflwSM5BTrdlnWZhttePe*Jc14FIY78TxXAMuw35-gCb2jJ9', '	eJwtzEsOgjAUheG9dKrBS59C4gJQ4wNwYOIEpeJFMU0BNRr3bgWG5zvJ-yHpMvEe2pKQUA-IuNuY63uDZ*y4rbUFoMNV59fMGMxJ6HMAIcEPeP-ol0GrnQshKAD02mD1N8lcIuCcDhUsXDnezNsgqg6TlL1ZcpELtT2WdM1X6qlVrKJiepJyV1aj7Lafke8Pd1ow8A__',
+      'eJwtzMEKgkAUheF3mW0h13HukEKL2gQabTSqpTGj3UIdRwstevdMXZ7vwP9hyT52XtqygHEH2HLcpHTZUkYjPxttAbz5atQjNYYUC1wBgBJcX0yP7gxZPTgicgCYtKXib9ID4D4KPlcoH8pJGt3q8HiGSu1E*O7jcrHlfVTVxX3Va4kH7IrN1V7sKV*z7w9r*TI2', 'eJwtzEELgjAYxvHvsutCXnUbKHQIKg9GrDLqGm7aS1hrs5hE3z1Tj8-vD8*HFJtD8NaWpCQKgMyGjUrfW6xw4JfTFoBNyanbxRhUJA0ZABcQJmws2hu0unfOeQQAo7bY-E3EAFHSl*kF6-55ZfdL2ZyELF1xlOycrynNlN-KTj0roHG*6-wiq7OreMzJ9wdYbDFK', 'eJwtzF0LgjAYhuH-suOQ1*UWEzoownJFRR*InUWb8TIaMk2s6L*31MPneuD*kNPmGDTakZjQAMio26i0rbHAjp*VdgBsuCplrmWJisRh5JVDKKL*0W2JTntnjFEA6LXGx9-4GIAKNuFDBe**-FrOjWsvs3OuFqukkWkKkBTryh60pVvW7GWe7YR805uZku8PZtUxmA__', 'eJwtzMEKgkAUheF3udtCrs6ModDKMiLbWCG1E*Yal1JkRk2K3j1Tl*c78H-gnJycjgyE4DkIy3GzpqrhgkduLRlEf76sfuR1zRpCVyIqH91ATg-1NRsaXCnlIeKkDZd-8wWiF6hgNVf4PpTpelnEJrIbkXJveV8eqiKLZZscu1sutiRl*sx2UfR64xq*P2qjMbU_', 'eJwtzFELgjAUhuH-suuQ4-SsFLrIIDAkKL3Iy9E2OYWx5gop*u*Zevk9H7wfVhVl8NKOpYwHwBbjJqXvngyN-Oy0A1jOV6du0lpSLA1jABQQJvH06N6S04MjIgeAST21fxMRAE8EF3OFmqFcnSLM-OZq6ndrD*h783DbHTSyjs5qf8llmUGxMujy45p9f2owMZ0_', 'eJwtzEELgjAYxvHvsmuhr2szFbpkUAeFYEswvASb*mINmxpB9N0z9fj8Hvh-iEyE89KWRIQ6QNbTRqVNjyVOPHTaAgTL1anm1raoSOQxAO6DF7L50e8WrR6dc04BYNYeH3-zNwA09DldKliN5UBmwjyFPJ-yGAq3uRvvWuVJOhTuNpNpdazZYR8bsapFedmR7w*9BTHG', 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqXFqUUGBpZQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMzYwMLI0M4eqLc5MB1kY4Gdk7A8kK0MCLMpzC4tyo4KSw4IcK4wdI4KDip38y7ydvD20jbP9y22VagFW9jE8', 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqXFqUUGhjCp4pTsxIKCzBQlK0MTAwNTMwNDSxOITGpFQWZRKlDc1NTUyMDAACJakpkLEjMzNjAwsjSztISakpkONNnRtdAgMj8vrNwtvSLdpLg0ONvdKS07PSnNJTff0TM3ozJGP6LIw9E3MsU51FapFgCwsTLl'
+    ],
+    selectUser: '选择用户'
   },
   onLoad: function (options) {
     options = {
@@ -72,7 +81,7 @@ Page({
       audioContext
     });
     // 将某会话下所有未读消息已读上报
-    let promise = tim.setMessageRead({
+    let promise = wx.$_tim.setMessageRead({
       conversationID: options.conversationID
     });
     promise.then(function (imResponse) {
@@ -84,7 +93,7 @@ Page({
   onShow: function () {
     let that = this;
     // 获取当前聊天的历史列表
-    that.getMessageList();
+    // that.getMessageList();
     that.scrollToBottom();
     // 获取收到的单聊信息
     let onMessageReceived = function (event) {
@@ -93,7 +102,7 @@ Page({
       handlerHistoryMsgs(event.data, that)
       that.scrollToBottom();
     };
-    tim.on(TIM.EVENT.MESSAGE_RECEIVED, onMessageReceived)
+    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, onMessageReceived)
     // 监听录音结束
     recorderManager.onStop(function (res) {
       if (that.data.recording) {
@@ -104,7 +113,7 @@ Page({
           })
         } else {
           // 创建消息实例，接口返回的实例可以上屏
-          const message = tim.createAudioMessage({
+          const message = wx.$_tim.createAudioMessage({
             to: that.data.friendId,
             conversationType: TIM.TYPES.CONV_C2C,
             payload: {
@@ -113,12 +122,17 @@ Page({
             onProgress: function (event) {}
           });
           //  发送消息
-          let promise = tim.sendMessage(message);
+          let promise = wx.$_tim.sendMessage(message);
           promise.then(function (imResponse) {
             // 发送成功
             that.addMessage(imResponse.data.message, that)
           }).catch(function (imError) {
             // 发送失败
+            wx.hideToast();
+            wx.showToast({
+              title: '消息发送失败',
+              icon: 'error'
+            });
           });
           that.setData({
             recording: false
@@ -128,7 +142,8 @@ Page({
         wx.showToast({
           title: '说话时间太短',
           duration: 1000,
-          image: '../image/err.png'
+          image: ''
+          /** 差一张图片 */
         })
       }
     });
@@ -137,13 +152,15 @@ Page({
   /**
    * 获取消息列表
    */
- async getMessageList() {
+  getMessageList() {
     let that = this;
-    console.log(TIM.EVENT.SDK_READY); // 获取 SDK 的 ready 信息
-   await  tim.getMessageList({
+    console.log(wx.$_TIM.EVENT.SDK_READY);
+    // 获取 SDK 的 ready 信息
+    wx.$_tim.getMessageList({
       conversationID: '', //会话列表传递过来的参数
       count: 15
     }).then(function (imResponse) {
+      console.log(wx.$_TIM.EVENT.SDK_READY);
       const messageList = imResponse.data.messageList; // 消息列表。
       const nextReqMessageID = imResponse.data.nextReqMessageID; // 用于续拉，分页续拉时需传入该字段。
       const isCompleted = imResponse.data.isCompleted; // 表示是否已经拉完所有消息。
@@ -188,15 +205,15 @@ Page({
     var that = this
     // 发送文本消息，Web 端与小程序端相同
     // 1. 创建消息实例，接口返回的实例可以上屏
-    let message = tim.createTextMessage({
+    let message = wx.$_tim.createTextMessage({
       to: this.data.friendId,
-      conversationType: TIM.TYPES.CONV_C2C,
+      conversationType: wx.$_TIM.TYPES.CONV_C2C,
       payload: {
         text: this.data.content
       }
     });
     // 2. 发送消息
-    let promise = tim.sendMessage(message);
+    let promise = wx.$_tim.sendMessage(message);
     promise.then(function (imResponse) {
       // 发送成功
       that.addMessage(imResponse.data.message, that)
@@ -224,23 +241,21 @@ Page({
    */
   sendImg() {
     let that = this;
-
-
     wx.chooseImage({
       sourceType: ['album'], // 从相册选择
       count: 1, // 只选一张，目前 SDK 不支持一次发送多张图片
       success: function (res) {
         // 2. 创建消息实例，接口返回的实例可以上屏
-        let message = tim.createImageMessage({
+        let message = wx.$_tim.createImageMessage({
           to: that.data.friendId,
-          conversationType: TIM.TYPES.CONV_C2C,
+          conversationType: wx.$_TIM.TYPES.CONV_C2C,
           payload: {
             file: res
           },
           onProgress: function (event) {}
         });
         // 3. 发送图片
-        let promise = tim.sendMessage(message);
+        let promise = wx.$_tim.sendMessage(message);
         promise.then(function (imResponse) {
           // 发送成功
           that.addMessage(imResponse.data.message, that)
@@ -338,7 +353,8 @@ Page({
       wx.showToast({
         title: '松开，取消发送',
         duration: 10000,
-        image: '../image/cancel.png'
+        image: ''
+        /** 差一张图片 */
       })
     } else {
       // # 不取消
@@ -367,7 +383,7 @@ Page({
         title: '加载中',
       })
       setTimeout(() => {
-        let promise = tim.getMessageList({
+        let promise = wx.$_tim.getMessageList({
           conversationID: that.data.conversationID,
           nextReqMessageID: that.data.nextReqMessageID,
           count: 15
@@ -419,5 +435,31 @@ Page({
       reply_height: 0,
       scroll_height: wx.getSystemInfoSync().windowHeight - 54
     })
+  },
+  changeUser(e) {
+    let v = e.detail.value;
+    console.log(v);
+    this.setData({
+      selectUser: this.data.userList[v],
+    });
+    wx.$_tim.login({
+      userID: this.data.userList[v],
+      userSig: this.data.sigList[v]
+    }).then((o) => {
+      this.setData({
+        login: true
+      })
+      if (o.data.repeatLogin === true) {
+        console.log(o.data.errInfo);
+
+      }
+      this.getMessageList();
+    }).catch((imerr) => {
+      console.log('login errror', imerr);
+    });
   }
 })
+/** 
+ * tim.logout(); 
+ *    登出即时通信 
+ * */
