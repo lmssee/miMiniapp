@@ -1,20 +1,5 @@
-import fn from './commons/fn.js';
 import imfn from './commons/im.js';
-import config from './commons/config.js';
-import TIM from 'tim-wx-sdk';
-import TIMUploadPlugin from 'tim-upload-plugin';
-// import store from './store/index.js';
-const tim = TIM.create({
-  SDKAppID: config.SDKAppID
-});
-tim.setLogLevel(4);
-wx.$_tim = tim;
-// wx.store = store;
-wx.$_TIM = TIM;
-wx.$_sdkAppID = config.SDKAppID;
-wx.$_tim.registerPlugin({
-  'tim-upload-plugin': TIMUploadPlugin
-});
+imfn.ini();
 imfn.registerEvents(wx.$_tim);
 App({
   onLaunch() {
