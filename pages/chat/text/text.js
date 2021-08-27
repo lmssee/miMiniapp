@@ -47,10 +47,13 @@ Page({
       'user009', 'user010'
     ],
     sigList: [
-      'eJwtzMEKgkAUheF3mXXYndFRFFq00kQqSBOjTTmj3CQZRksxevdMXZ7vwP8hcXQy3lITjzADyGraKGTdYoETvxqpAehyNaK6KYWCeNQC4DZQ15of2SvUcnTOOQOAWVt8-s02AZhrOnSpYDmW3dS-9GJXRflwSM5BTrdlnWZhttePe*Jc14FIY78TxXAMuw35-gCb2jJ9', '	eJwtzEsOgjAUheG9dKrBS59C4gJQ4wNwYOIEpeJFMU0BNRr3bgWG5zvJ-yHpMvEe2pKQUA-IuNuY63uDZ*y4rbUFoMNV59fMGMxJ6HMAIcEPeP-ol0GrnQshKAD02mD1N8lcIuCcDhUsXDnezNsgqg6TlL1ZcpELtT2WdM1X6qlVrKJiepJyV1aj7Lafke8Pd1ow8A__',
-      'eJwtzMEKgkAUheF3mW0h13HukEKL2gQabTSqpTGj3UIdRwstevdMXZ7vwP9hyT52XtqygHEH2HLcpHTZUkYjPxttAbz5atQjNYYUC1wBgBJcX0yP7gxZPTgicgCYtKXib9ID4D4KPlcoH8pJGt3q8HiGSu1E*O7jcrHlfVTVxX3Va4kH7IrN1V7sKV*z7w9r*TI2', 'eJwtzEELgjAYxvHvsutCXnUbKHQIKg9GrDLqGm7aS1hrs5hE3z1Tj8-vD8*HFJtD8NaWpCQKgMyGjUrfW6xw4JfTFoBNyanbxRhUJA0ZABcQJmws2hu0unfOeQQAo7bY-E3EAFHSl*kF6-55ZfdL2ZyELF1xlOycrynNlN-KTj0roHG*6-wiq7OreMzJ9wdYbDFK', 'eJwtzF0LgjAYhuH-suOQ1*UWEzoownJFRR*InUWb8TIaMk2s6L*31MPneuD*kNPmGDTakZjQAMio26i0rbHAjp*VdgBsuCplrmWJisRh5JVDKKL*0W2JTntnjFEA6LXGx9-4GIAKNuFDBe**-FrOjWsvs3OuFqukkWkKkBTryh60pVvW7GWe7YR805uZku8PZtUxmA__', 'eJwtzMEKgkAUheF3udtCrs6ModDKMiLbWCG1E*Yal1JkRk2K3j1Tl*c78H-gnJycjgyE4DkIy3GzpqrhgkduLRlEf76sfuR1zRpCVyIqH91ATg-1NRsaXCnlIeKkDZd-8wWiF6hgNVf4PpTpelnEJrIbkXJveV8eqiKLZZscu1sutiRl*sx2UfR64xq*P2qjMbU_', 'eJwtzFELgjAUhuH-suuQ4-SsFLrIIDAkKL3Iy9E2OYWx5gop*u*Zevk9H7wfVhVl8NKOpYwHwBbjJqXvngyN-Oy0A1jOV6du0lpSLA1jABQQJvH06N6S04MjIgeAST21fxMRAE8EF3OFmqFcnSLM-OZq6ndrD*h783DbHTSyjs5qf8llmUGxMujy45p9f2owMZ0_', 'eJwtzEELgjAYxvHvsmuhr2szFbpkUAeFYEswvASb*mINmxpB9N0z9fj8Hvh-iEyE89KWRIQ6QNbTRqVNjyVOPHTaAgTL1anm1raoSOQxAO6DF7L50e8WrR6dc04BYNYeH3-zNwA09DldKliN5UBmwjyFPJ-yGAq3uRvvWuVJOhTuNpNpdazZYR8bsapFedmR7w*9BTHG', 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqXFqUUGBpZQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMzYwMLI0M4eqLc5MB1kY4Gdk7A8kK0MCLMpzC4tyo4KSw4IcK4wdI4KDip38y7ydvD20jbP9y22VagFW9jE8', 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqXFqUUGhjCp4pTsxIKCzBQlK0MTAwNTMwNDSxOITGpFQWZRKlDc1NTUyMDAACJakpkLEjMzNjAwsjSztISakpkONNnRtdAgMj8vrNwtvSLdpLg0ONvdKS07PSnNJTff0TM3ozJGP6LIw9E3MsU51FapFgCwsTLl'
+      'eJwtzEELgjAYxvHvsmsh76bTEjoUUiB2UiG6CW7rVYy1mZnRd8-U4-N74P8hWZI6nTAkJMwBsp42luLeosSJn1YYALpctqwLrbEkIfUAuA90682P6DUaMTrnnAHArC02f-NdADdglC8VVGN5sOdcgTrJ9JJdV29J*zw2G4yjR-eqGhwOIijqY3VLov2OfH92bTJ0', '	eJwtzMsOgjAQheF36dqQoVAqJG69gYZEF*qOpIOMoCktKsH47iKwPN*fnA87JgfnhYZFjDvAZsMmhY*Gchr4adEA8ClZVWZak2KR6wOIANzQHwu2mgz2LoTgADBqQ-e-BR6AJ7mc1NK1f*52dVyHSFgZsTpd8lZuTXqex8suqWTmrTdpsX8XtxJNuWDfH3VMMn4_',
+      'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwqXFqUUGBsZQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMwYaYW5kYQo1JTMdaLJXjL6vd2JkgZeTkbZzVZZpRaJLcUBUmHOwf6Rziqm-RWpJUkBonkVejkWRo61SLQCFTDGk', 'eJwtzEELgjAYxvHvsnPIO92cCl0SloQHoyDqZmzWi2ZjmibRd8-U4-N74P8hx-TgdNqSiLgOkNW0Uem6xQInfjXaArDlalSZG4OKRJQBcB9oyOZHvw1aPTrn3AWAWVt8-M33ADzhhsFSwdtYju9yoCZNhc1DTLb7JK7q4XrOZFddxLAJSrl79v2pYBlbk*8PaBMx4g__', 'eJwtzD0PgjAUheH-0tmQC7QgJA4oSxEGxYF0k7SSGyOSC-gR43*3AuN5TvJ*2CkvnYchFjPPAbaaNmrTDnjBicfeEIBYrl5fz12HmsUutxqAG-H5Ma8OyVgXQngAMOuAt78FPoAf*hAtFWxsGdttmpdrSfXzmGWcwiRJd6oepSpkIclT72Y4lFWl9vcN*-4AW9cxmQ__', 'eJwtzFELgjAUhuH-cm4LO9ucpdBtEEgSCQ3pJtnKgzZksxKi-56pl9-zwfuBPD0FL*MgAR4gLMdN2tiObjTy0xuHGM2X1-W1bUlDwkJEGSGLw*kxfUvODC6l5Ig4aUePv0UCUawFZ3OF7kP5stp4XZiiUrZZVJh3xz4tS2Y9lYo3mTqn2c7HfP8Wh3oL3x*fiTIz', 'eJwtzEELgjAYxvHvsnPI6*YUhS4V1CENbJl4UzbzRUzdNILou2fq8fk98P8Qcb5aL6VJQKgFZDNvlOo5YIkzj0ZpAG*9jKzzrkNJAtsB4C7YvrM86t2hVpNzzikALDpg8zeXATCPMbpW8DGVT6ItR7q-t1lzGMLokvS3qtoVWX5MRZbGSSzSXkfGhH69Jd8fdU8ycQ__', 'eJwtzEELgjAYxvHvsnPI6*ZmCR2CooR50Aqrm7gZr5GsabGIvnumHp-fA-8POci999KWRIR6QGbDRqWbDisc*NlqCzCfrlbdCmNQkcgPALgAfxGMj3YGre6dc04BYNQO738TDICFLGBTBa992eSizDHcVbXcZlzGaXFxKpGZSZozdZvy8U5P9bqOj*lqSb4-aIQx7g__', 'eJwtzEELgjAYxvHvsnPo63TWhA7ZpcIiKsjCS7WVr1HJtqQVffdMPT6-B-4fsknWTiUViQh1gPSajULeDZ6x4aeWCoB3lxbXQ1miIJEXALAQPB60j3yVqGTtjDEKAK0avP0t9AH8vs9oV8FLXc7cyXLKczXWJxuDLZKioo883nKTuWaxO6bzNFh5dv8e2dlgSL4-zDIycw__', 'eJw1zEELgjAYxvHvsquhr5tbKHTxMIosBb0IXsItedNiTK0g*u6Z1vH5PfB-kSLJ3bu2JCLUBbKaNyp9G-CMM4*9tuD-r161J2NQkcgPALgAPwyWRz8NWj0555wCwKIDXr8mGABbM8F*FWymsqCyqB3RjWGMj7ryZJdB06aVd7xkjt3mB0jCWJY7mpb7YEPeH6VEMNo_'
     ],
-    selectUser: '选择用户'
+    selectUser: '选择用户',
+    selectfriendShow: false,
+    selectFriend: '选择朋友',
+    friendList: [],
   },
   onLoad: function (options) {
     options = {
@@ -199,28 +202,28 @@ Page({
         title: '请输入内容',
         duration: 1000,
         icon: 'none'
-      })
-      return
+      });
+      return;
     }
-    var that = this
-    // 发送文本消息，Web 端与小程序端相同
-    // 1. 创建消息实例，接口返回的实例可以上屏
-    let message = wx.$_tim.createTextMessage({
+    var that = this;
+    console.log(this.data.content);
+    // 2. 发送消息
+    wx.$_tim.sendMessage(wx.$_tim.createTextMessage({
       to: this.data.friendId,
       conversationType: wx.$_TIM.TYPES.CONV_C2C,
       payload: {
         text: this.data.content
       }
-    });
-    // 2. 发送消息
-    let promise = wx.$_tim.sendMessage(message);
-    promise.then(function (imResponse) {
+    })).then(function (imResponse) {
       // 发送成功
+      console.log(456);
       that.addMessage(imResponse.data.message, that)
       that.setData({
         sendBtn: true
       })
     }).catch(function (imError) {
+      console.log(imError);
+      console.log(78);
       // 发送失败
     });
   },
@@ -245,22 +248,20 @@ Page({
       sourceType: ['album'], // 从相册选择
       count: 1, // 只选一张，目前 SDK 不支持一次发送多张图片
       success: function (res) {
-        // 2. 创建消息实例，接口返回的实例可以上屏
-        let message = wx.$_tim.createImageMessage({
+        wx.$_tim.sendMessage(wx.$_tim.createImageMessage({
           to: that.data.friendId,
           conversationType: wx.$_TIM.TYPES.CONV_C2C,
           payload: {
             file: res
           },
-          onProgress: function (event) {}
-        });
-        // 3. 发送图片
-        let promise = wx.$_tim.sendMessage(message);
-        promise.then(function (imResponse) {
+          onProgress: function (e) {
+            console.log('图片', e);
+          }
+        })).then((imResponse) => {
           // 发送成功
           that.addMessage(imResponse.data.message, that)
-        }).catch(function (imError) {
-          // 发送失败
+        }).catch(function (err) {
+          console.log('图片发送失败', err);
         });
       }
     })
@@ -270,6 +271,7 @@ Page({
       toView: 'row_' + (this.data.messages.length - 1)
     });
   },
+  /** 预览图片 */
   previewImage(e) {
     let src = '';
     wx.previewImage({
@@ -438,26 +440,113 @@ Page({
   },
   changeUser(e) {
     let v = e.detail.value;
-    console.log(v);
+    this.data.friendList = JSON.parse(JSON.stringify(this.data.userList));
+    this.data.friendList.splice(v, 1);
     this.setData({
+      friendList: this.data.friendList,
+      selectfriendShow: true,
       selectUser: this.data.userList[v],
+    });
+    wx.setNavigationBarTitle({
+      title: this.data.userList[v],
     });
     wx.$_tim.login({
       userID: this.data.userList[v],
       userSig: this.data.sigList[v]
     }).then((o) => {
-      this.setData({
-        login: true
-      })
+
       if (o.data.repeatLogin === true) {
         console.log(o.data.errInfo);
-
       }
-      this.getMessageList();
+      // this.getMessageList();
     }).catch((imerr) => {
       console.log('login errror', imerr);
     });
+    return;
+  },
+  changefriend(e) {
+    let a = e.detail.value;
+    console.log(this.data.friendList[a]);
+    this.data.selectFriend = this.data.friendList[a]
+    this.setData({
+      friendId: this.data.friendList[a]
+    });
+    wx.setNavigationBarTitle({
+      title: `${this.data.selectUser}->${this.data.selectFriend}`,
+    })
+    this.setData({
+      login: true
+    })
+  },
+  sendFaceMsssage(e) {
+    wx.sendMessage(wx.$_tim.createFaceMessage({
+      /** 聊天对象 */
+      to: friendId,
+      /**  会话类型
+       *  单聊
+       *        TIM.TYPES.CONV_C2C
+       *  群聊
+       *        TIM.TYPES.CONV_GROUP
+       */
+      conversationType: wx.$_TIM.TYPE_C2C,
+      /** 优先级 
+       * 下面是默认级别
+       */
+      priority: wx.$_TIM.TYPES.MSG_PRIORITY_NORMAL,
+      /** 消息体 (object)
+       * index     表情索引
+       * data      额外数据
+       */
+      payload: {
+        index: 1,
+        /** 表情索引 */
+        data: 'tt00' /** String 额外数据 */
+      }
+    }));
+  },
+  sendDIYMessage(e) {
+    /** 自定义消息发送 */
+    wx.$_tim.sendMessage({
+      /** 消息实例 */
+      message: '',
+      /** 消息发送选择 */
+      options: {
+        /** 消息指发送给在线的人 */
+        onlineUserOnly: '',
+        /*** 离线消息，仅在 安卓和 ios 下支持 */
+        // offliePashInfo:{
+        // }
+      }
+    });
+  },
+  /** 消息撤回 */
+  revokeMessage(e) {
+    wx.$_tim.revokeMessage({
+
+    }).then(o => {
+      wx.showToast({
+        title: '消息已撤回',
+      })
+      console.log('消息撤回成功');
+    }).catch(err => {
+      wx.showToast({
+        title: '消息未撤回',
+      })
+      console.log('撤回消息失败', err);
+    });
+  },
+  resendMessage(e) {
+    wx.$_tim.resendMessage({
+      /** 消息实例 */
+      message: ''
+    }).then((o) => {
+      console.log(o.data);
+    }).catch((err) => {
+      console.log('消息重发err', err);
+    })
   }
+
+
 })
 /** 
  * tim.logout(); 

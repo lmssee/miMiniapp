@@ -46,9 +46,9 @@
     <view class="add" bind:tap="moreClick">
       <image class="more" src="" />
     </view>
-    <!-- <view class="send" bindtap="sendImg">相册</view>
+      <!-- <view class="send" bindtap="sendImg">相册</view>
   <view class="send" bindtap="startAudio">开始</view>
-  <view class="send" bindtap="endAudio">结束</view> -->
+  <view class="send" bindtap="endAudio">结束</view>  -->
   </view>
   <view class="more_box" hidden="{{moreShow}}">
     <view class="more_item" bindtap="sendImg">
@@ -65,6 +65,9 @@
 <block wx:else>
   <view class="fiex">
     <button type="default">登录</button>
-    <picker mode="selector" value="" bindchange="changeUser" range="{{userList}}">{{selectUser}}</picker>
+    <view><text>用户：</text> <picker mode="selector" value="" bindchange="changeUser" range="{{userList}}">{{selectUser}}</picker>
+    </view>
+    <view wx:if="{{selectfriendShow}}"><text>好友：</text><picker value="" mode="selector"  bindchange="changefriend" range="{{friendList}}">{{selectFriend}}</picker></view>
+   
   </view>
 </block>
