@@ -1,4 +1,5 @@
 import imfn from './commons/im.js';
+import fn from './commons/fn.js';
 
 App({
   onLaunch() {

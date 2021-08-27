@@ -492,7 +492,28 @@ messageList.forEach(function(message) {
    */
   deleteConversation(id) {
     wx.$_tim.deleteConversation(id);
-  }
+  },
+  /**  群组列表获取
+   * 
+   *    参数：
+   *        grouProfileFilter     array<string>   群资料过滤器。除默认的群资料外，指定需要拉取得群资料，支持以下值
+   *                        TIM.TYPES.GRP_PROFILE_OWNER_ID          群主 id
+   *                        TIM.TYPES.GRP_CREATE_TIME               群创建时间
+   *                        TIM.TYPES.GRP_PROFILE_LAST_INFO_TIME    最后一次群资料变更时间
+   *                        TIM.TYPES.GRP_PROFILE_MEMBER_NUM：群成员数量
+   *                        TIM.TYPES.GRP_PROFILE_MAX_MEMBER_NUM：最大群成员数量
+   *                        TIM.TYPES.GRP_PROFILE_JOIN_OPTION：申请加群选项
+   *                        TIM.TYPES.GRP_PROFILE_INTRODUCTION：群介绍
+   *                        TIM.TYPES.GRP_PROFILE_NOTIFICATION：群公告
+   *                        TIM.TYPES.GRP_PROFILE_MUTE_ALL_MBRS (全体禁言设置) v2.6.2起支持
+   * 
+   *  返回值：
+   *        Promise       可在 IMRespose.data.gronpList 中获取群组列表
+   * 
+    */
+   getGroupList(){
+     wx.$_tim.getGroupList();
+   }
 
 };
 export default imfn;
