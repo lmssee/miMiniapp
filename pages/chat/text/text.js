@@ -118,7 +118,7 @@ Page({
           // 创建消息实例，接口返回的实例可以上屏
           const message = wx.$_tim.createAudioMessage({
             to: that.data.friendId,
-            conversationType: TIM.TYPES.CONV_C2C,
+            conversationType: wx.$_TIM.TYPES.CONV_C2C,
             payload: {
               file: res
             },
