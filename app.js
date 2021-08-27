@@ -1,8 +1,9 @@
 import imfn from './commons/im.js';
-imfn.ini();
-imfn.registerEvents(wx.$_tim);
+
 App({
   onLaunch() {
+    /** 初始化 即时通讯 */
+    imfn.ini();
     /** 若本地储存没有 id 信息，则获取 */
     if (!wx.getStorageSync('userid').unionid)
       fn.login();

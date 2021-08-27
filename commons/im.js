@@ -1,6 +1,5 @@
-import fn from './commons/fn.js';
-import imfn from './commons/im.js';
-import config from './commons/config.js';
+import fn from './fn.js';
+import config from './config.js';
 import TIM from 'tim-wx-sdk';
 import TIMUploadPlugin from 'tim-upload-plugin';
 // import store from './store/index.js';
@@ -19,6 +18,7 @@ const imfn = {
     wx.$_tim.registerPlugin({
       'tim-upload-plugin': TIMUploadPlugin
     });
+    this.registerEvents(wx.$_tim);
   },
   /** 事件监听 */
   registerEvents(tim) {
