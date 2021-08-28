@@ -33,6 +33,7 @@ const imfn = {
     tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.netStateChange, this);
     tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.onMessageReadByPeer, this);
     tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.onMessageRevoked, this);
+    tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.groupSystemNoticeReceived);
     console.log(tim);
   },
   /** 多端登录，被挤掉线 */
@@ -481,7 +482,7 @@ messageList.forEach(function(message) {
    *   返回值
    *        Promise   
    */
-  getConversationProfile(id) {
+  getConversationInfo(id) {
     return wx.$_tim.getConversationProfile(id);
   },
   /** 删除会话
@@ -490,7 +491,7 @@ messageList.forEach(function(message) {
    *    返回值    Promise   
    * 
    */
-  deleteConversation(id) {
+  delConversation(id) {
     return wx.$_tim.deleteConversation(id);
   },
   /**  群组列表获取
@@ -527,13 +528,15 @@ messageList.forEach(function(message) {
    *        Promise
    *  
    */
-  getGroupProfile(o) {
+  getGroupInfo(o) {
     return wx.$_tim.getGroupProfile(o);
   },
   /***
    * 创建群组
+   * 
    *   <该接口在创建 TIM.TYPES.GRP_AVCHATROOM 直播群后，需调用 joinGroup 接口加入群组后，才能进行消息的收发>
    * 参数
+   * 
    *          o   object    
    *               name           string        名称，必填，最长 30 字节
    *               type           string        群组类型
@@ -557,6 +560,7 @@ messageList.forEach(function(message) {
    *               groupCustomField   Array     群组维度自定义字段，默认没有自定义字段
    * 
    *  返回值
+   * 
    *            Promise
    * 
    */
@@ -564,9 +568,11 @@ messageList.forEach(function(message) {
     return wx.$_tim.createGroup(o);
   },
   /** 解散群
+   * 
    *    群主不能解散好友工作群
    * 
    * 返回值 
+   * 
    *        Promise
    */
   dismissGroup(id) {
@@ -605,6 +611,7 @@ messageList.forEach(function(message) {
     return wx.$_tim.updateGronpProfile(o);
   },
   /**  申请入群
+   * 
    *        好友工作群不允许加群，只能通过 addGroupMember 方式加入
    *        TIM.TYPES.GRP_AVCHATROOM（直播群）
    *                  正常加入                   此时 SDK 内接口均可用
@@ -612,6 +619,7 @@ messageList.forEach(function(message) {
    *         同一用户同时只能加入一个直播群
    * 
    *    参数 
+   * 
    *          o     object        
    *                gorupID       
    *                applyMessage          附言
@@ -620,6 +628,7 @@ messageList.forEach(function(message) {
    *                                   TIM.TYPES.GRP_MEETING
    *                                   TIM.TYPES.GRP_AVCHATROOM
    *    返回值
+   * 
    *            Promise
    *                        status            状态
    *                                  TIM.TYPES.JOIN_STATUS_WAIT_APPROVAL 审核
@@ -632,16 +641,20 @@ messageList.forEach(function(message) {
   },
   /** 
    * 退出群组
+   * 
    *      群主只能退出好友工作群，此群再无群主
    *    参数：
+   * 
    *        id      群 ID
    *    返回值：
+   * 
    *       Promise
    */
   quiteGroup(id) {
     return wx.$_tim.quitGroup(id);
   },
-  /** 找群
+  /*** 找群 
+   * 
    *  通过 群 ID 查找群
    */
   searchGroupByID(id) {
@@ -715,7 +728,7 @@ messageList.forEach(function(message) {
    *                memberCustomFieldFilter     群成员的自定义字段的刷选，可选
    * 
    */
-  getGroupMemberProfile(o) {
+  getGroupMemberInfo(o) {
     return wx.$_tim.getGroupMemberProfile(o);
   },
   /**   添加群成员
@@ -767,8 +780,83 @@ messageList.forEach(function(message) {
     return wx.$_tim.setGroupMemberMuteTime(o);
   },
   /*** 设置管理员或撤销管理员
+   *  参数说明
+   *          o   object  
+   *              groupID               群组 ID
+   *              userID                用户 ID 
+   *              role            
+   *                              TIM.TYPES.GRO_MBR_ROLE_ADMIN      群管理员
+   *                              TIM.TYPES.GRO_MBR_ROLE_MEMBER     群普通人员
+   */
+  setGroupMemberRole(o) {
+    return wx.$_tim.setGroupMemberRole(o);
+  },
+  /**修改群名片
+   * 
+   *  参数说明  
+   *        o  object 
+   *              groupID         群组 ID
+   *              userID          可选。自身群名片
+   *              nameCard        
+   * 
+   *    返回值
+   *        Promise
    * 
    */
+  setGroupMemberNameCard(o) {
+    return wx.$_tim.setGroupMemberNameCard(o);
+  },
+  /***  修改自定义字段
+   * 
+   *  参数说明
+   *      o   object
+   * 
+   *            groupID             群组 ID
+   *            userID              群成员 ID
+   *            memberCustomField   群成员自定义字段
+   *                                  key         自定义字段 key
+   *                                  value       自定义字段 value
+   *  返回值 Promide
+   * 
+   */
+  setGroupMemberCustomFiled(o) {
+    return wx.$_tim.setGroupMemberCustomField(o);
+  },
+  /** 群提示消息
+   *      operatorID               执行该操作的用户的 ID
+   *      operationType            操作的类型
+   *      userIDList               相关的 userID
+   *      newGroupProfile           群资料变更，该字段存放变更的群资料
+   */
+  /**  系统消息 
+   * 
+   */
+  groupSystemNoticeReceived(o) {
+    console.log(o);
+  },
+  /** 获取我的资料
+   */
+  getMifInfo(){
+    return  wx.$_tim.getMyProfile();
+  },
+  /** 
+   *  获取其他用户的资料
+   * 
+   *  参数说明：
+   *          o   object
+   *        
+   *                userIDList        用户列表
+   *    
+   *          返回值
+   *              
+   *          Promise
+   */
+  getOtherInfo(o){
+    return wx.$_tim.getUserProfile(o);
+  },
+  updateMiInfo(o){
+    return  wx.$_tim.updateMyProfile(o);
+  }
 
 
 
