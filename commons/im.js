@@ -836,8 +836,8 @@ messageList.forEach(function(message) {
   },
   /** 获取我的资料
    */
-  getMifInfo(){
-    return  wx.$_tim.getMyProfile();
+  getMifInfo() {
+    return wx.$_tim.getMyProfile();
   },
   /** 
    *  获取其他用户的资料
@@ -851,14 +851,65 @@ messageList.forEach(function(message) {
    *              
    *          Promise
    */
-  getOtherInfo(o){
+  getOtherInfo(o) {
     return wx.$_tim.getUserProfile(o);
   },
-  updateMiInfo(o){
-    return  wx.$_tim.updateMyProfile(o);
-  }
-
-
+  /** 更新资料
+   * 
+   *  参数说明：
+   *        {nick:'昵称',avatar:'头像地址',gender:wx.$_TIM.TYPES.GENDER_UNKNOWN|wx.$_TIM.TYPES.GENDER_FEMALE|wx.$_TIM.TYPES.GENDER_MALE,selfSIgnature:"个性签名",allowType:$_TIM.TYPES.ALLOW_TYPE_ALLOW_ANY|$_TIM.TYPES.ALLOW_TYPE_NEED_CONFIRM|$_TIM.TYPES.ALLOW_TYPE_DENY_ANY,birthday:20210828,location:'ZZZZ',language:0,messageSettings:0,adminForbidType:wx.$_TIM.TYPES.FORBID_TYPE_NONE|wx.$_TIM.TYPES.FORBID_SEND_OUT,level:0,role:0,profileCUstomFIeld:[]
+   * }
+   * 
+   *          o     object
+   *      
+   *                nick             昵称
+   *                avatar           头像地址
+   *                gender           性别
+   *                                  TIM.TYPES.GENDER_UNKNOWN    外星人
+   *                                  TIM.TYPES.GENDER_FEMALE     女的
+   *                                  TIM.TYPES.GENDER_MALE       男的、
+   *                  allowType       添加好友是否需要验证
+   *                                  TIM.TYPES.ALLOW_TYPE_ALLOW_ANY      直接加
+   *                                  TIM.TYPES.ALLOW_TYPE_NEED_CONFIRM   需要验证
+   *                                  TIM.TYPES.ALLOW_TYPE_DENY_ANY       拒绝
+   *                  birthday        生日
+   *                  location        所在地 4 位 unint32_t 表示 的数字
+   *                  language        语言
+   *                  messageSettings 消息设置,0 表示接收消息,1 表示不接受消息
+   *                  adminForbidType 管理员禁止加好友表示
+   *                                    TIM.TYPES.FORBID_TYPE_NONE 表示允许加好友，默认值
+   *                                    TIM.TYPES.FORBID_TYPE_SEND_OUT 表示禁止该用户发起加好友请求
+   *                        level       等级,建议拆分
+   *                        role        角色
+   *                        profileCustomField  修改自定义字段
+   *                                            需要在后台设置
+   * 
+   */
+  updateMiInfo(o) {
+    return wx.$_tim.updateMyProfile(o);
+  },
+  /** 黑名单
+   * 
+   */
+  getBlacklist() {
+    return wx.$_tim.getBlacelist()
+  },
+  /** 加入黑名单 
+   * 
+   * 参数说明
+   *            o      userIDList   带加入黑名单的 userID 列表
+   */
+  addBlacklist(o) {
+    return wx.$_tim.addToBlacklist(o);
+  },
+  /** 移除黑名单 
+   * 
+   *  参数说明:
+   *        o       object
+   */
+    removeBlacklist(o){
+      return wx.$_tim.removeFromBlacklist(o);
+    }
 
 };
 export default imfn;

@@ -1,2 +1,5 @@
-<!--pages/chat/video/video.wxml-->
-<text>pages/chat/video/video.wxml</text>
+<TRTCCalling 
+        id="TRTCCalling-component"
+        config="{{trtcConfig}}"
+        backgroundMute="{{true}}"
+    ></TRTCCalling>
