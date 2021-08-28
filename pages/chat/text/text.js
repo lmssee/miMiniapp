@@ -1,7 +1,7 @@
 let recorderManager = wx.getRecorderManager();
 // 录音部分参数 小程序文档
 const recordOptions = {
-  login: false,
+
   duration: 60000, // 录音的时长，单位 ms，最大值 600000（10 分钟）
   sampleRate: 44100, // 采样率
   numberOfChannels: 1, // 录音通道数
@@ -54,6 +54,7 @@ Page({
     selectfriendShow: false,
     selectFriend: '选择朋友',
     friendList: [],
+    login: false,
   },
   onLoad: function (options) {
     options = {
@@ -454,7 +455,6 @@ Page({
       userID: this.data.userList[v],
       userSig: this.data.sigList[v]
     }).then((o) => {
-
       if (o.data.repeatLogin === true) {
         console.log(o.data.errInfo);
       }
@@ -522,7 +522,6 @@ Page({
   /** 消息撤回 */
   revokeMessage(e) {
     wx.$_tim.revokeMessage({
-
     }).then(o => {
       wx.showToast({
         title: '消息已撤回',
@@ -543,6 +542,12 @@ Page({
       console.log(o.data);
     }).catch((err) => {
       console.log('消息重发err', err);
+    })
+  },
+  goback() {
+    console.log(123);
+    this.setData({
+      login: false
     })
   }
 

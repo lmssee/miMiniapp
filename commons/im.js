@@ -491,7 +491,7 @@ messageList.forEach(function(message) {
    * 
    */
   deleteConversation(id) {
-    wx.$_tim.deleteConversation(id);
+    return wx.$_tim.deleteConversation(id);
   },
   /**  群组列表获取
    * 
@@ -510,10 +510,267 @@ messageList.forEach(function(message) {
    *  返回值：
    *        Promise       可在 IMRespose.data.gronpList 中获取群组列表
    * 
-    */
-   getGroupList(){
-     wx.$_tim.getGroupList();
-   }
+   */
+  getGroupList(o) {
+    if (!!o && o === '')
+      return wx.$_tim.getGroupList(o);
+    else
+      return wx.$_tim.getGroupList();
+  },
+  /** 获取群详细资料
+   *  
+   *  参数 ：   o   object    
+   *                groiupID                    string        群组 ID
+   *                groupCustomFieldFilter      Array         过滤器，自定义指定的获取的字段
+   * 
+   *    返回值
+   *        Promise
+   *  
+   */
+  getGroupProfile(o) {
+    return wx.$_tim.getGroupProfile(o);
+  },
+  /***
+   * 创建群组
+   *   <该接口在创建 TIM.TYPES.GRP_AVCHATROOM 直播群后，需调用 joinGroup 接口加入群组后，才能进行消息的收发>
+   * 参数
+   *          o   object    
+   *               name           string        名称，必填，最长 30 字节
+   *               type           string        群组类型
+   *                                                TIM.TYPES.GRP_WORK         好友工作群
+   *                                                TIM.TYPES.GRP_PUBLIC       陌生人社交
+   *                                                TIM.TYPES.GRP_MEETING      临时会议
+   *                                                TIM.TYPES.GRP_AVCHATROOM   直播群
+   *               groupID        String         群 ID ，不填写会自动生成
+   *               introduction   String         群介绍，最长 240 字节
+   *               notification   String        群公告，最长 300 字节  
+   *               avatar         String        群头像 URL，最长 100 字节
+   *               maxMemberNum   NUmber        最大成员数，除直播群默认 6000
+   *               joinOption     string        加群方式，创建好友工作群/临时会议/直播群不填写
+   *                                             TIM.TYPES.JOIN_OPTIONS_FREE_ACCESS  自由加入
+   *                                             TIM.TYPES.JOIN_OPTIONS_NEED_PERMISSION
+   *                                             TIM.TYPES.JOIN_OPTIONS_DISACLE_APPLY   禁止加入
+   *               numberList     Array         促使群成员列表  500
+   *                                        userID      成员 ID
+   *                                        role        成员身份，选项只有 admin，表示管理员
+   *                                        memberCustomFiled   群成员维度
+   *               groupCustomField   Array     群组维度自定义字段，默认没有自定义字段
+   * 
+   *  返回值
+   *            Promise
+   * 
+   */
+  createGroup(o) {
+    return wx.$_tim.createGroup(o);
+  },
+  /** 解散群
+   *    群主不能解散好友工作群
+   * 
+   * 返回值 
+   *        Promise
+   */
+  dismissGroup(id) {
+    return wx.$_tim.dismissGroup(id);
+  },
+  /**  更新群资料
+   *    参数 
+   *          o   object   
+   *    *               name           string        名称，必填，最长 30 字节
+   *               type           string        群组类型
+   *                                                TIM.TYPES.GRP_WORK         好友工作群
+   *                                                TIM.TYPES.GRP_PUBLIC       陌生人社交
+   *                                                TIM.TYPES.GRP_MEETING      临时会议
+   *                                                TIM.TYPES.GRP_AVCHATROOM   直播群
+   *               groupID        String         群 ID ，不填写会自动生成
+   *               introduction   String         群介绍，最长 240 字节
+   *               notification   String        群公告，最长 300 字节  
+   *               avatar         String        群头像 URL，最长 100 字节
+   *               maxMemberNum   NUmber        最大成员数，除直播群默认 6000
+   *               joinOption     string        加群方式，创建好友工作群/临时会议/直播群不填写
+   *                                             TIM.TYPES.JOIN_OPTIONS_FREE_ACCESS  自由加入
+   *                                             TIM.TYPES.JOIN_OPTIONS_NEED_PERMISSION
+   *                                             TIM.TYPES.JOIN_OPTIONS_DISACLE_APPLY   禁止加入
+   *               numberList     Array         促使群成员列表  500
+   *                                        userID      成员 ID
+   *                                        role        成员身份，选项只有 admin，表示管理员
+   *                                        memberCustomFiled   群成员维度
+   *               groupCustomField   Array     群组维度自定义字段，默认没有自定义字段
+   * 
+   *  返回值
+   *            Promise
+   *
+   *              
+   */
+  updateGronpProfile(o) {
+    return wx.$_tim.updateGronpProfile(o);
+  },
+  /**  申请入群
+   *        好友工作群不允许加群，只能通过 addGroupMember 方式加入
+   *        TIM.TYPES.GRP_AVCHATROOM（直播群）
+   *                  正常加入                   此时 SDK 内接口均可用
+   *                  匿名加入(其他群不支持)      不登陆加群，只能收消息
+   *         同一用户同时只能加入一个直播群
+   * 
+   *    参数 
+   *          o     object        
+   *                gorupID       
+   *                applyMessage          附言
+   *                type                  群类型
+   *                                   TIM.TYPES.GRP_PUBLIC
+   *                                   TIM.TYPES.GRP_MEETING
+   *                                   TIM.TYPES.GRP_AVCHATROOM
+   *    返回值
+   *            Promise
+   *                        status            状态
+   *                                  TIM.TYPES.JOIN_STATUS_WAIT_APPROVAL 审核
+   *                                  TIM.TYPES.JOIN_STATUS_SUCCESS       成功
+   *                                  TIM.TYPES.JOIN_STATUS_IN_GROUP      已在群
+   *                         group            群资料
+   */
+  joinGroup(o) {
+    return wx.$_tim.joinGroup(o);
+  },
+  /** 
+   * 退出群组
+   *      群主只能退出好友工作群，此群再无群主
+   *    参数：
+   *        id      群 ID
+   *    返回值：
+   *       Promise
+   */
+  quiteGroup(id) {
+    return wx.$_tim.quitGroup(id);
+  },
+  /** 找群
+   *  通过 群 ID 查找群
+   */
+  searchGroupByID(id) {
+    return wx.$_tim.searchGroupByID(id);
+  },
+  /** 转让群
+   *        群主权限
+   *  参数说明： 
+   *          o    object
+   *               groupID        群 ID
+   *                newOwnerID    新群主 ID
+   *  返回值
+   *            Promise
+   */
+  changeGroupOwner(o) {
+    return wx.$_tim.changeGroupOwner(o);
+  },
+  /** 处理加群通知
+   *        参数 
+   *              o         object
+   *                        handleAction          处理结果
+   *                        handleMessage         附言
+   *                        message               申请入群的消息
+   * 
+   *      返回值
+   *              Promise
+   *      
+   */
+  handleGroupApplication(o) {
+    return wx.$_tim.handleGroupApplication(o)
+  },
+  /** 设置群消息提示类型 
+   * 
+   * 参数
+   *      o         object
+   *                groupID       
+   *                messageRemindType         群消息类型
+   *                                       ITM.TYPES.MSG_REMIND_ACPT_AND_NOTE     接收并抛出，接入侧提示
+   *                                       ITM.TYPES.MSG_REMIND_ACPT_NOT_NOTE     接收并抛出，接入侧不提示
+   *                                       ITM.TYPES.MSG_REMIND_DISCARD           SDK 拒收
+   * 
+   */
+
+  setMessageRemindType(o) {
+    return wx.$_tim.setMessageRemindType(o);
+  },
+  /** 群成员管理
+   *   -> 2.6.2 开始，该接口支持拉取群成员禁止时间戳，接入侧可根据此值判断成员是否被禁言
+   *      低于 2.6.2 版本，该接口获取的群成员的资料仅包括头像、昵称等，能够满足群成员列表的渲染需求
+   *      该接口是分页拉取群成员，不能直接拉取所有的人员。获取群的总人数使用 <getGroupPrpfile>
+   *    <-
+   * 
+   * 参数说明：
+   *          o   object    
+   *                groupID               群组 ID
+   *                count                 数量，最大值 100
+   *                offset                偏移量
+   */
+  getGroupMemberList(o) {
+    return wx.$_tim.getGroupMemberList(o);
+  },
+  /** 获取群成员资料 
+   *      ->
+   *            使用该接口，需要在 SDK 2.2.0 版本之上
+   *            每次查询上限 50 
+   *      <-
+   *  参数说明
+   *            o   object
+   *                groupID                     群组 ID
+   *                userIDList                  要查询的群成员列表
+   *                memberCustomFieldFilter     群成员的自定义字段的刷选，可选
+   * 
+   */
+  getGroupMemberProfile(o) {
+    return wx.$_tim.getGroupMemberProfile(o);
+  },
+  /**   添加群成员
+   *        ->
+   *            TIM.TYPES.GRP_WORK              任何成员都可以邀请其他成员
+   *            TIM.TYPES.GRP_PUBLIC            app 管理员才可以           
+   *            TIM.TYPES.GRP_MEETING           app 管理员才可以
+   *            TIM.TYPES.GRP_AVCHATROOM        不允许任何人加入
+   *        <-
+   * 
+   *  参数说明 ：
+   *    o   object
+   *        groupID               群 ID  
+   *        userIDList            待添加成员的 ID 群组。单次最多添加 300 个成员
+   * 
+   *  返回值
+   *    Promise 
+   *        successUserIDList                     添加成功的 userID 
+   *        failureUserIDList                     添加失败的 userID
+   *        existeduserIDList                     已在群的  userID
+   *        group                                接口调用后群资料
+   */
+
+  addGroupMember(o) {
+    return wx.$_tim.addGroupMember(o);
+  },
+  /** 删除群成员
+   *  参数： 
+   *          o     object            
+   *                groupID              群组 ID
+   *                userIDList           待删除群成员的 ID 列表
+   *                reasion               踢人的原因
+   * 
+   *    返回值
+   *          Pomise
+   */
+  delGroupMember(o) {
+    return wx.$_tim.deleteGroupMember(o);
+  },
+  /**禁言或取消 
+   * 
+   *    参数 
+   *        o   object
+   *            groupID         群组 ID
+   *            userID          被管理员 ID
+   *            muteTime        禁言时间
+   */
+  setGroupMemberMuteTime(o) {
+    return wx.$_tim.setGroupMemberMuteTime(o);
+  },
+  /*** 设置管理员或撤销管理员
+   * 
+   */
+
+
 
 };
 export default imfn;
