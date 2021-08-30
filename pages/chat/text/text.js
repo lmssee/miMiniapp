@@ -1,7 +1,7 @@
+import  im from '../../../commons/im.js'; 
 let recorderManager = wx.getRecorderManager();
 // 录音部分参数 小程序文档
 const recordOptions = {
-
   duration: 60000, // 录音的时长，单位 ms，最大值 600000（10 分钟）
   sampleRate: 44100, // 采样率
   numberOfChannels: 1, // 录音通道数
@@ -57,6 +57,7 @@ Page({
     login: false,
   },
   onLoad: function (options) {
+
     options = {
       friendId: '000253',
       friendName: "Tom",
@@ -451,14 +452,13 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.userList[v],
     });
-    wx.$_tim.login({
+    im.login({
       userID: this.data.userList[v],
       userSig: this.data.sigList[v]
     }).then((o) => {
       if (o.data.repeatLogin === true) {
         console.log(o.data.errInfo);
       }
-      // this.getMessageList();
     }).catch((imerr) => {
       console.log('login errror', imerr);
     });
@@ -476,7 +476,8 @@ Page({
     })
     this.setData({
       login: true
-    })
+    });
+    im.getMessageList({});
   },
   sendFaceMsssage(e) {
     wx.sendMessage(wx.$_tim.createFaceMessage({

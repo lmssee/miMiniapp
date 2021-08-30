@@ -22,39 +22,22 @@ const imfn = {
   registerEvents(tim) {
     /** 收到离线消息和会话列表的同步完毕的通知，接入侧可以调用 sendMessage  等接口鉴权*/
     tim.on(wx.$_TIM.EVENT.SDK_READY, this.onReadyStateUpdate, this);
-    /** SDK 未初始化完毕，会导致所以功能不能使用 */
+    /** 未完毕 */
     tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.onReadyStateUpdate, this);
     /*** 多端登录被挤退 */
     tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.kickOut, this);
-    /** 出现错误，可以获取错误码和错误信息 */
+    /** 出现错误 */
     tim.on(wx.$_TIM.EVENT.ERROR, this.onError, this);
-    /** 收到推送的单聊、群聊、群提示、群系统、可通过遍历  event.data 获取消息列表的数据并 */
+    /**  */
     tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.messageReceived, this);
-    /** 消息被撤回 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.onMessageRevoked, this);
-    /** SDK 收到对端已读的消息通知，即已读回执。 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.onMessageReadByPeer, this);
-    /** 收到会话列表的更新的通知，可通过遍历 event.data 获取会话列表的数据并渲染  */
     tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.convListUpdate, this);
-    /** 收到群组列表的更新，并通过遍历 event.data 获取群组的列表并渲染到页面 */
     tim.on(wx.$_TIM.EVENT.GROUP_LIST_UPDATED, this.groupListUpdate, this);
-    /** 收到黑名单列表更新的通知 */
     tim.on(wx.$_TIM.EVENT.BLACKLIST_UPDATED, this.blackListUpdate, this);
-    /**  收到自己或好友的资料的更新  */
-    tim.on(wx.$_TIM.EVENT.NET_PROFILE_UPDATED, (event) => {}, this);
-    /**  网络变化  */
     tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.netStateChange, this);
-    /** 群组系统消息 */
+    tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.onMessageReadByPeer, this);
+    tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.onMessageRevoked, this);
     tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.groupSystemNoticeReceived);
-  },
-  /** * 登录
-   *   参数说明
-   *          o   object      
-   *              userID                      用户的 ID
-   *              userSig                     用户个人的 usreSig
-   */
-  login(o) {
-    return wx.$_tim.login(o);
+    console.log(tim);
   },
   /** 多端登录，被挤掉线 */
   kickOut(e) {
@@ -72,9 +55,7 @@ const imfn = {
   },
 
   /** 状态监听 */
-  onReadyStateUpdate({
-    name
-  }) {
+  onReadyStateUpdate({name}) {
     const isSDKReady = (name === TIM.EVENT.SDK_READY)
     if (isSDKReady) {
       wx.$$_tim.getMyProfile().then(res => {
@@ -216,19 +197,14 @@ const imfn = {
               return ''
     }
   },
-  /** 网络状态发生变化
-   *  
-   *    event.name     TIM.EVENT.NET_STATE_CHANGE
-   *                    TIM.TYPES.NET_STATE_CONNECTED
-   *                    TIM.TYPES.NET_STATE_CONNECTING
-   *                    TIM.TYPES.NET_STATE_DISCONNECTED
+  /**
    * */
   netStateChange(event) {
     console.log(event.data.state)
     // store.commit('showToast', checkoutNetState(event.data.state))
   },
-  /** 对方已读回执
-   * 
+  /** 
+   * 消息读取
    */
   onMessageReadByPeer(event) {
     console.log(event)
@@ -283,6 +259,161 @@ messageList.forEach(function(message) {
   //   data: {}
   // })
   ,
+  /**
+   * 本地mock发送一条消息用于当前渲染
+   * 
+   */
+  mockLocalMessage(options) {
+    // const customData = {
+    //   businessID: 1,
+    //   inviteID: options.inviteID,
+    //   inviter: options.inviter,
+    //   actionType: options.actionType,
+    //   inviteeList: options.inviteeList,
+    //   data: {}
+    // }
+    // const message = wx.$$_tim.createCustomMessage({
+    //   to: options.to,
+    //   conversationType: options.isFromGroup ? 'GROUP' : 'C2C',
+    //   payload: {
+    //     data: JSON.stringify(customData),
+    //     description: '',
+    //     extension: ''
+    //   }
+    // })
+    // message.status = 'success'
+    // store.commit('sendMessage', message)
+  },
+
+  /** 
+   *  TRTCCalling事件监听
+   */
+  bindTRTCCallingRoomEvent(TRTCCalling) {
+    // const TRTCCallingEvent = TRTCCalling.EVENT
+    // // 被邀请
+    // TRTCCalling.on(TRTCCallingEvent.INVITED, async (event) => {
+    // const {
+    //   sponsor,
+    //   userIDList
+    // } = event.data
+    // const avatarList = await getUserProfile([sponsor, ...userIDList])
+    // store.commit('setCallData', {
+    //   ...event.data,
+    //   avatarList: avatarList,
+    //   action: 'invited'
+    // })
+    // store.commit('setCalling', true)
+    // // 接收方来电时在落地页时不能调用wx.switchTab
+    // if (store.getters.currentPage === '/pages/index/main') {
+    //   return
+    // }
+    // wx.switchTab({
+    //   url: '/pages/index/main'
+    // })
+    // })
+    // TRTCCalling.on(TRTCCallingEvent.CALL_END, (event) => {
+    // const message = (event.data && event.data.message) || undefined
+    // if (message) {
+    //   store.commit('sendMessage', message)
+    // }
+    // $bus.$emit('call-end', {
+    //   callingFlag: false,
+    //   incomingCallFlag: false
+    // })
+    // })
+    // 有人拒接
+    // TRTCCalling.on(TRTCCallingEvent.REJECT, (event) => {
+    // const {
+    //   isFromGroup = false
+    // } = store.getters.callData
+    // // 1v1通话时需要通过此事件处理UI
+    // if (!isFromGroup) {
+    //   $bus.$emit('call-reject', {
+    //     callingFlag: false
+    //   })
+    //   // }
+    // })
+    // // 对方挂断
+    // TRTCCalling.on(TRTCCallingEvent.USER_LEAVE, () => {
+    //   // TRTCCalling.hangup()
+    //   wx.showToast({
+    //     title: '对方已挂机',
+    //     icon: 'none',
+    //     duration: 1200
+    //   })
+    // })
+    // // 被邀请方不在线无应答
+    // TRTCCalling.on(TRTCCallingEvent.NO_RESP, (event) => {
+    // const {
+    //   data: {
+    //     groupID = '',
+    //     inviteID,
+    //     inviter,
+    //     inviteeList
+    //   }
+    // } = event
+    // const {
+    //   isFromGroup = false
+    // } = store.getters.callData
+    // // 1v1和多人通话被邀请方都离线无应答时
+    // // 需要给邀请方本地发送一条给被邀请方或群组无应答消息上屏
+    // const options = {
+    //   inviteID: inviteID,
+    //   inviter: inviter,
+    //   actionType: 5,
+    //   inviteeList: inviteeList,
+    //   to: !isFromGroup ? inviteeList[0] : groupID,
+    //   isFromGroup: isFromGroup
+    // }
+    //   // mockLocalMessage(options)
+    // })
+    // // 被邀请方在线无应答
+    // TRTCCalling.on(TRTCCallingEvent.CALLING_TIMEOUT, (event) => {
+    // const {
+    //   data: {
+    //     groupID = '',
+    //     inviteID,
+    //     inviter,
+    //     userIDList
+    //   }
+    // } = event
+    // // const {
+    // //   isFromGroup = false
+    // // } = store.getters.callData
+    // // 被邀请方在线无应答时，需要给被邀请方本地发送一条给邀请方无应答消息上屏
+    // if (store.getters.myInfo.userID !== inviter && store.getters.myInfo.userID === userIDList[0]) {
+    //   const options = {
+    //     inviteID: inviteID,
+    //     inviter: inviter,
+    //     actionType: 5,
+    //     inviteeList: userIDList,
+    //     to: isFromGroup ? groupID : inviter,
+    //     isFromGroup: isFromGroup
+    //   }
+    //   mockLocalMessage(options)
+    // }
+    //   // // 多人通话且通话至少有一人已接受邀请,这种情况下无法判断超时用户是在线还是离线,对消息暂不做上屏处理
+    // })
+    // // 忙线中
+    // TRTCCalling.on(TRTCCallingEvent.LINE_BUSY, () => {
+    // $bus.$emit('line-busy', {
+    //   callingFlag: false,
+    //   incomingCallFlag: false
+    //   // })
+    // })
+    // // 取消通话
+    // TRTCCalling.on(TRTCCallingEvent.CALLING_CANCsEL, () => {
+    // $bus.$emit('call-cancel', {
+    //   incomingCallFlag: false
+    //   // })
+    // })
+    // // 远端进入房间
+    // TRTCCalling.on(TRTCCallingEvent.USER_ENTER, () => {
+    //   $bus.$emit('user-enter', {
+    //     inviteCallFlag: false
+    //   })
+    // })
+  },
   /** 解析群消息  */
   parseGroupTipContent(payload) {
     switch (payload.operationType) {
@@ -780,14 +911,6 @@ messageList.forEach(function(message) {
    */
   removeBlacklist(o) {
     return wx.$_tim.removeFromBlacklist(o);
-  },
-  /** 登出 
-   * 清理账号信息并退出
-   * 返回值
-   *      Promise
-  */
-  logout(){
-    return  wx.$_tim.logout();
   }
 
 };
