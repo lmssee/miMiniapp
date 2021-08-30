@@ -1,5 +1,5 @@
-<TRTCCalling 
+<!-- <TRTCCalling 
         id="TRTCCalling-component"
         config="{{trtcConfig}}"
         backgroundMute="{{true}}"
-    ></TRTCCalling>
+    ></TRTCCalling> -->

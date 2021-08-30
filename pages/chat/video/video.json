@@ -1,5 +1,4 @@
 {
   "usingComponents": {
-    "TRTCCalling": "../../components/TRTCCalling/TRTCCalling"
   }
 }
