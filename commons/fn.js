@@ -4,17 +4,18 @@ const fn = {
     wx.login({
       timeout: 1200,
       success(res) {
+        console.log(123);
         if (res.code) {
           wx.request({
-            url: 'https://lmssee.cn:3000/api/wx/id/',
+            url: 'http://192.168.199.144:8088/applet/auth/getUserInfoByJsCode/',
             method: "POST",
-            dataType: 'json',
+            // dataType: 'json',    
             data: {
               code: res.code,
-              number: 123
             },
             success(res) {
-              wx.setStorageSync('userid', JSON.parse(res.data.data))
+              console.log( res.data );
+              // wx.setStorageSync('userid', JSON.parse(res.data.data))
             },
             fail(err) {
               console.log(err);
@@ -70,14 +71,14 @@ const fn = {
   },
   /** 根据毫秒数换算时间 */
   numberToTime(d) {
-    d *=1;
+    d *= 1;
     if (d.toString().length == 13) {
       return new Date(d).toLocaleString();
     } else {
       let h = Math.floor(d / 3600000),
         m = Math.floor((d % 3600000) / 60000),
-        s = Math.floor(((d%3630000)%60000 )/ 1000);
-      return (h == 0 ? '' : h + ' 小时 ') + (m == 0 ? '' : (m < 10 ? '0' + m : m) + ' 分 ') + (s < 10 ? '0' + s : s ) + ' 秒';
+        s = Math.floor(((d % 3630000) % 60000) / 1000);
+      return (h == 0 ? '' : h + ' 小时 ') + (m == 0 ? '' : (m < 10 ? '0' + m : m) + ' 分 ') + (s < 10 ? '0' + s : s) + ' 秒';
     }
   }
 

@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/chat/text/text",
-    "pages/chat/home/home",
-    "pages/chat/video/video",
     "pages/test/home/home",
+    "pages/chat/home/home",
+    "pages/chat/text/text",
+    "pages/chat/video/video",
     "pages/store/home/home/home",
     "pages/store/user/user/user",
     "pages/store/home/list/list",
@@ -14,7 +14,7 @@
     "pages/taskList/change/change",
     "pages/vote/myVote/myVote",
     "pages/vote/voteDetail/voteDetail",
-    "pages/index/index",
+    "pages/index/index",      
     "pages/index/form/form",
     "pages/index/router/rputer",
     "pages/index/recorder/recorder",

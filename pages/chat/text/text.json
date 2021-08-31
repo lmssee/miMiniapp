@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "navbar":"../../../commons/components/navbar/navbar"
+  }
+
 }
