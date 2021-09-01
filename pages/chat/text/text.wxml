@@ -15,7 +15,7 @@
           <image wx:else class="avatar" src="" />
         </view>
         <!-- 画对话框 -->
-        <view class="triangle" style="{{item.flow == 'out' ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}">
+        <view class="triangle"  style="{{item.flow == 'out' ? 'right: 140rpx; background: #7ECB4B' : 'left: 140rpx;'}}">
         </view>
         <view class="content" style="{{item.flow == 'out' ? 'background: #7ECB4B' : ''}}">
           <view wx:if="{{item.type === 'TIMTextElem'}}">{{item.payload.text}}</view>
