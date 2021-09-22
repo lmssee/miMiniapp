@@ -44,7 +44,7 @@ Component({
     onBlur() {
       this.setData({
         "holder": this.data.oldHolder
-      })
+      });
       this.triggerEvent('getValue', this.data.value)
       if (this.data.value == '') {
         this.setData({
