@@ -27,5 +27,6 @@
       <view style="text-align:center;margin:2rem" wx:if="{{!tabLeftCheck && tabRightEmpty }}">还没有任务完成，加油，打工人</view>
     </block>
   </view>
+  <mp-dialog show="{{true}}" title="你好">123</mp-dialog>
   <view class="addTask {{addMove ? 'addMove' : ''}}" bindtap="gotoAddTask">+</view>
 </view>

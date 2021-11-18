@@ -1,6 +1,8 @@
 {
   "usingComponents": {
-    "leftSlid":"../../../commons/components/leftSlidDel/leftSlidDel"
+    "leftSlid":"../../../commons/components/leftSlidDel/leftSlidDel",
+     "mp-dialog": "weui-miniprogram/dialog/dialog",
+     "mp-msg": "weui-miniprogram/msg/msg"
   },
   "navigationBarTitleText": "任务清单"
 }

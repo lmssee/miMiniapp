@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/taskList/home/home",
     "pages/test/home/home",
     "pages/chat/home/home",
     "pages/chat/text/text",
@@ -30,7 +31,6 @@
     "pages/location/home/home",
     "pages/location/detail/detail",
     "pages/location/list/list",
-    "pages/taskList/home/home",
     "pages/vote/home/home",
     "pages/vote/addRadioVote/addRadioVote"
   ],
@@ -74,7 +74,6 @@
   },
   "resizable": true,
   "useExtendedLib": {
-    "kbone": true,
     "weui": true
   }
 }
