@@ -37,7 +37,6 @@ const imfn = {
     tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.onMessageReadByPeer, this);
     tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.onMessageRevoked, this);
     tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.groupSystemNoticeReceived);
-    console.log(tim);
   },
   /** 多端登录，被挤掉线 */
   kickOut(e) {
@@ -911,7 +910,10 @@ messageList.forEach(function(message) {
    */
   removeBlacklist(o) {
     return wx.$_tim.removeFromBlacklist(o);
+  },
+  /** 销毁实例 */
+  destroyIM() {
+    wx.$_tim.destroy();
   }
-
 };
 export default imfn;

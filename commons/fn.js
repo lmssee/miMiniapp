@@ -1,10 +1,10 @@
+import config from './config.js';
 const fn = {
   /*** 获取用户的 unionid  */
   login() {
     wx.login({
       timeout: 1200,
       success(res) {
-        console.log(123);
         if (res.code) {
           wx.request({
             url: 'http://192.168.199.144:8088/applet/auth/getUserInfoByJsCode/',
@@ -80,7 +80,29 @@ const fn = {
         s = Math.floor(((d % 3630000) % 60000) / 1000);
       return (h == 0 ? '' : h + ' 小时 ') + (m == 0 ? '' : (m < 10 ? '0' + m : m) + ' 分 ') + (s < 10 ? '0' + s : s) + ' 秒';
     }
-  }
+  } ,
+   /** 获取 userSig */
+  getUserSig(id) {
+    return new Promise((resolve, reject) => {
+      wx.request({
+        url: config.imDomin,
+        data: {
+          userId: id
+        },
+        header: {
+          "content-type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        dataType: "json",
+        success: (res) => {
+          resolve(res.data);
+        },
+        fail: (err) => {
+          reject(err);
+        }
+      })
+    })
+  },
 
 };
 export default fn;
