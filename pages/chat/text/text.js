@@ -20,8 +20,11 @@ Page({
     lock: false, // 发送消息锁 true - 加锁状态 false - 解锁状态
     scroll_height: wx.getSystemInfoSync().windowHeight - 54,
     reply_height: 0,
+    /** 更多 */
     moreShow: true,
+    /** 用户信息 */
     userData: [],
+    /***  */
     audioPng: "",
     audioGif: "",
     audioState: true,

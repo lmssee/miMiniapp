@@ -2,14 +2,12 @@ import fn from './fn.js';
 import config from './config.js';
 import TIM from 'tim-wx-sdk';
 import TIMUploadPlugin from 'tim-upload-plugin';
-// import store from './store/index.js';
 /***
  *  on(eventName, handle,context)     
  *          在 login 前调用此监听事件，避免漏掉 SDK 派发事件
  *          context      期望事件 handle 执行的上下文
  *  off(eventName, handler,context,once)
  *            取消事件监听
- *    
  *  registerPlugin()      
  *            注册插件
  */
@@ -17,6 +15,7 @@ const imfn = {
   /** 
    * 初始化 */
   ini() {
+    console.log(123);
     /** 重建实例 */
     const tim = TIM.create({
       SDKAppID: config.SDKAppID
@@ -27,11 +26,10 @@ const imfn = {
      * 2  告警级别，SDK 只输出告警和错误级别的日志
      * 3  错误级别，SDK 只输出错误级别的日志
      * 4  无日志级别，SDK 将不打印日志
-    */
+     */
     tim.setLogLevel(4);
     /** 赋值给 wx ,创建 全局二级对象 */
     wx.$_tim = tim;
-    // wx.store = store;
     /** 赋值给 wx ,创建全局 二级 对象 */
     wx.$_TIM = TIM;
     // wx.$_dialogueRoomIsOpen = false;
@@ -39,51 +37,62 @@ const imfn = {
     wx.$_tim.registerPlugin({
       'tim-upload-plugin': TIMUploadPlugin
     });
+    this.login();
     /** 注册所有的监听事件 */
-    this.registerEvents(wx.$_tim);
+    // this.registerEvents(wx.$_tim);
+  },
+  login() {
+    const userID = 'tjltest'
+    wx.$_tim.login({
+      userID,
+      userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwiVZOSWpxSVQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMza3sLAwMjaEmpKZDjTZI9-XtNzHx8nAozLZ1z3LPKgqMEbfKdyyJMfbMcPSPdTNrDIiNDIoOcIjzcRWqRYA6BAyMA__'
+    }).then(() => {
+      this.registerEvents(wx.$_tim);
+    }).catch((err) => {
+      console.log(err);
+    });
   },
   /** 事件监听 */
   registerEvents(tim) {
     /** 监听登陆状态 */
-    tim.on(wx.$_TIM.EVENT.SDK_READY, this.onReadyStateUpdate);
+    tim.on(wx.$_TIM.EVENT.SDK_READY, this.ReadyStateUpdate);
     /** 监听未登录状态,此时 SDK 无法再正常工作 */
-    tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.onReadyStateUpdate);
+    tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.ReadyStateUpdate);
     /** 多端登录，被挤出 */
-    tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.kickOut);
+    tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.KickOut);
     /** 出现错误监听 */
-    tim.on(wx.$_TIM.EVENT.ERROR, this.onError);
+    tim.on(wx.$_TIM.EVENT.ERROR, this.Error);
     /*** 聊天列表更新 */
-    tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.convListUpdate);
+    // tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.ConvListUpdate);
     /** 接收消息的单聊、群聊、群提示、群系统通知的新消息，可遍历 event.data 获取消息列表并更新也买你的 消息 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.messageReceived);
+    tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
     /** 收到自己或好友的资料变更通知 */
-    tim.on(wx.$_TIM.EVENT.PROFILE_UPDATED, this.profileUpdate);
+    tim.on(wx.$_TIM.EVENT.PROFILE_UPDATED, this.ProfileUpdate);
     /** 好友列表发生改变 （ 该接口需要等待 SDK 处于 ready 才可以使用 ） */
-    // tim.on(wx.$_TIM.EVENT.FRIEND_LIST_UPDATE, this.friendListUpdate);
+    // tim.on(wx.$_TIM.EVENT.FRIEND_LIST_UPDATE, this.FriendListUpdate);
     /** 黑名单列表更新 */
-    tim.on(wx.$_TIM.EVENT.BLACKLIST_UPDATED, this.blackListUpdate);
+    tim.on(wx.$_TIM.EVENT.BLACKLIST_UPDATED, this.BlackListUpdate);
     /** 网络状态更改 */
-    tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.netStateChange);
+    tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.NetStateChange);
     /** 消息已读 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.onMessageReadByPeer);
+    tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.MessageReadByPeer);
     /** 消息被撤回通知 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.onMessageRevoked);
+    // tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.MessageRevoked);
     /*** 收到消息被第三方回调修改的通知，消息发送方可通过遍历 event.data 获取消息列表数据并更新页面上同 ID 消息的内容 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_MODIFIED, this.messageModified);
+    tim.on(wx.$_TIM.EVENT.MESSAGE_MODIFIED, this.MessageModified);
     /** 消息列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.conversationListUpdated);
+    tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.ConversationListUpdated);
     /** 收到群组列表更新通知，可通过遍历 event.data 获取群组列表数据并渲染到页面 */
-    tim.on(wx.$_TIM.EVENT.GROUP_LIST_UPDATED, this.groupListUpdate);
+    tim.on(wx.$_TIM.EVENT.GROUP_LIST_UPDATED, this.GroupListUpdate);
     /** 群系统消息 */
-    tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.groupSystemNoticeReceived);
+    tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.GroupSystemNoticeReceived);
     /** 收到好友申请列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.FRIEND_APPLICATION_LIST_UPDATED, this.friendApplicationListUpdate);
+    tim.on(wx.$_TIM.EVENT.FRIEND_APPLICATION_LIST_UPDATED, this.FriendApplicationListUpdate);
     /**  收到好友分组列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.FRIEND_GROUP_LIST_UPDATED, this.friendGroupListUpdate);
+    tim.on(wx.$_TIM.EVENT.FRIEND_GROUP_LIST_UPDATED, this.FriendGroupListUpdate);
   },
   /** 多端登录，被挤掉线 */
-  kickOut() {
-    // store.dispatch('resetStore')
+  KickOut() {
     wx.showToast({
       title: '你已被踢下线',
       icon: 'none',
@@ -95,22 +104,10 @@ const imfn = {
       })
     }, 500)
   },
-
   /** 状态监听 */
-  onReadyStateUpdate({
+  ReadyStateUpdate({
     name
-  }) {
-    const isSDKReady = (name === TIM.EVENT.SDK_READY)
-    if (isSDKReady) {
-      wx.$$_tim.getMyProfile().then(res => {
-        // store.commit('updateMyInfo', res.data)
-      })
-      wx.$$_tim.getBlacklist().then(res => {
-        // store.commit('setBlacklist', res.data)
-      })
-    }
-    // store.commit('setSdkReady', isSDKReady)
-  },
+  }) {},
   /** 接到消息 
    * 由 tim.on(TIM.EVENT.MESSAGE_RECEVED,callbackfn) 监听
    * 
@@ -118,10 +115,8 @@ const imfn = {
    *  name 事件类型  onMessageReceived
    *  data 具体数据列表
    *          数组（元素为 object 格式）
-   *           
-   * 
    */
-  messageReceived(e) {
+  MessageReceived(e) {
     console.log(e);
     wx.showToast({
       title: '新消息',
@@ -183,98 +178,64 @@ const imfn = {
     }
     return renderDom
   },
-  /** 解析系统消息 */
-  parseGroupSystemNotice(payload) {
-    const groupName =
-      payload.groupProfile.groupName || payload.groupProfile.groupID
-    switch (payload.operationType) {
-      case 1:
-        return `${payload.operatorID} 申请加入群组：${groupName}`
-      case 2:
-        return `成功加入群组：${groupName}`
-      case 3:
-        return `申请加入群组：${groupName}被拒绝`
-      case 4:
-        return `被管理员${payload.operatorID}踢出群组：${groupName}`
-      case 5:
-        return `群：${groupName} 已被${payload.operatorID}解散`
-      case 6:
-        return `${payload.operatorID}创建群：${groupName}`
-      case 7:
-        return `${payload.operatorID}邀请你加群：${groupName}`
-      case 8:
-        return `你退出群组：${groupName}`
-      case 9:
-        return `你被${payload.operatorID}设置为群：${groupName}的管理员`
-      case 10:
-        return `你被${payload.operatorID}撤销群：${groupName}的管理员身份`
-      case 255:
-        return '自定义群系统通知'
-    }
-  },
   /** 错误回调 */
-  onError(event) {
+  Error(event) {
     // 网络错误不弹toast && sdk未初始化完全报错
     if (event.data.message && event.data.code && event.data.code !== 2800 && event.data.code !== 2999) {
-      // store.commit('showToast', {
-      //   title: event.data.message,
-      //   duration: 2000
-      // })
+      console.log(event.message.message);
     }
   },
   /**
    * 网络变化
    */
   checkoutNetState(state) {
-    switch (state) {
-      case TIM.TYPES.NET_STATE_CONNECTED:
-        return {
-          title: '已接入网络', duration: 2000
-        }
-        case TIM.TYPES.NET_STATE_CONNECTING:
-          return {
-            title: '当前网络不稳定', duration: 2000
-          }
-          case TIM.TYPES.NET_STATE_DISCONNECTED:
-            return {
-              title: '当前网络不可用', duration: 2000
-            }
-            default:
-              return ''
-    }
+
   },
   /**
    * */
-  netStateChange(event) {
-    console.log(event.data.state)
-    // store.commit('showToast', checkoutNetState(event.data.state))
+  NetStateChange(o) {
+    switch (o.data.state) {
+      case TIM.TYPES.NET_STATE_CONNECTED:
+        return {
+          title: '已接入网络', duration: 2000
+        };
+      case TIM.TYPES.NET_STATE_CONNECTING:
+        return {
+          title: '当前网络不稳定', duration: 2000
+        };
+      case TIM.TYPES.NET_STATE_DISCONNECTED:
+        return {
+          title: '当前网络不可用', duration: 2000
+        };
+      default:
+        return ''
+    }
   },
-  /** 
-   * 消息读取
-   */
-  onMessageReadByPeer(event) {
+  /** 消息对方已读 */
+  MessageReadByPeer(event) {
     console.log(event)
   },
-  /**
-   * 列表更新
-   */
-  convListUpdate(event) {
+  /** 列表更新 */
+  ConvListUpdate(event) {
+    console.log(event);
     // store.commit('updateAllConversation', event.data)
   },
   /** 群列表更新
    * 有新人加入或旧人退出
    */
-  groupListUpdate(event) {
+  GroupListUpdate(o) {
+    console.log(o);
     // store.commit('updateGroupList', event.data)
   },
   /**
    *  黑名单列表更新 
    * */
-  blackListUpdate(event) {
+  BlackListUpdate(o) {
+    console.log(o);
     // store.commit('updateBlacklist', event.data)
   },
   /** 消息被撤回 */
-  onMessageRevoked(e) {
+  messageRevoked(e) {
     wx.showToast({
       title: '消息被撤回',
     });
@@ -518,10 +479,10 @@ messageList.forEach(function(message) {
   /** 获取会话列表
    *     <important> 该列表获取到资料不完整。但是能够满足列表的渲染需求（仅包括头像、昵称等）
    *   返回 Promise 
-   *     默认会话保存市场跟会话最后一条保存时间一致，默认 7 天
+   *     默认会话保存时常跟会话最后一条保存时间一致，默认 7 天
    */
-  getConverSationList(o) {
-    return wx.$_tim.getConverSationList();
+  getConverSationList(list) {
+    return wx.$_tim.getConversationList(list);
   },
   /** 详细会话信息 
    * 
@@ -537,10 +498,16 @@ messageList.forEach(function(message) {
    *  只删除会话，不会删除信息
    *    参数      id        conversationID
    *    返回值    Promise   
-   * 
    */
   delConversation(id) {
     return wx.$_tim.deleteConversation(id);
+  },
+  /** 置顶或取消置顶 */
+  listTop(to, isPinned = false) {
+    return wx.$_tim.pinConversation({
+      conversationID: `C2C${to}`,
+      isPinned
+    })
   },
   /**  群组列表获取
    * 
@@ -701,10 +668,7 @@ messageList.forEach(function(message) {
   quiteGroup(id) {
     return wx.$_tim.quitGroup(id);
   },
-  /*** 找群 
-   * 
-   *  通过 群 ID 查找群
-   */
+  /*** 找群      通过 群 ID 查找群   */
   searchGroupByID(id) {
     return wx.$_tim.searchGroupByID(id);
   },
@@ -879,12 +843,11 @@ messageList.forEach(function(message) {
   /**  系统消息 
    * 
    */
-  groupSystemNoticeReceived(o) {
+  GroupSystemNoticeReceived(o) {
     console.log(o);
   },
-  /** 获取我的资料
-   */
-  getMifInfo() {
+  /** 获取我的资料  */
+  getMiInfo() {
     return wx.$_tim.getMyProfile();
   },
   /** 
@@ -936,50 +899,44 @@ messageList.forEach(function(message) {
   updateMiInfo(o) {
     return wx.$_tim.updateMyProfile(o);
   },
-  /** 黑名单
-   * 
-   */
-  getBlacklist() {
+  /** 黑名单   */
+  getBlackList() {
     return wx.$_tim.getBlacelist()
   },
-  /** 加入黑名单 
-   * 
-   * 参数说明
-   *            o      userIDList   带加入黑名单的 userID 列表
-   */
-  addBlacklist(o) {
-    return wx.$_tim.addToBlacklist(o);
+  /** 加入黑名单    */
+  addBlacklist(userIDList) {
+    return wx.$_tim.addToBlacklist({
+      userIDList
+    });
   },
-  /** 移除黑名单 
-   * 
-   *  参数说明:
-   *        o       object
-   */
-  removeBlacklist(o) {
-    return wx.$_tim.removeFromBlacklist(o);
+  /** 移除黑名单    */
+  removeBlacklist(userIDList) {
+    return wx.$_tim.removeFromBlacklist({
+      userIDList
+    });
   },
   /*** 收到消息被第三方回调修改的通知，消息发送方可通过遍历 event.data 获取消息列表数据并更新页面上同 ID 消息的内容 */
-  messageModified(o) {
+  MessageModified(o) {
     console.log(o);
     return o;
   },
   /** 消息列表发生改变 */
-  conversationListUpdated(o) {
+  ConversationListUpdated(o) {
     console.log(o);
-    return o;
+    // return o;
   },
   /** 收到自己或好友的资料变更通知 */
-  profileUpdate(o) {
+  ProfileUpdate(o) {
     console.log(o);
     return o;
   },
   /** 好友列表发生改变 */
-  friendListUpdate(o) {
+  FriendListUpdate(o) {
     console.log(o);
     return o;
   },
   /** 收到好友申请列表更新通知 */
-  friendApplicationListUpdate(o) {
+  FriendApplicationListUpdate(o) {
     console.log(o);
     return o;
     // event.name - TIM.EVENT.FRIEND_APPLICATION_LIST_UPDATED
@@ -992,36 +949,198 @@ messageList.forEach(function(message) {
     // const applicationSentByMe = friendApplicationList.filter((friendApplication) => friendApplication.type === TIM.TYPES.SNS_APPLICATION_SENT_BY_ME);
   },
   /**  收到好友分组列表更新通知 */
-  friendGroupListUpdate(o) {
+  FriendGroupListUpdate(o) {
     // event.name - TIM.EVENT.FRIEND_GROUP_LIST_UPDATED
     // event.data - 存储 FriendGroup 对象的数组 - [FriendGroup]
     console.log(o);
     return o;
   },
+  /** 主动获取好友列表 */
+  getFriendList() {
+    return wx.$_tim.getFriendList();
+  },
+  /** 主动添加好友 */
+  addFriend() {
+    return wx.$_tim.addFriend({
+      to: '',
+      source: 'AddSource_Type_Web',
+      remark: '',
+      groupName: '',
+      wording: '',
+      type: wx.$_TIM.TYPES.SNS_ADD_TYPE_BOTH
+    });
+  },
+  /** 主动删除好友  删除的好友数组  默认双向删除 */
+  delFriend(userIDList, both = true) {
+    return wx.$_deleteFriend({
+      userIDList,
+      type: both == true ? wx.$_TIM.TYPES.SNS_DELETE_TYPE_BOTH : wx.$_TIM.TYPES.SNS_DELETE_TYPE_SINGLE
+    })
+  },
+  /** 校验好友关系 好友数组 */
+  checkFriend(userIDList) {
+    return wx.$_tim.checkFriend({
+      userIDList,
+      type: wx.$_TIM.TYPE.SNS_CHECK_TYPE_BOTH
+    });
+  },
+  /** 获取好友的数据和资料数据 */
+  getFriendInfo(userIDList) {
+    return wx.$_tim.getFriendProfile({
+      userIDList
+    })
+  },
+  /** 更新好友关系链，只支持好友的备注和自定义字段 */
+  upFriend(userID, remark) {
+    return wx.$_tim.epdateFriend({
+      userID,
+      remark
+    });
+  },
+  /** 护球好友申请列表 */
+  getFriendApplicationList() {
+    return wx.$_tim.getFriendApplicationList();
+  },
+  /** 同意好友申请 */
+  agreeFriendApplication(userID, remark) {
+    return wx.$_tim.acceptFriendApplication({
+      userID,
+      remark,
+      type: wx.$_TIM.SNS_APPLICATION_AGREE_AND_ADD
+    });
+  },
+  /**  拒绝好友申请 */
+  refurdeFriendApplication(userID) {
+    return wx.$_tim.refurdeFriendApplication({
+      userID
+    });
+  },
+  /** 删除好友申请 */
+  delFriendApplication(userID) {
+    return wx.$_tim.deleteFriendApplication({
+      userID,
+      type: wx.$_TIM.TYPES_APPLICATION_SENT_TO_ME
+    });
+  },
+  /** 上报好友申请已读 */
+  friendApplicationRead() {
+    return wx.$_tim.setFriendApplicationRead();
+  },
+  /**主动获取好友的分组列表 */
+  /*** 其他关于好友的 API  https://web.sdk.qcloud.com/im/doc/zh-cn/SDK.html#getConversationList */
   /** 发送消息，传入第三参数时为群聊消息*/
-  sendMessage(to, text,group = true) {
+  sendMessage(to, text, group = true) {
     /** 创建实例 */
     let msg = wx.$_tim.createTextMessage({
       to,
-      conversationType:group == true ? wx.$_TIM.TYPES.CONV_GROUP : wx.$_TIM.TYPES.CONV_C2C,
+      conversationType: group == true ? wx.$_TIM.TYPES.CONV_GROUP : wx.$_TIM.TYPES.CONV_C2C,
       payload: {
         text
       }
     });
     /** 发送消息，返回为 Promise 对象 */
-    return wx.$_tim.sendMessage(msg);
+    return wx.$_tim.sendMessage(msg, {
+      offlinePushInfo: {
+        /** 如果对方不在线，则消息将存入漫游，且进行离线推送 */
+        title: '您有新的离线消息',
+        description: msg,
+        /** 离线推送设置 OPPO 手机 8.0 系统以上的渠道 ID */
+        androidOPPOChannelID: ''
+      }
+    });
   },
   /*** 发送消息，仅用于群组消息 */
-  sendGroupMessage(to,text) {
+  sendGroupMessage(to, text, ) {
     let msg = wx.$_tim.createTextAtMessage({
       to,
       conversationType: wx.$_TIM.TYPES.CONV_GROUP,
       payload: {
         text,
-        atUserList:[]
+        atUserList: [] // 设置为 userID     TIM.TYPES.MSG_AT_ALL @ 所有人
       }
-      
+
     });
-  }
+    /** 发送消息 */
+    return wx.$_tim.sendMessage(msg);
+  },
+  /** 发送图片消息 */
+  sendImgMessage(to) {
+    wx.chooseImage({
+      /** 从相册选取图片 */
+      sourceType: ['album'],
+      count: 1,
+      success: (file) => {
+        return tim.sendMessage(wx.$_tim.createImageMessage({
+          to,
+          conversationType: wx.$_TIM.TYPES.CONV_C2C,
+          payload: {
+            file
+          },
+          onProgress: (event) => {
+            console.log('file uploading:', event);
+          }
+        }));
+      },
+
+    })
+    return wx.$_tim.sendMessage(msg);
+  },
+  /** 音频消息，代添加 */
+  /**  */
+  /** 消息撤回 */
+  delMessage(message) {
+    return wx.$_tim.deleteMessage([message]);
+  },
+  /**  分页拉去消息列表
+   * messageList           消息列表
+   * nextReqMessageID      续拉时的 ID
+   * isClomPleted          表示消息是否拉取完毕
+   */
+  getMessageList(to, nextReqMessageID = '', group = false) {
+    let o = {
+      conversationID: group == fasle ? `C2C${to}` : `GROUP${to}`,
+      nextReqMessageID,
+      count: 20,
+    };
+    if (nextReqMessageID == '')
+      delete o.nextReqMessageID;
+    return wx.$_tim.getMessageList(o);
+  },
+  /** 消息已读，不调用该接口，消息将一直处于未读状态 */
+  messageRead(to, group = false) {
+    return wx.$_tim.setMessagRead({
+      conversationID: group == fasle ? `C2C${to}` : `GROUP${to}`
+    });
+  },
+  /** 解析系统消息 */
+  parseGroupSystemNotice(payload) {
+    const groupName =
+      payload.groupProfile.groupName || payload.groupProfile.groupID
+    switch (payload.operationType) {
+      case 1:
+        return `${payload.operatorID} 申请加入群组：${groupName}`
+      case 2:
+        return `成功加入群组：${groupName}`
+      case 3:
+        return `申请加入群组：${groupName}被拒绝`
+      case 4:
+        return `被管理员${payload.operatorID}踢出群组：${groupName}`
+      case 5:
+        return `群：${groupName} 已被${payload.operatorID}解散`
+      case 6:
+        return `${payload.operatorID}创建群：${groupName}`
+      case 7:
+        return `${payload.operatorID}邀请你加群：${groupName}`
+      case 8:
+        return `你退出群组：${groupName}`
+      case 9:
+        return `你被${payload.operatorID}设置为群：${groupName}的管理员`
+      case 10:
+        return `你被${payload.operatorID}撤销群：${groupName}的管理员身份`
+      case 255:
+        return '自定义群系统通知'
+    }
+  },
+
 };
 export default imfn;
