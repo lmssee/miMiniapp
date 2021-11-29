@@ -15,7 +15,6 @@ const imfn = {
   /** 
    * 初始化 */
   ini() {
-    console.log(123);
     /** 重建实例 */
     const tim = TIM.create({
       SDKAppID: config.SDKAppID
@@ -38,8 +37,6 @@ const imfn = {
       'tim-upload-plugin': TIMUploadPlugin
     });
     this.login();
-    /** 注册所有的监听事件 */
-    // this.registerEvents(wx.$_tim);
   },
   login() {
     const userID = 'tjltest'
@@ -47,49 +44,47 @@ const imfn = {
       userID,
       userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwiVZOSWpxSVQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMza3sLAwMjaEmpKZDjTZI9-XtNzHx8nAozLZ1z3LPKgqMEbfKdyyJMfbMcPSPdTNrDIiNDIoOcIjzcRWqRYA6BAyMA__'
     }).then(() => {
-      this.registerEvents(wx.$_tim);
+      this.registerEvents();
     }).catch((err) => {
       console.log(err);
     });
   },
   /** 事件监听 */
-  registerEvents(tim) {
+  registerEvents() {
     /** 监听登陆状态 */
-    tim.on(wx.$_TIM.EVENT.SDK_READY, this.ReadyStateUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_READY, this.ReadyStateUpdate);
     /** 监听未登录状态,此时 SDK 无法再正常工作 */
-    tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.ReadyStateUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.login);
     /** 多端登录，被挤出 */
-    tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.KickOut);
+    wx.$_tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.KickOut);
     /** 出现错误监听 */
-    tim.on(wx.$_TIM.EVENT.ERROR, this.Error);
-    /*** 聊天列表更新 */
-    // tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.ConvListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.ERROR, this.Error);
     /** 接收消息的单聊、群聊、群提示、群系统通知的新消息，可遍历 event.data 获取消息列表并更新也买你的 消息 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
+    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
     /** 收到自己或好友的资料变更通知 */
-    tim.on(wx.$_TIM.EVENT.PROFILE_UPDATED, this.ProfileUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.PROFILE_UPDATED, this.ProfileUpdate);
     /** 好友列表发生改变 （ 该接口需要等待 SDK 处于 ready 才可以使用 ） */
-    // tim.on(wx.$_TIM.EVENT.FRIEND_LIST_UPDATE, this.FriendListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.FRIEND_LIST_UPDATE, this.FriendListUpdate);
     /** 黑名单列表更新 */
-    tim.on(wx.$_TIM.EVENT.BLACKLIST_UPDATED, this.BlackListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.BLACKLIST_UPDATED, this.BlackListUpdate);
     /** 网络状态更改 */
-    tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.NetStateChange);
+    wx.$_tim.on(wx.$_TIM.EVENT.NET_STATE_CHANGE, this.NetStateChange);
     /** 消息已读 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.MessageReadByPeer);
+    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_READ_BY_PEER, this.MessageReadByPeer);
     /** 消息被撤回通知 */
-    // tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.MessageRevoked);
+    // wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_REVOKED, this.MessageRevoked);
     /*** 收到消息被第三方回调修改的通知，消息发送方可通过遍历 event.data 获取消息列表数据并更新页面上同 ID 消息的内容 */
-    tim.on(wx.$_TIM.EVENT.MESSAGE_MODIFIED, this.MessageModified);
+    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_MODIFIED, this.MessageModified);
     /** 消息列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.ConversationListUpdated);
+    wx.$_tim.on(wx.$_TIM.EVENT.CONVERSATION_LIST_UPDATED, this.ConversationListUpdated);
     /** 收到群组列表更新通知，可通过遍历 event.data 获取群组列表数据并渲染到页面 */
-    tim.on(wx.$_TIM.EVENT.GROUP_LIST_UPDATED, this.GroupListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.GROUP_LIST_UPDATED, this.GroupListUpdate);
     /** 群系统消息 */
-    tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.GroupSystemNoticeReceived);
+    wx.$_tim.on(wx.$_TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, this.GroupSystemNoticeReceived);
     /** 收到好友申请列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.FRIEND_APPLICATION_LIST_UPDATED, this.FriendApplicationListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.FRIEND_APPLICATION_LIST_UPDATED, this.FriendApplicationListUpdate);
     /**  收到好友分组列表更新通知 */
-    tim.on(wx.$_TIM.EVENT.FRIEND_GROUP_LIST_UPDATED, this.FriendGroupListUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.FRIEND_GROUP_LIST_UPDATED, this.FriendGroupListUpdate);
   },
   /** 多端登录，被挤掉线 */
   KickOut() {
@@ -214,11 +209,6 @@ const imfn = {
   /** 消息对方已读 */
   MessageReadByPeer(event) {
     console.log(event)
-  },
-  /** 列表更新 */
-  ConvListUpdate(event) {
-    console.log(event);
-    // store.commit('updateAllConversation', event.data)
   },
   /** 群列表更新
    * 有新人加入或旧人退出

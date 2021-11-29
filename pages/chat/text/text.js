@@ -11,7 +11,7 @@ const recordOptions = {
 Page({
   data: {
     // friendId: '656212200867758080', //朋友账号
-    friendId: 'tjl1234567', //朋友账号
+    friendId: '', //朋友账号
     friendName: '', //朋友名字
     friendAvatarUrl: '', //朋友头像
     messages: [], // 消息集合
@@ -46,86 +46,98 @@ Page({
     ScrollLoading: 0,
     audioIndex: null,
     sendBtn: true,
+    timeOutCum: {
+      imReady: '',
+      getMessageList: ''
+    }
   },
   onLoad(o) {
+    this.data.friendId = o.friendId || 'tjl1234567';
     this.data.messages = []; // 清空历史消息
-    let audioContext = wx.createInnerAudioContext();
+    let audioContext = wx.createInnerAudioContext(); // 语音消息
+    /** 设置语音消息 */
     this.setData({
       audioContext
     });
     // 将某会话下所有未读消息已读上报
-    setTimeout(() => {
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_READY, () => {
+      wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
       wx.$_tim.setMessageRead({
         conversationID: `C2C${this.data.friendId}`
-      }).then((imResponse) => {
-        console.log('未读消息上报成功');
-        // 已读上报成功
-      }).catch((imError) => {
-        console.log('未读消息上传失败');
-        // 已读上报失败
       });
-    }, 1300);
+    })
   },
   onShow() {
     // 获取当前聊天的历史列表
-    setTimeout(() => {
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_READY, () => {
       this.getMessageList();
-    }, 1200);
-    this.scrollToBottom();
-    // 获取收到的单聊信息
-    let onMessageReceived = (event) => {
-      // event.data - 存储 Message 对象的数组 - [Message]
-      let msgList = this.data.messages
-      this.handlerHistoryMsgs(event.data)
-      this.scrollToBottom();
-    };
-    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, onMessageReceived)
-    // 监听录音结束yu 
-    recorderManager.onStop((res) => {
-      if (this.data.recording) {
-        if (this.data.cancelRecord) {
-          wx.hideToast()
-          this.setData({
-            cancelRecord: false
-          })
-        } else {
-          // 创建消息实例，接口返回的实例可以上屏
-          const message = wx.$_tim.createAudioMessage({
-            to: this.data.friendId,
-            conversationType: wx.$_TIM.TYPES.CONV_C2C,
-            payload: {
-              file: res
-            },
-            onProgress: (event) => {}
-          });
-          //  发送消息
-          let promise = wx.$_tim.sendMessage(message);
-          promise.then((imResponse) => {
-            // 发送成功
-            this.addMessage(imResponse.data.message, this)
-          }).catch((imError) => {
-            // 发送失败
-            wx.hideToast();
-            wx.showToast({
-              title: '消息发送失败',
-              icon: 'error'
+      // 监听录音结束yu 
+      recorderManager.onStop((res) => {
+        if (this.data.recording) {
+          if (this.data.cancelRecord) {
+            wx.hideToast()
+            this.setData({
+              cancelRecord: false
+            })
+          } else {
+            // 创建消息实例，接口返回的实例可以上屏
+            const message = wx.$_tim.createAudioMessage({
+              to: this.data.friendId,
+              conversationType: wx.$_TIM.TYPES.CONV_C2C,
+              payload: {
+                file: res
+              },
+              onProgress: (event) => {}
             });
-          });
-          this.setData({
-            recording: false
+            //  发送消息
+            let promise = wx.$_tim.sendMessage(message);
+            promise.then((imResponse) => {
+              // 发送成功
+              this.addMessage(imResponse.data.message, this)
+            }).catch((imError) => {
+              // 发送失败
+              wx.hideToast();
+              wx.showToast({
+                title: '消息发送失败',
+                icon: 'error'
+              });
+            });
+            this.setData({
+              recording: false
+            })
+          }
+        } else {
+          wx.showToast({
+            title: '说话时间太短',
+            duration: 1000,
+            image: ''
+            /** 差一张图片 */
           })
         }
-      } else {
-        wx.showToast({
-          title: '说话时间太短',
-          duration: 1000,
-          image: ''
-          /** 差一张图片 */
-        })
-      }
+      });
+      this.scrollToBottom();
     });
   },
-  onUnload() {},
+  onHide() {
+    /** 清除定时器 */
+    wx.$_tim.off(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
+  },
+  onUnload() {
+    /** 清除定时器 */
+    clearInterval(this.data.timeOutCum.imReady);
+    clearInterval(this.data.timeOutCum.getMessageList);
+    wx.$_tim.off(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
+  },
+  /** 接收到新消息回调 */
+  MessageReceived(e) {
+    if (e.data[0].from == this.data.friendId) {
+      this.addMessage(e.data[0]);
+      this.scrollToBottom();
+      wx.$_tim.setMessageRead({
+        conversationID: `C2C${this.data.friendId}`
+      });
+    }
+  },
   /**  获取消息列表 */
   getMessageList() {
     // 获取 SDK 的 ready 信息
@@ -213,6 +225,7 @@ Page({
       }
     })
   },
+  /** 滚动到底部 */
   scrollToBottom() {
     this.setData({
       toView: 'row_' + (this.data.messages.length - 1)
@@ -220,9 +233,10 @@ Page({
   },
   /** 预览图片 */
   previewImage(e) {
+    let current = e.currentTarget.dataset.src;
     wx.previewImage({
-      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
-      urls: [e.currentTarget.dataset.src]
+      current, // 当前显示图片的http链接
+      urls: [current]
     })
   },
   // 录制语音
@@ -445,15 +459,11 @@ Page({
     })
   },
   /** 历史消息处理 */
-  handlerHistoryMsgs(messages) {
-    // let messages = this.data.messages ||[];
-    // messages.concat(message);
+  handlerHistoryMsgs(message) {
+    let messages = this.data.messages || [];
+    messages = message.concat(messages);
     this.setData({
       messages
     });
   }
-})
-/** 
- * tim.logout(); 
- *    登出即时通信 
- * */
+});
