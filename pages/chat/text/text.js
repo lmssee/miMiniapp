@@ -46,10 +46,6 @@ Page({
     ScrollLoading: 0,
     audioIndex: null,
     sendBtn: true,
-    timeOutCum: {
-      imReady: '',
-      getMessageList: ''
-    }
   },
   onLoad(o) {
     this.data.friendId = o.friendId || 'tjl1234567';

@@ -42,7 +42,7 @@ const imfn = {
     const userID = 'tjltest'
     wx.$_tim.login({
       userID,
-      userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwiVZOSWpxSVQqeKU7MSCgswUJStDEwMDUzMDQ0sTiExqRUFmUSpQ3NTU1MjAwAAiWpKZCxIzMza3sLAwMjaEmpKZDjTZI9-XtNzHx8nAozLZ1z3LPKgqMEbfKdyyJMfbMcPSPdTNrDIiNDIoOcIjzcRWqRYA6BAyMA__'
+      userSig: 'eJyrVgrxCdYrSy1SslIy0jNQ0gHzM1NS80oy0zLBwiVZOSWpxSVQqeKU7MSCgswUJStDEwMDU3NDU0MDiExqRUFmUSpQ3NTU1MjAACpakpkLEjMztjA0t7A0NYKakpkONDkrJD-Dtbww2CfMKa00yiA8KTg5qjLfNTg7J6MiLMXE1CgkMjIvL0bf36PU1VapFgARaTN*'
     }).then(() => {
       this.registerEvents();
     }).catch((err) => {
