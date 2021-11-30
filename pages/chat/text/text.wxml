@@ -1,5 +1,4 @@
 <scroll-view bindscroll="refresh" scroll-into-view="{{toView}}" style="height: {{scroll_height}}px;" upper-threshold="100" scroll-y="true" enable-back-to-top="true" class="message-list">
-  <!-- 每一行 -->
   <view class="row" wx:for="{{messages}}" wx:for-key="index" wx:for-item="item" id="row_{{index}}">
     <!-- 日期 -->
     <view class="datetime" wx:if="{{item.msgTime != ''}}">{{item.msgTime}}</view>
@@ -11,11 +10,11 @@
         <image wx:else class="avatar" src="" />
       </view>
       <!-- 画对话框 -->
-      <view class="content" style="{{item.flow == 'out' ? 'background: #7ECB4B' : ''}}">
+      <view class="content"  style="padding:{{item.type === 'TIMImageElem' ? '0rpx' : item.type === 'TIMVideoFileElem' ? '0rpx'  :  '10rpx'}}">
         <!-- 文本消息 -->
         <view wx:if="{{item.type === 'TIMTextElem'}}">{{item.payload.text}}</view>
         <!-- 图片消息 -->
-        <image class="image-message" wx:elif="{{item.type === 'TIMImageElem'}}" style="width:{{item.payload.imageInfoArray[1].width}}" src="{{item.payload.imageInfoArray[1].url}}" bindtap="previewImage" data-src="{{item.payload.imageInfoArray[0].url}}" />
+        <image class="image-message" wx:elif="{{item.type === 'TIMImageElem'}}" style="width:{{item.payload.imageInfoArray[1].width+'rpx'}};height:{{item.payload.imageInfoArray[1].height + 'rpx'}}" src="{{item.payload.imageInfoArray[1].url}}" bindtap="previewMedia" data-type="image" data-src="{{item.payload.imageInfoArray[0].url}}" />
         <!-- 语音消息 -->
         <view wx:elif="{{item.type === 'TIMSoundElem'}}" url="">
           <view class="box" bindtap="openAudio" data-eventid="{{'13_'+index}}" data-time="{{item.payload.second}}" data-comkey="{{item.payload.url}}">
@@ -24,6 +23,10 @@
               {{item.payload.second<1?1:item.payload.second}} </view>
             </view>
           </view>
+              <!-- 视频消息 -->
+              <view wx:elif="{{item.type == 'TIMVideoFileElem'}}">
+                <video style="width:{{item.payload.thumbWidth + 'rpx'}};height:{{item.payload.thumbHeight + 'rpx'}}" bindtap="previewMedia" src="{{item.payload.videoUrl}}" data-type="video" data-src="{{item.payload.videoUrl}}" poster="{{item.payload.thumbUrl}}" show-fullscreen-btn="{{false}}" show-play-btn="{{fasle}}" show-center-play-btn="{{fasle}}" controls="{{false}}"></video>
+              </view>
         </view>
       </view>
     </view>
@@ -48,20 +51,20 @@
   <view class="send" bindtap="endAudio">结束</view>  -->
 </view>
 <view class="more_box" hidden="{{moreShow}}">
-  <view class="more_item" bindtap="sendImg">
-    <view class="img_box">
-      <image src="/images/icon/interviewRecord/picture.png" />
-    </view>
-    <view style="margin-top:10rpx;">
-      <text>相册</text>
-    </view>
+<view class="more_item" bindtap="sendImg">
+  <view class="img_box">
+    <image src="" />
   </view>
-  <view class="more_item">
-    <view class="img_box">
-      <image src="" />
-    </view>
-    <view style="margin-top:10rpx;">
-      <text>退出</text>
-    </view>
+  <view style="margin-top:10rpx;">
+    <text>图片</text>
   </view>
+</view>
+<view class="more_item" bindtap="sendVideo">
+  <view class="img_box">
+    <image src="" />
+  </view>
+  <view style="margin-top:10rpx;">
+    <text>视频</text>
+  </view>
+</view>
 </view>
