@@ -52,9 +52,14 @@ const imfn = {
   /** 事件监听 */
   registerEvents() {
     /** 监听登陆状态 */
-    wx.$_tim.on(wx.$_TIM.EVENT.SDK_READY, this.ReadyStateUpdate);
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_READY, () => {
+      config.imSDKReady = true
+    });
     /** 监听未登录状态,此时 SDK 无法再正常工作 */
-    wx.$_tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, this.login);
+    wx.$_tim.on(wx.$_TIM.EVENT.SDK_NOT_READY, () => {
+      config.imSDKReady = false;
+      this.login();
+    });
     /** 多端登录，被挤出 */
     wx.$_tim.on(wx.$_TIM.EVENT.KICKED_OUT, this.KickOut);
     /** 出现错误监听 */
@@ -99,10 +104,6 @@ const imfn = {
       })
     }, 500)
   },
-  /** 状态监听 */
-  ReadyStateUpdate({
-    name
-  }) {},
   /** 接到消息 
    * 由 tim.on(TIM.EVENT.MESSAGE_RECEVED,callbackfn) 监听
    * 

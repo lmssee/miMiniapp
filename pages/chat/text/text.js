@@ -1,4 +1,5 @@
 import config from '../../../commons/config.js';
+import fn from '../../../commons/fn.js';
 let recorderManager = wx.getRecorderManager();
 // 录音部分参数 小程序文档
 const recordOptions = {
@@ -18,7 +19,7 @@ Page({
     complete: 0, // 是否还有历史消息可以拉取，1 - 表示没有，0 - 表示有
     content: '', // 输入框的文本值
     lock: false, // 发送消息锁 true - 加锁状态 false - 解锁状态
-    scroll_height: wx.getSystemInfoSync().windowHeight - 54,
+    scrollHeight: wx.getSystemInfoSync().windowHeight - 54,
     reply_height: 0,
     /** 更多 */
     moreShow: true,
@@ -46,12 +47,22 @@ Page({
     ScrollLoading: 0,
     audioIndex: null,
     sendBtn: true,
+    imSDKReady: false
   },
   onLoad(o) {
-    this.data.friendId = o.friendId || 'tjl1234567';
+    this.data.friendId = o.friendId || '660156896044384257';
     this.data.friendName = o.nick;
     this.data.friendAvatarUrl = o.avatarUrl;
-    wx.$_tim.on(wx.$_TIM.IMSdkReady, this.IMSdkReady);
+    this.data.imSDKReady = setInterval(() => {
+      if (config.imSDKReady == true) {
+        this.data.messages = []; // 清空历史消息
+        this.getMessageList();
+        wx.$_tim.setMessageRead({
+          conversationID: `C2C${this.data.friendId}`
+        });
+        clearInterval(this.data.imSDKReady);
+      }
+    }, 100);
     let audioContext = wx.createInnerAudioContext(); // 语音消息
     /** 设置语音消息 */
     this.setData({
@@ -66,10 +77,6 @@ Page({
     wx.setNavigationBarTitle({
       title: this.data.friendName || '问诊',
     });
-    wx.$_tim.setMessageRead({
-      conversationID: `C2C${this.data.friendId}`
-    });
-    // 获取当前聊天的历史列表
     // 监听录音结束yu 
     recorderManager.onStop((res) => {
       if (this.data.recording) {
@@ -117,39 +124,32 @@ Page({
   },
   onHide() {},
   onUnload() {
+    clearInterval(this.data.imSDKReady);
     wx.$_tim.off(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
-  },
-  IMSdkReady() {
-    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
-    this.data.messages = []; // 清空历史消息
-    // 将某会话下所有未读消息已读上报
-    /** 接收消息的单聊、群聊、群提示、群系统通知的新消息，可遍历 event.data 获取消息列表并更新的 消息 */
-    this.getMessageList();
-    this.scrollToBottom();
   },
   /** 接收到新消息回调 */
   MessageReceived(e) {
     if (e.data[0].from == this.data.friendId) {
       this.addMessage(e.data[0]);
-      this.scrollToBottom();
       wx.$_tim.setMessageRead({
         conversationID: `C2C${this.data.friendId}`
       });
-    }
+    };
+    this.scrollToBottom();
   },
   /**  获取消息列表 */
   getMessageList() {
+    wx.$_tim.on(wx.$_TIM.EVENT.MESSAGE_RECEIVED, this.MessageReceived);
     // 获取 SDK 的 ready 信息
     wx.$_tim.getMessageList({
       conversationID: `C2C${this.data.friendId}`, //会话列表传递过来的参数
       count: 15
     }).then((imResponse) => {
-      const messageList = imResponse.data.messageList; // 消息列表。
       this.setData({
         nextReqMessageID: imResponse.data.nextReqMessageID, // 用于续拉，分页续拉时需传入该字段。
-        isCompleted: imResponse.data.isCompleted // 表示是否已经拉完所有消息。
+        isCompleted: imResponse.data.isCompleted, // 表示是否已经拉完所有消息。
+        messages: this.alterMessage(imResponse.data.messageList)
       })
-      this.handlerHistoryMsgs(messageList);
       this.scrollToBottom();
     });
   },
@@ -159,7 +159,7 @@ Page({
       content: e.detail.value,
       sendBtn: e.detail.value == "" ?
         true : false
-    })
+    });
   },
   /**  发送消息  */
   sendMsg(e) {
@@ -171,7 +171,7 @@ Page({
       });
       return;
     }
-    // 2. 发送消息
+    // 发送消息
     wx.$_tim.sendMessage(wx.$_tim.createTextMessage({
       to: this.data.friendId,
       conversationType: wx.$_TIM.TYPES.CONV_C2C,
@@ -179,21 +179,18 @@ Page({
         text: this.data.content
       }
     })).then((imResponse) => {
-      // 发送成功
       this.addMessage(imResponse.data.message)
       this.setData({
         sendBtn: true
       })
     }).catch((imError) => {
       console.log(imError);
-      console.log(78);
-      // 发送失败
     });
   },
   /**  刷新文本消息 */
   addMessage(msg) {
     var messages = this.data.messages;
-    messages.push(msg);
+    messages.push(this.alterMessage(msg));
     this.setData({
       messages: messages,
       content: '' // 清空输入框文本
@@ -216,7 +213,6 @@ Page({
             console.log('图片', e);
           }
         })).then(imResponse => {
-          // 发送成功
           this.addMessage(imResponse.data.message)
         });
       }
@@ -229,6 +225,16 @@ Page({
       maxDuration: 15,
       camera: 'back',
       success: (res) => {
+        if (res.duration > 35) {
+          wx.showModal({
+            cancelColor: 'cancelColor',
+            title: '提示',
+            content: '您好，您选择的视频时长大于 35 秒（s），请重新选择或进行剪辑',
+            showCancel: false,
+            confirmText: '已知晓',
+          });
+          return;
+        }
         wx.$_tim.sendMessage(wx.$_tim.createVideoMessage({
           to: this.data.friendId,
           conversationType: wx.$_TIM.TYPES.CONV_C2C,
@@ -256,7 +262,7 @@ Page({
     let type = e.currentTarget.dataset.type,
       time = 0;
     if (type == 'video') {
-      time = 2000;
+      time = 600;
       fn.showInfo('视频下滑可关闭', 2, 2000);
     }
     setTimeout(() => {
@@ -362,14 +368,15 @@ Page({
   },
   // 下拉加载聊天记录
   refresh(e) {
-    if (this.data.isCompleted == true) {
-      fn.showInfo('已加载全部', 0, 450);
-      return;
-    }
+
     if (this.data.ScrollLoading == 1) { //防止多次触发
       return false
     }
     if (e.detail.scrollTop < 1) {
+      if (this.data.isCompleted == true) {
+        fn.showInfo('已加载全部', 0, 450);
+        return;
+      }
       this.setData({
         ScrollLoading: 1
       });
@@ -385,13 +392,10 @@ Page({
           this.setData({
             nextReqMessageID: imResponse.data.nextReqMessageID, // 用于续拉，分页续拉时需传入该字段
             isCompleted: imResponse.data.isCompleted, // 表示是否已经拉完所有消息。
-            messages: imResponse.data.messageList.concat(this.data.messages) // 消息列表。
-          })
+            messages: this.alterMessage(imResponse.data.messageList).concat(this.data.messages), // 消息列表。
+            toView: 'row_' + (imResponse.data.messageList.length - 1) // 滚动到消息的某一处
+          });
           wx.hideLoading()
-          this.setData({
-            ScrollLoading: 0
-          })
-          this.handlerHistoryMsgs(messageList, this);
         });
       }, 800);
     }
@@ -413,7 +417,7 @@ Page({
       this.setData({
         moreShow: false,
         reply_height: 92,
-        scroll_height: this.data.scroll_height - 92
+        scrollHeight: this.data.scrollHeight - 92
       })
     } else {
       this.bindfocus();
@@ -423,8 +427,9 @@ Page({
   bindfocus() {
     this.setData({
       moreShow: true,
-      reply_height: 0,
-      scroll_height: wx.getSystemInfoSync().windowHeight - 54
+      expressionShow: true,
+      replyBottom: 12,
+      scrollHeight: wx.getSystemInfoSync().windowHeight * 750 / wx.getSystemInfoSync().windowWidth - 52
     })
   },
   /**  发送表情消息 */
@@ -496,11 +501,30 @@ Page({
     })
   },
   /** 历史消息处理 */
-  handlerHistoryMsgs(message) {
-    let messages = this.data.messages || [];
-    messages = message.concat(messages);
-    this.setData({
-      messages
-    });
+  alterMessage(messages) {
+    console.log(messages);
+    for (let i = 0, j = messages.length; i < j; i++) {
+      /** 视频消息的处理 */
+      if (messages[i].type == "TIMVideoFileElem") {
+        /** 时长转化 */
+        let time = messages[i].payload.videoSecond;
+        messages[i].payload.videoSecond = time < 1 ? '00:00' : time < 10 ? `00:0${time}` : `00:${time}`;
+        /** 宽高设定 */
+        let width = messages[i].payload.thumbWidth || 400;
+        let height = messages[i].payload.thumbHeight || 712;
+        let linWeight = width > 600 ? 600 : width > 400 ? width : 400;
+        messages[i].payload.thumbWidth = linWeight;
+        messages[i].payload.thumbHeight = linWeight * height / width;
+      }
+      /** 图片消息处理 */
+      else if (messages[i].type == 'TIMImageElem') {
+        let width = messages[i].payload.thumbWidth || 400;
+        let height = messages[i].payload.thumbHeight || 712;
+        let linWeight = width > 600 ? 600 : width > 400 ? width : 400;
+        messages[i].payload.thumbWidth = linWeight;
+        messages[i].payload.thumbHeight = linWeight * height / width;
+      }
+    }
+    return messages;
   }
 });
