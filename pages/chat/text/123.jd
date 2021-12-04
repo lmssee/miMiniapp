@@ -502,7 +502,7 @@ Page({
   /** 历史消息处理 */
   alterMessage(messages, n) {
     console.log('message', messages);
-    const lastTimeOfTime = 30;
+    const lastTimeOfTime = 3;
     for (let i = 0, j = messages.length; i < j; i++) {
       /*** 时间戳显示 */
       if (n == 1) {
@@ -550,3 +550,20 @@ Page({
     return messages;
   }
 });
+
+
+
+
+
+   页面高度为 windowHeight
+
+                页面组成
+                        1、默认状态     
+                                消息                           输入框                输入框底部          
+                                scrollHeight                  reply    108rpx       replyBottom        22rpx
+                        2、发送图片或视频
+                                消息                            输入框                  更多
+                                scrollHeight                    reply    108rpx        more_box        200rpx 
+                        3、表情框
+                                消息                            输入框                  表请输入框
+                                scrollHeight                    reply     108rpx       expressionBox    333rpx
