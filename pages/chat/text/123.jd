@@ -560,10 +560,17 @@ Page({
                 页面组成
                         1、默认状态     
                                 消息                           输入框                输入框底部          
-                                scrollHeight                  reply    108rpx       replyBottom        22rpx
+                                scrollHeight    -232rpx        reply    205rpx       replyBottom        22rpx
                         2、发送图片或视频
                                 消息                            输入框                  更多
-                                scrollHeight                    reply    108rpx        more_box        200rpx 
+                                scrollHeight     -410rpx        reply    205rpx        more_box        200rpx 
                         3、表情框
                                 消息                            输入框                  表请输入框
-                                scrollHeight                    reply     108rpx       expressionBox    333rpx
+                                scrollHeight     -543rpx        reply     205rpx       expressionBox    333rpx
+
+                        4、输入状态
+                                消息                             输入框                  键盘高度 
+                                scrollHeight      -220rpx       reply    205rpx        height 
+
+
+              状态 1 

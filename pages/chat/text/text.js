@@ -162,7 +162,7 @@ Page({
     });
   },
   /**  发送消息  */
-  sendMsg(e) {
+  sendMsg() {
     if (this.data.content == "") {
       wx.showToast({
         title: '请输入内容',
