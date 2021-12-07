@@ -1,0 +1,82 @@
+<view class="containerPage">
+  <view class="textCenter freeCumOfMessage">您还可以发送 {{freeCumOfMessage}} 条免费信息，<text>购买问诊服务</text>后可自由沟通</view>
+  <scroll-view bindscroll="refresh" scroll-with-animation="{{scrollWithAnimation}}" scroll-into-view="{{toView}}" style="height: {{scrollHeight}}rpx;" upper-threshold="100" scroll-y="true" enable-back-to-top="true" class="messageListOfDialogue">
+    <view class="row" wx:for="{{messages}}" wx:for-key="index" wx:for-item="item" id="row_{{index}}">
+      <view class="noMoreMessage" wx:if="{{isCompleted}}">没有更多啦</view>
+      <!-- 日期 -->
+      <view class="datetime" wx:if="{{item.showTimeInfo != ''}}">{{item.showTimeInfo}}</view>
+      <!-- 头像与内容文本 -->
+      <view class="body" style="flex-flow: {{item.flow == 'in' ? 'row' : 'row-reverse'}}">
+        <!-- 头像 -->
+        <view class="avatar-container">
+          <image wx:if="{{item.flow == 'in'}}" class="avatar" src="{{friendAvatarUrl}}" />
+          <image wx:else class="avatar" src="{{miAvatarUrl}}" />
+        </view>
+        <!-- 画对话框 -->
+        <view class="content" style="padding:{{item.type === 'TIMImageElem' ? '0rpx' : item.type === 'TIMVideoFileElem' ? '0rpx'  :  '10rpx'}}">
+          <!-- 文本消息 -->
+          <view class="{{item.flow == 'in'? 'textMessageIn':'textMessageOut'}}" wx:if="{{item.type === 'TIMTextElem'}}" bindlongpress="copyTextOfDialogue" data-data="{{item.textShow}}">
+            <block wx:for="{{item.textShow}}" wx:for-item="textItem" wx:for-key="textIndex">
+              <text wx:if="{{textItem.name == 'span'}}">{{textItem.text}}</text>
+              <image wx:if="{{item.name === 'img'}}" class="emoji-icon" src="{{item.src}}" />
+            </block>
+          </view>
+          <!-- 图片消息 -->
+          <image class="imageMessage" wx:elif="{{item.type === 'TIMImageElem'}}" style="width:{{item.payload.imageInfoArray[1].width+'rpx'}};height:{{item.payload.imageInfoArray[1].height + 'rpx'}}" src="{{item.payload.imageInfoArray[1].url}}" bindtap="previewMedia" data-type="image" data-src="{{item.payload.imageInfoArray[0].url}}" />
+          <!-- 视频消息 -->
+          <view class="videoMessage" bindtap="previewMedia" data-type="video" wx:elif="{{item.type == 'TIMVideoFileElem'}}" style="width:{{item.payload.thumbWidth/3 + 'rpx'}};height:{{item.payload.thumbHeight/3 + 'rpx'}}" data-src="{{item.payload.videoUrl}}">
+            <image class="imageMessage" style="width:{{item.payload.thumbWidth/3 + 'rpx'}};height:{{item.payload.thumbHeight/3 + 'rpx'}};border-radius: 8rpx;filter: contrast(30%);" src="{{item.payload.thumbUrl}}"></image>
+            <image class="flow" src="/images/icon/interviewRecord/videoPlay.png"></image>
+            <text class="videoTime">{{item.payload.videoSecondShow}}</text>
+            <text class="videoInfoTest">播放时下滑退出预览</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="reply" style="bottom:{{replyBottom}}rpx;">
+    <view class="scrollBottomAndReadedView" wx:if="{{!isInBottom}}" bindtap="scrollToBottomAndRead">
+      <image class="scrollBottomAndReaded" src="/images/icon/interviewRecord/scrollBottomAndReaded.png" /><text class="text" wx:if="{{newMessageButnoInBottom}}">{{newMessageInBottomShow}} 新消息</text><text class="text" wx:else>回到底部</text>
+    </view>
+    <view class="dialogueBottombutton">
+      <view class="inline3">就诊人：</view>
+      <view class="inline3">购买问诊服务</view>
+      <view class="inline3">上传首诊病例</view>
+    </view>
+    <view class="dialogueBottomInput">
+      <view class="oprationArea inlineBlock">
+        <!-- <input bindfocus="inputOnFocus" bindblur="_setInputScroll" type="text" bindinput="getContent" model:value="{{content}}" /> -->
+        <textarea adjust-position="{{true}}" cursor-spacing="20" model:value="{{content}}" bindinput="onInputValueChange" maxlength="-1" fixed="{{true}}" type="text" placeholder-class="input-placeholder" confirm-type="send" show-confirm-bar="{{false}}" bindfocus="inputOnFocus" bindlinechange="inputLineChange" bindblur="_setInputScroll" bindconfirm="sendMsg" />
+      </view>
+      <view class="expressionView inlineBlock vTop" bindtap="expressionShowClick">
+        <image class="{{expressionShow == true ? 'expression' : 'expression2'}}" src="/images/icon/interviewRecord/expression.png" alt="表情" />
+      </view>
+      <view class="inlineBlock send vTop" wx:if="{{content.length > 0}}" bindtap="sendMsg">发送</view>
+      <view wx:if="{{content.length == 0}}" class="addMoreOfDialogue inlineBlock vTop" bind:tap="moreClick">
+        <image class="addMoreOfDialogueImg" src="/images/icon/interviewRecord/addMoreHide.png" alt="更多" />
+        <image class="{{moreShow == false? 'addMoreOfDialogueImg' : 'addMoreOfDialogueImg2'}}" src="/images/icon/interviewRecord/addMoreHide.png" alt="更多" />
+      </view>
+    </view>
+  </view>
+  <view class="moreBoxOfDialogue" hidden="{{moreShow}}">
+    <view class="moreItemOfDialogue" bindtap="sendImg">
+      <view class="imgBOxOfDialogue">
+        <image src="/images/icon/interviewRecord/picture.png" />
+      </view>
+      <view style="margin-top:10rpx;">
+        <text>图片</text>
+      </view>
+    </view>
+    <view class="moreItemOfDialogue" bindtap="sendVideo">
+      <view class="imgBOxOfDialogue">
+        <image src="/images/icon/interviewRecord/shipin.png" />
+      </view>
+      <view style="margin-top:10rpx;">
+        <text>视频</text>
+      </view>
+    </view>
+  </view>
+  <view class="expressionBox" hidden="{{expressionShow}}">
+    <view class="textCenter center">暂不支持发送表情</view>
+  </view>
+</view>

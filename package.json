@@ -18,6 +18,7 @@
   "homepage": "https://github.com/lmssee/lm#readme",
   "dependencies": {
     "tim-upload-plugin": "^1.0.3",
-    "tim-wx-sdk": "^2.13.0"
+    "tim-wx-sdk": "^2.13.0",
+    "trtc-wx-sdk": "^1.0.4"
   }
 }
